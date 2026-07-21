@@ -1,0 +1,6 @@
+manual-changelog: CHANGELOG
+
+ignore
+  - README.md
+  - CHANGELOG
+  - Annotations.lua

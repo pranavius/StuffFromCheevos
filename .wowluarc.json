@@ -1,0 +1,9 @@
+{
+    "ignore": [".release/", "Localization/"],
+    "library": ["Libs/"],
+    "flavors": ["retail"],
+    "globals": {
+        "read": ["StuffFromCheevos*", "SFC_*"],
+        "write": ["StuffFromCheevos*", "SFC_*"]
+    }
+}
