@@ -1,7 +1,13 @@
 local name, SFC = ...
 
--- TODO: Remember to delete this later
-print("Welcome to StuffFromCheevos!")
+SLASH_SFCSLASH1 = "/stufffromcheevos"
+SLASH_SFCSLASH2 = "/sfc"
+
+SlashCmdList["SFCSLASH"] = function(msg)
+    if msg == "" then
+        if SFCMain:IsShown() then SFCMain:Hide() else SFCMain:Show() end
+    end
+end
 
 function SFC_Reset()
     SFC_DB = {}

@@ -1,0 +1,1 @@
+---@class SFCMain: Frame & PortraitFrameTemplate

@@ -1,5 +1,5 @@
 ## Interface: 120007
-## Title: StuffFromCheevos
+## Title: Stuff From Cheevos
 ## Author: @project-author@
 ## Version: @project-version@
 ## SavedVariables: SFC_DB
@@ -18,3 +18,5 @@
 ## X-Last-Update: @build-date-iso@
 
 StuffFromCheevos.lua
+SFCMain\Mixin.lua
+SFCMain\Frame.xml
