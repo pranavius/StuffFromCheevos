@@ -1,5 +1,7 @@
-## Interface: 120007
+## Interface: 120100, 120007
 ## Title: Stuff From Cheevos
+## Notes: Quickly find and sort through all achievements that reward you with collectibles 
+## IconTexture: Interface\AddOns\StuffFromCheevos\Media\SFC-Logo
 ## Author: @project-author@
 ## Version: @project-version@
 ## SavedVariables: SFC_DB
@@ -15,8 +17,10 @@
 ## Category-zhCN: 战团藏品
 ## Category-zhTW: 戰隊收藏
 ## X-Flavor: retail
+## X-Additional-Categories: Achievements, Battle Pets, Miscellaneous
 ## X-Last-Update: @build-date-iso@
 
+Data.lua
 StuffFromCheevos.lua
-SFCMain\Mixin.lua
-SFCMain\Frame.xml
+FrameXML\StuffFromCheevosMixins.lua
+FrameXML\StuffFromCheevos.xml

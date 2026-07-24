@@ -1,0 +1,74 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
+    <Button name="SFCCategoryButtonTemplate" virtual="true" mixin="SFCCategoryButtonMixin">
+        <ButtonText name="$parentText" parentKey="Text" inherits="GameFontNormal"/>
+        <NormalTexture atlas="common-button-tertiary-normal"/>
+        <HighlightTexture atlas="common-button-tertiary-depressed-normal-glow"/>
+        <DisabledTexture atlas="common-button-tertiary-disabled"/>
+        <PushedTexture atlas="common-button-tertiary-depressed-normal"/>
+    </Button>
+
+    <Frame name="SFCMain" parent="UIParent" inherits="PortraitFrameTemplate" mixin="SFCMainMixin" toplevel="true" enableMouse="true" movable="true" registerForDrag="LeftButton" resizable="false" clampedToScreen="true">
+        <Size x="800" y="600"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Frames>
+            <Frame parentKey="CategoryInset" inherits="InsetFrameTemplate">
+                <Size x="200"/>
+                <Anchors>
+                    <!-- TOPLEFT Anchor defined in mixin's OnLoad (anchored to bottom of portrait mask texture) -->
+                    <Anchor point="BOTTOMLEFT" y="10"/>
+                </Anchors>
+                <Frames>
+                    <Frame parentKey="Categories" inherits="VerticalLayoutFrame">
+                        <Anchors>
+                            <Anchor point="TOPLEFT"/>
+                            <Anchor point="BOTTOMRIGHT"/>
+                        </Anchors>
+                    </Frame>
+                </Frames>
+            </Frame>
+            <Frame parentKey="Achievements" inherits="InsetFrameTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.CategoryInset" relativePoint="TOPRIGHT" x="20"/>
+                    <Anchor point="BOTTOMRIGHT" x="-10" y="10"/>
+                </Anchors>
+                <Frames>
+                    <ScrollFrame parentKey="ScrollFrame" inherits="UIPanelScrollFrameTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" y="-5"/>
+                            <Anchor point="BOTTOMRIGHT" x="-25" y="3"/>
+                        </Anchors>
+                        <ScrollChild>
+                            <Frame parentKey="ScrollChild" inherits="VerticalLayoutFrame">
+                                <Size x="1" y="1"/>
+                            </Frame>
+                        </ScrollChild>
+                    </ScrollFrame>
+                </Frames>
+            </Frame>
+        </Frames>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="CategoryTitle" inherits="GameFontHighlight" text="Categories">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.CategoryInset" relativePoint="TOPLEFT" y="5"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.CategoryInset" relativePoint="TOPRIGHT" y="5"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="AchievementsTitle" inherits="GameFontHighlight" text="Achievements">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.Achievements" relativePoint="TOPLEFT" y="5"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Achievements" relativePoint="TOPRIGHT" y="5"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnDragStart method="OnDragStart"/>
+            <OnDragStop method="OnDragStop"/>            
+        </Scripts>
+    </Frame>
+</Ui>

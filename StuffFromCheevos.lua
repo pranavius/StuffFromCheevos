@@ -1,5 +1,3 @@
-local name, SFC = ...
-
 SLASH_SFCSLASH1 = "/stufffromcheevos"
 SLASH_SFCSLASH2 = "/sfc"
 
