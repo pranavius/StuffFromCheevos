@@ -1,11 +1,13 @@
 local SFC = select(2, ...)
 
 SFC.Categories = {
+    "All",
     "Mounts",
     "Titles",
+    "Cosmetics",
     "Toys",
     "Pets",
-    "Decor"
+    "Decor",
 }
 
 SFC.Mounts = {
@@ -129,43 +131,44 @@ SFC.Mounts = {
     -- Seasonal KSM and KSL mount
 }
 
+-- titleID corresponds to CharTitles.Mask_ID in db2
 SFC.Titles = {
-    { titleID = 78, achievementID = 46, categoryID = 97 }, -- the Explorer
-    { titleID = 47, achievementID = 714, categoryID = 95 }, -- Conqueror
-    { titleID = 130, achievementID = 762, categoryID = 201 }, -- Ambassador
-    { titleID = 74, achievementID = 913, categoryID = 155 }, -- Elder
-    { titleID = 79, achievementID = 943, categoryID = 201 }, -- the Diplomat
-    { titleID = 131, achievementID = 945, categoryID = 201 }, -- the Argent Champion
-    { titleID = 132, achievementID = 953, categoryID = 201 }, -- Guardian of Cenarius
-    { titleID = 81, achievementID = 978, categoryID = 96 }, -- the Seeker
-    { titleID = 77, achievementID = 1015, categoryID = 201 }, -- the Exalted
-    { titleID = 76, achievementID = 1039, categoryID = 155 }, -- Flame Keeper
-    { titleID = 72, achievementID = 1175, categoryID = 95 }, -- Battlemaster
-    { titleID = 83, achievementID = 1516, categoryID = 171 }, -- Salty
-    { titleID = 84, achievementID = 1563, categoryID = 170 }, -- Chef
-    { titleID = 124, achievementID = 1656, categoryID = 155 }, -- the Hallowed
-    { titleID = 129, achievementID = 1658, categoryID = 168 }, -- Champion of the Frozen Wastes
-    { titleID = 133, achievementID = 1683, categoryID = 155 }, -- Brewmaster
-    { titleID = 134, achievementID = 1691, categoryID = 155 }, -- Merrymaker
-    { titleID = 135, achievementID = 1693, categoryID = 155 }, -- the Love Fool
-    { titleID = 137, achievementID = 1793, categoryID = 155 }, -- Matron
-    { titleID = 138, achievementID = 1793, categoryID = 155 }, -- Patron
-    { titleID = 140, achievementID = 2051, categoryID = 14922 }, -- of the Nightfall
-    { titleID = 121, achievementID = 2054, categoryID = 14922 }, -- Twilight Vanquisher
-    { titleID = 152, achievementID = 2767, categoryID = 14941 }, -- of Silvermoon
-    { titleID = 153, achievementID = 2768, categoryID = 14941 }, -- of Thunder Bluff
-    { titleID = 154, achievementID = 2769, categoryID = 14941 }, -- of the Undercity
-    { titleID = 155, achievementID = 2798, categoryID = 155 }, -- the Noble
-    { titleID = 168, achievementID = 3478, categoryID = 155 }, -- the Pilgrim
-    { titleID = 174, achievementID = 4583, categoryID = 14922 }, -- Bane of the Fallen King
-    { titleID = 173, achievementID = 4584, categoryID = 14922 }, -- the Light of Dawn
-    { titleID = 176, achievementID = 4598, categoryID = 14866 }, -- of the Ashen Verdict
-    { titleID = 189, achievementID = 4854, categoryID = 15071 }, -- Assistant Professor
-    { titleID = 190, achievementID = 4855, categoryID = 15071 }, -- Associate Professor
-    { titleID = 229, achievementID = 5116, categoryID = 15068 }, -- Blackwing's Bane
-    { titleID = 228, achievementID = 5121, categoryID = 15068 }, -- Dragonslayer
-    { titleID = 226, achievementID = 5123, categoryID = 15068 }, -- of the Four Winds
-    { titleID = 194, achievementID = 5325, categoryID = 15092 }, -- Veteran of the Horde
+    { titleID = 47, achievementID = 46, categoryID = 97 }, -- the Explorer
+    { titleID = 34, achievementID = 714, categoryID = 95 }, -- Conqueror
+    { titleID = 98, achievementID = 762, categoryID = 201 }, -- Ambassador
+    { titleID = 43, achievementID = 913, categoryID = 155 }, -- Elder
+    { titleID = 48, achievementID = 943, categoryID = 201 }, -- the Diplomat
+    { titleID = 99, achievementID = 945, categoryID = 201 }, -- the Argent Champion
+    { titleID = 100, achievementID = 953, categoryID = 201 }, -- Guardian of Cenarius
+    { titleID = 42, achievementID = 978, categoryID = 96 }, -- the Seeker
+    { titleID = 46, achievementID = 1015, categoryID = 201 }, -- the Exalted
+    { titleID = 45, achievementID = 1039, categoryID = 155 }, -- Flame Keeper
+    { titleID = 41, achievementID = 1175, categoryID = 95 }, -- Battlemaster
+    { titleID = 51, achievementID = 1516, categoryID = 171 }, -- Salty
+    { titleID = 52, achievementID = 1563, categoryID = 170 }, -- Chef
+    { titleID = 92, achievementID = 1656, categoryID = 155 }, -- the Hallowed
+    { titleID = 97, achievementID = 1658, categoryID = 168 }, -- Champion of the Frozen Wastes
+    { titleID = 101, achievementID = 1683, categoryID = 155 }, -- Brewmaster
+    { titleID = 102, achievementID = 1691, categoryID = 155 }, -- Merrymaker
+    { titleID = 103, achievementID = 1693, categoryID = 155 }, -- the Love Fool
+    { titleID = 104, achievementID = 1793, categoryID = 155 }, -- Matron
+    { titleID = 105, achievementID = 1793, categoryID = 155 }, -- Patron
+    { titleID = 107, achievementID = 2051, categoryID = 14922 }, -- of the Nightfall
+    { titleID = 89, achievementID = 2054, categoryID = 14922 }, -- Twilight Vanquisher
+    { titleID = 119, achievementID = 2767, categoryID = 14941 }, -- of Silvermoon
+    { titleID = 120, achievementID = 2768, categoryID = 14941 }, -- of Thunder Bluff
+    { titleID = 121, achievementID = 2769, categoryID = 14941 }, -- of the Undercity
+    { titleID = 122, achievementID = 2798, categoryID = 155 }, -- the Noble
+    { titleID = 133, achievementID = 3478, categoryID = 155 }, -- the Pilgrim
+    { titleID = 139, achievementID = 4583, categoryID = 14922 }, -- Bane of the Fallen King
+    { titleID = 138, achievementID = 4584, categoryID = 14922 }, -- the Light of Dawn
+    { titleID = 141, achievementID = 4598, categoryID = 14866 }, -- of the Ashen Verdict
+    { titleID = 148, achievementID = 4854, categoryID = 15071 }, -- Assistant Professor
+    { titleID = 149, achievementID = 4855, categoryID = 15071 }, -- Associate Professor
+    { titleID = 187, achievementID = 5116, categoryID = 15068 }, -- Blackwing's Bane
+    { titleID = 186, achievementID = 5121, categoryID = 15068 }, -- Dragonslayer
+    { titleID = 151, achievementID = 5123, categoryID = 15068 }, -- of the Four Winds
+    { titleID = 153, achievementID = 5325, categoryID = 15092 }, -- Veteran of the Horde
     { titleID = 23, achievementID = 5338, categoryID = 15092 }, -- Centurion
     { titleID = 27, achievementID = 5342, categoryID = 15092 }, -- Warlord
     { titleID = 15, achievementID = 5345, categoryID = 15092 }, -- Scout
@@ -180,165 +183,165 @@ SFC.Titles = {
     { titleID = 25, achievementID = 5354, categoryID = 15092 }, -- Lieutenant General
     { titleID = 26, achievementID = 5355, categoryID = 15092 }, -- General
     { titleID = 28, achievementID = 5356, categoryID = 15092 }, -- High Warlord
-    { titleID = 227, achievementID = 5506, categoryID = 168 }, -- Defender of a Shattered World
-    { titleID = 278, achievementID = 5803, categoryID = 15068 }, -- Firelord
-    { titleID = 267, achievementID = 5827, categoryID = 15072 }, -- Avenger of Hyjal
-    { titleID = 276, achievementID = 5879, categoryID = 15070 }, -- the Flamebreaker
-    { titleID = 285, achievementID = 6116, categoryID = 15068 }, -- Savior of Azeroth
-    { titleID = 287, achievementID = 6177, categoryID = 15068 }, -- Destroyer's End
-    { titleID = 310, achievementID = 6590, categoryID = 15118 }, -- Zookeeper
-    { titleID = 320, achievementID = 6607, categoryID = 15119 }, -- Tamer
-    { titleID = 317, achievementID = 6724, categoryID = 15107 }, -- Delver of the Vaults
-    { titleID = 309, achievementID = 6734, categoryID = 15107 }, -- the Fearless
-    { titleID = 316, achievementID = 6926, categoryID = 168 }, -- the Tranquil Master
-    { titleID = 224, achievementID = 6941, categoryID = 15092 }, -- Hero of the Horde
-    { titleID = 315, achievementID = 7306, categoryID = 170 }, -- Master of the Ways
-    { titleID = 318, achievementID = 7479, categoryID = 15114 }, -- Shado-Master
-    { titleID = 319, achievementID = 7509, categoryID = 15302 }, -- the Scenaturdist
-    { titleID = 125, achievementID = 7520, categoryID = 96 }, -- Loremaster
-    { titleID = 321, achievementID = 7612, categoryID = 15071 }, -- Seeker of Knowledge
-    { titleID = 338, achievementID = 8023, categoryID = 15114 }, -- the Wakener
-    { titleID = 340, achievementID = 8055, categoryID = 95 }, -- Khan
-    { titleID = 342, achievementID = 8067, categoryID = 15107 }, -- Storm's End
-    { titleID = 341, achievementID = 8121, categoryID = 15110 }, -- the Stormbreaker
-    { titleID = 365, achievementID = 8397, categoryID = 15118 }, -- the Crazy Cat Lady
-    { titleID = 377, achievementID = 8397, categoryID = 15118 }, -- the Crazy Cat Man
-    { titleID = 384, achievementID = 8482, categoryID = 15107 }, -- Hellscream's Downfall
-    { titleID = 383, achievementID = 8680, categoryID = 15107 }, -- Liberator of Orgrimmar
-    { titleID = 442, achievementID = 8965, categoryID = 15231 }, -- Empire's Twilight
-    { titleID = 439, achievementID = 8973, categoryID = 15231 }, -- Ironbane
-    { titleID = 143, achievementID = 9058, categoryID = 15228 }, -- Jenkins
-    { titleID = 415, achievementID = 9072, categoryID = 15232 }, -- Talon King
-    { titleID = 416, achievementID = 9072, categoryID = 15232 }, -- Talon Queen
-    { titleID = 395, achievementID = 9094, categoryID = 15303 }, -- Architect
-    { titleID = 443, achievementID = 9464, categoryID = 169 }, -- Artisan
-    { titleID = 406, achievementID = 9508, categoryID = 15303 }, -- Warlord of Draenor
-    { titleID = 403, achievementID = 9509, categoryID = 15303 }, -- Draenei Destroyer
-    { titleID = 400, achievementID = 9510, categoryID = 15303 }, -- the Dwarfstalker
-    { titleID = 399, achievementID = 9511, categoryID = 15303 }, -- Gnomebane
-    { titleID = 398, achievementID = 9512, categoryID = 15303 }, -- the Manslayer
-    { titleID = 402, achievementID = 9513, categoryID = 15303 }, -- Scourge of the Kaldorei
-    { titleID = 404, achievementID = 9514, categoryID = 15303 }, -- Terror of the Tushui
-    { titleID = 401, achievementID = 9515, categoryID = 15303 }, -- Worgen Hunter
-    { titleID = 438, achievementID = 9619, categoryID = 168 }, -- the Savage Hero
-    { titleID = 414, achievementID = 9706, categoryID = 15303 }, -- Stable Master
-    { titleID = 445, achievementID = 9924, categoryID = 97 }, -- Field Photographer
-    { titleID = 457, achievementID = 10043, categoryID = 15231 }, -- Defiler's End
-    { titleID = 455, achievementID = 10164, categoryID = 15303 }, -- Captain
-    { titleID = 456, achievementID = 10265, categoryID = 15220 }, -- of the Jungle
-    { titleID = 85, achievementID = 10354, categoryID = 15247 }, -- Crashin' Thrashin'
-    { titleID = 477, achievementID = 10694, categoryID = 15259 }, -- the Fabulous
-    { titleID = 484, achievementID = 10827, categoryID = 15255 }, -- the Dreamer
-    { titleID = 485, achievementID = 10850, categoryID = 15255 }, -- Vengeance Incarnate
-    { titleID = 486, achievementID = 11232, categoryID = 15252 }, -- the Gullible
-    { titleID = 505, achievementID = 11761, categoryID = 15259 }, -- Stylist
-    { titleID = 511, achievementID = 11763, categoryID = 168 }, -- the Tomb Raider
-    { titleID = 506, achievementID = 11781, categoryID = 15255 }, -- the Darkener
-    { titleID = 510, achievementID = 11941, categoryID = 15258 }, -- Timelord
-    { titleID = 513, achievementID = 12002, categoryID = 15255 }, -- Titanslayer
-    { titleID = 515, achievementID = 12083, categoryID = 15257 }, -- the Lightbringer
-    { titleID = 164, achievementID = 12399, categoryID = 14922 }, -- Starcaller
-    { titleID = 165, achievementID = 12399, categoryID = 14922 }, -- the Astral Walker
-    { titleID = 522, achievementID = 12412, categoryID = 15292 }, -- Prospector
-    { titleID = 521, achievementID = 12439, categoryID = 15252 }, -- Postmaster
-    { titleID = 631, achievementID = 12533, categoryID = 15286 }, -- the Purifier
-    { titleID = 627, achievementID = 12604, categoryID = 15283 }, -- Conqueror of Azeroth
-    { titleID = 633, achievementID = 12861, categoryID = 15283 }, -- Contender
-    { titleID = 632, achievementID = 13134, categoryID = 15307 }, -- Expedition Leader
-    { titleID = 636, achievementID = 13314, categoryID = 15286 }, -- Hero of Dazar'alor
-    { titleID = 655, achievementID = 13555, categoryID = 15298 }, -- Junkyard
-    { titleID = 657, achievementID = 13638, categoryID = 15298 }, -- of the Deeps
-    { titleID = 656, achievementID = 13733, categoryID = 15286 }, -- the Eternal
-    { titleID = 664, achievementID = 13924, categoryID = 15284 }, -- Veteran of the Fourth War
-    { titleID = 670, achievementID = 14055, categoryID = 15286 }, -- the Uncorrupted
-    { titleID = 350, achievementID = 14175, categoryID = 15218 }, -- Gorgeous
-    { titleID = 676, achievementID = 14277, categoryID = 15436 }, -- Cryptkeeper
-    { titleID = 686, achievementID = 14365, categoryID = 15438 }, -- Sinbreaker
-    { titleID = 687, achievementID = 14682, categoryID = 15441 }, -- the Party Herald
-    { titleID = 691, achievementID = 14752, categoryID = 15441 }, -- Abominable
-    { titleID = 689, achievementID = 14775, categoryID = 15441 }, -- Fun Guy
-    { titleID = 704, achievementID = 15121, categoryID = 15438 }, -- Breaker of Chains
-    { titleID = 709, achievementID = 15324, categoryID = 15440 }, -- Tower Ranger
-    { titleID = 715, achievementID = 15489, categoryID = 15438 }, -- Guardian of the Pattern
-    { titleID = 720, achievementID = 15579, categoryID = 15422 }, -- of Lordaeron
-    { titleID = 722, achievementID = 15648, categoryID = 15436 }, -- Maw Walker
-    { titleID = 749, achievementID = 16353, categoryID = 15468 }, -- the Storm-Eater
-    { titleID = 732, achievementID = 16443, categoryID = 15466 }, -- Soupervisor
-    { titleID = 733, achievementID = 16446, categoryID = 15465 }, -- Birdwatcher
-    { titleID = 745, achievementID = 16494, categoryID = 15466 }, -- Agent of the Black Prince
-    { titleID = 740, achievementID = 16601, categoryID = 15283 }, -- Malicious
-    { titleID = 738, achievementID = 16648, categoryID = 15272 }, -- the Thundering
-    { titleID = 741, achievementID = 16731, categoryID = 15118 }, -- Knight of Feathersworth
-    { titleID = 744, achievementID = 16760, categoryID = 15466 }, -- Paragon of the Obsidian Brood
-    { titleID = 746, achievementID = 16791, categoryID = 169 }, -- Merchant Artisan
-    { titleID = 747, achievementID = 16799, categoryID = 169 }, -- Personal Crafter
-    { titleID = 761, achievementID = 17413, categoryID = 15465 }, -- the Key Master
-    { titleID = 762, achievementID = 17543, categoryID = 15465 }, -- the Forbidden
-    { titleID = 765, achievementID = 17734, categoryID = 15455 }, -- the Reconciler
-    { titleID = 769, achievementID = 17841, categoryID = 15246 }, -- Barter Boss
-    { titleID = 772, achievementID = 18159, categoryID = 15468 }, -- Heir to the Void
-    { titleID = 775, achievementID = 18200, categoryID = 15465 }, -- Field Researcher
-    { titleID = 774, achievementID = 18284, categoryID = 15465 }, -- Sniffenseeker
-    { titleID = 777, achievementID = 18383, categoryID = 15118 }, -- Whelptender
-    { titleID = 782, achievementID = 18642, categoryID = 15465 }, -- the Inquisitive
-    { titleID = 788, achievementID = 18646, categoryID = 15465 }, -- Honorary Preservationist
-    { titleID = 783, achievementID = 18705, categoryID = 15272 }, -- of the Infinite
-    { titleID = 785, achievementID = 18958, categoryID = 15455 }, -- of the Tyr's Guard
-    { titleID = 796, achievementID = 19198, categoryID = 15465 }, -- Blossom Bringer
-    { titleID = 87, achievementID = 19318, categoryID = 15455 }, -- of the Emerald Dream
-    { titleID = 799, achievementID = 19343, categoryID = 15468 }, -- the Blazing
-    { titleID = 805, achievementID = 19790, categoryID = 15455 }, -- Isles Archivist
-    { titleID = 821, achievementID = 20206, categoryID = 15455 }, -- Champion of the Dragonflights
-    { titleID = 837, achievementID = 40097, categoryID = 15283 }, -- Slayer of the Deeps
-    { titleID = 823, achievementID = 40098, categoryID = 15531 }, -- Immortal Spelunker
-    { titleID = 851, achievementID = 40222, categoryID = 15521 }, -- Echochaser
-    { titleID = 831, achievementID = 40243, categoryID = 15526 }, -- Queenslayer
-    { titleID = 845, achievementID = 40506, categoryID = 15523 }, -- Seeker of Loot
-    { titleID = 838, achievementID = 40617, categoryID = 15525 }, -- Deephauler
-    { titleID = 843, achievementID = 40662, categoryID = 15521 }, -- Machine-Warden
-    { titleID = 844, achievementID = 40791, categoryID = 15506 }, -- Witness of the Kirin Tor
-    { titleID = 846, achievementID = 40870, categoryID = 15532 }, -- Detective
-    { titleID = 847, achievementID = 40874, categoryID = 15530 }, -- Silksinger
-    { titleID = 848, achievementID = 40875, categoryID = 15530 }, -- Anub'
-    { titleID = 849, achievementID = 40876, categoryID = 15530 }, -- Hand of the Vizier
-    { titleID = 850, achievementID = 40882, categoryID = 15522 }, -- the Bountiful
-    { titleID = 879, achievementID = 41086, categoryID = 15530 }, -- the Explosive
-    { titleID = 937, achievementID = 41095, categoryID = 15522 }, -- Delver
-    { titleID = 824, achievementID = 41197, categoryID = 15531 }, -- High Explorer
-    { titleID = 881, achievementID = 41236, categoryID = 15526 }, -- Liberator of Undermine
-    { titleID = 882, achievementID = 41350, categoryID = 15530 }, -- Darkfuse Diplomat
-    { titleID = 883, achievementID = 41352, categoryID = 15530 }, -- Trade-Duke
-    { titleID = 889, achievementID = 41596, categoryID = 15526 }, -- Junkmaestro
-    { titleID = 891, achievementID = 41611, categoryID = 15526 }, -- Void Vanquisher
-    { titleID = 892, achievementID = 41629, categoryID = 15521 }, -- Part-Timer
-    { titleID = 906, achievementID = 41820, categoryID = 15506 }, -- of Hammerfall
-    { titleID = 824, achievementID = 42203, categoryID = 15531 }, -- High Explorer
-    { titleID = 825, achievementID = 42301, categoryID = 15604 }, -- Timerunner
-    { titleID = 873, achievementID = 42779, categoryID = 15523 }, -- Flickering
-    { titleID = 926, achievementID = 60935, categoryID = 15604 }, -- Chronoscholar
-    { titleID = 1215, achievementID = 61052, categoryID = 15553 }, -- Dustlord
-    { titleID = 971, achievementID = 61079, categoryID = 15604 }, -- of the Infinite Chaos
-    { titleID = 1049, achievementID = 61344, categoryID = 15553 }, -- Chronicler of the Haranir
-    { titleID = 1072, achievementID = 61377, categoryID = 15566 }, -- Spirebane
-    { titleID = 1046, achievementID = 61379, categoryID = 15566 }, -- Dawnbringer
-    { titleID = 1021, achievementID = 61429, categoryID = 15567 }, -- Brawl Star
-    { titleID = 1019, achievementID = 61446, categoryID = 15283 }, -- Voidslayer
-    { titleID = 1028, achievementID = 61498, categoryID = 15506 }, -- Azeroth's Vanguard
-    { titleID = 1069, achievementID = 61798, categoryID = 15531 }, -- the Ominous
-    { titleID = 824, achievementID = 61807, categoryID = 15531 }, -- High Explorer
-    { titleID = 1078, achievementID = 61901, categoryID = 15571 }, -- Treasure Seeker
-    { titleID = 1242, achievementID = 61910, categoryID = 15547 }, -- Mrglgrgl of Grglmrgl
-    { titleID = 1199, achievementID = 62239, categoryID = 15489 }, -- Thalassian Alchemist
-    { titleID = 1200, achievementID = 62240, categoryID = 15490 }, -- Thalassian Blacksmith
-    { titleID = 1201, achievementID = 62241, categoryID = 15491 }, -- Thalassian Enchanter
-    { titleID = 1202, achievementID = 62242, categoryID = 15492 }, -- Thalassian Engineer
-    { titleID = 1203, achievementID = 62243, categoryID = 15493 }, -- Thalassian Scribe
-    { titleID = 1204, achievementID = 62244, categoryID = 15494 }, -- Thalassian Jewelcrafter
-    { titleID = 1205, achievementID = 62245, categoryID = 15495 }, -- Thalassian Leatherworker
-    { titleID = 1206, achievementID = 62246, categoryID = 15496 }, -- Thalassian Tailor
-    { titleID = 1210, achievementID = 62250, categoryID = 15499 }, -- Thalassian Herbalist
-    { titleID = 1209, achievementID = 62251, categoryID = 15497 }, -- Thalassian Miner
-    { titleID = 1211, achievementID = 62252, categoryID = 15498 }, -- Thalassian Skinner
-    { titleID = 1221, achievementID = 62351, categoryID = 15605 }, -- Preyseeker
-    { titleID = 1291, achievementID = 62941, categoryID = 15608 }, -- Ritual Breaker
+    { titleID = 185, achievementID = 5506, categoryID = 168 }, -- Defender of a Shattered World
+    { titleID = 190, achievementID = 5803, categoryID = 15068 }, -- Firelord
+    { titleID = 188, achievementID = 5827, categoryID = 15072 }, -- Avenger of Hyjal
+    { titleID = 189, achievementID = 5879, categoryID = 15070 }, -- the Flamebreaker
+    { titleID = 194, achievementID = 6116, categoryID = 15068 }, -- Savior of Azeroth
+    { titleID = 196, achievementID = 6177, categoryID = 15068 }, -- Destroyer's End
+    { titleID = 199, achievementID = 6590, categoryID = 15118 }, -- Zookeeper
+    { titleID = 207, achievementID = 6607, categoryID = 15119 }, -- Tamer
+    { titleID = 204, achievementID = 6724, categoryID = 15107 }, -- Delver of the Vaults
+    { titleID = 198, achievementID = 6734, categoryID = 15107 }, -- the Fearless
+    { titleID = 203, achievementID = 6926, categoryID = 168 }, -- the Tranquil Master
+    { titleID = 183, achievementID = 6941, categoryID = 15092 }, -- Hero of the Horde
+    { titleID = 202, achievementID = 7306, categoryID = 170 }, -- Master of the Ways
+    { titleID = 205, achievementID = 7479, categoryID = 15114 }, -- Shado-Master
+    { titleID = 206, achievementID = 7509, categoryID = 15302 }, -- the Scenaturdist
+    { titleID = 93, achievementID = 7520, categoryID = 96 }, -- Loremaster
+    { titleID = 208, achievementID = 7612, categoryID = 15071 }, -- Seeker of Knowledge
+    { titleID = 218, achievementID = 8023, categoryID = 15114 }, -- the Wakener
+    { titleID = 220, achievementID = 8055, categoryID = 95 }, -- Khan
+    { titleID = 222, achievementID = 8067, categoryID = 15107 }, -- Storm's End
+    { titleID = 221, achievementID = 8121, categoryID = 15110 }, -- the Stormbreaker
+    { titleID = 240, achievementID = 8397, categoryID = 15118 }, -- the Crazy Cat Lady
+    { titleID = 252, achievementID = 8397, categoryID = 15118 }, -- the Crazy Cat Man
+    { titleID = 214, achievementID = 8482, categoryID = 15107 }, -- Hellscream's Downfall
+    { titleID = 212, achievementID = 8680, categoryID = 15107 }, -- Liberator of Orgrimmar
+    { titleID = 304, achievementID = 8965, categoryID = 15231 }, -- Empire's Twilight
+    { titleID = 301, achievementID = 8973, categoryID = 15231 }, -- Ironbane
+    { titleID = 110, achievementID = 9058, categoryID = 15228 }, -- Jenkins
+    { titleID = 278, achievementID = 9072, categoryID = 15232 }, -- Talon King
+    { titleID = 279, achievementID = 9072, categoryID = 15232 }, -- Talon Queen
+    { titleID = 260, achievementID = 9094, categoryID = 15303 }, -- Architect
+    { titleID = 305, achievementID = 9464, categoryID = 169 }, -- Artisan
+    { titleID = 269, achievementID = 9508, categoryID = 15303 }, -- Warlord of Draenor
+    { titleID = 267, achievementID = 9509, categoryID = 15303 }, -- Draenei Destroyer
+    { titleID = 264, achievementID = 9510, categoryID = 15303 }, -- the Dwarfstalker
+    { titleID = 263, achievementID = 9511, categoryID = 15303 }, -- Gnomebane
+    { titleID = 262, achievementID = 9512, categoryID = 15303 }, -- the Manslayer
+    { titleID = 266, achievementID = 9513, categoryID = 15303 }, -- Scourge of the Kaldorei
+    { titleID = 268, achievementID = 9514, categoryID = 15303 }, -- Terror of the Tushui
+    { titleID = 265, achievementID = 9515, categoryID = 15303 }, -- Worgen Hunter
+    { titleID = 300, achievementID = 9619, categoryID = 168 }, -- the Savage Hero
+    { titleID = 277, achievementID = 9706, categoryID = 15303 }, -- Stable Master
+    { titleID = 307, achievementID = 9924, categoryID = 97 }, -- Field Photographer
+    { titleID = 319, achievementID = 10043, categoryID = 15231 }, -- Defiler's End
+    { titleID = 317, achievementID = 10164, categoryID = 15303 }, -- Captain
+    { titleID = 318, achievementID = 10265, categoryID = 15220 }, -- of the Jungle
+    { titleID = 53, achievementID = 10354, categoryID = 15247 }, -- Crashin' Thrashin'
+    { titleID = 334, achievementID = 10694, categoryID = 15259 }, -- the Fabulous
+    { titleID = 341, achievementID = 10827, categoryID = 15255 }, -- the Dreamer
+    { titleID = 342, achievementID = 10850, categoryID = 15255 }, -- Vengeance Incarnate
+    { titleID = 343, achievementID = 11232, categoryID = 15252 }, -- the Gullible
+    { titleID = 356, achievementID = 11761, categoryID = 15259 }, -- Stylist
+    { titleID = 362, achievementID = 11763, categoryID = 168 }, -- the Tomb Raider
+    { titleID = 357, achievementID = 11781, categoryID = 15255 }, -- the Darkener
+    { titleID = 361, achievementID = 11941, categoryID = 15258 }, -- Timelord
+    { titleID = 364, achievementID = 12002, categoryID = 15255 }, -- Titanslayer
+    { titleID = 366, achievementID = 12083, categoryID = 15257 }, -- the Lightbringer
+    { titleID = 129, achievementID = 12399, categoryID = 14922 }, -- Starcaller
+    { titleID = 130, achievementID = 12399, categoryID = 14922 }, -- the Astral Walker
+    { titleID = 373, achievementID = 12412, categoryID = 15292 }, -- Prospector
+    { titleID = 372, achievementID = 12439, categoryID = 15252 }, -- Postmaster
+    { titleID = 381, achievementID = 12533, categoryID = 15286 }, -- the Purifier
+    { titleID = 377, achievementID = 12604, categoryID = 15283 }, -- Conqueror of Azeroth
+    { titleID = 383, achievementID = 12861, categoryID = 15283 }, -- Contender
+    { titleID = 382, achievementID = 13134, categoryID = 15307 }, -- Expedition Leader
+    { titleID = 386, achievementID = 13314, categoryID = 15286 }, -- Hero of Dazar'alor
+    { titleID = 403, achievementID = 13555, categoryID = 15298 }, -- Junkyard
+    { titleID = 405, achievementID = 13638, categoryID = 15298 }, -- of the Deeps
+    { titleID = 404, achievementID = 13733, categoryID = 15286 }, -- the Eternal
+    { titleID = 412, achievementID = 13924, categoryID = 15284 }, -- Veteran of the Fourth War
+    { titleID = 417, achievementID = 14055, categoryID = 15286 }, -- the Uncorrupted
+    { titleID = 229, achievementID = 14175, categoryID = 15218 }, -- Gorgeous
+    { titleID = 423, achievementID = 14277, categoryID = 15436 }, -- Cryptkeeper
+    { titleID = 432, achievementID = 14365, categoryID = 15438 }, -- Sinbreaker
+    { titleID = 433, achievementID = 14682, categoryID = 15441 }, -- the Party Herald
+    { titleID = 437, achievementID = 14752, categoryID = 15441 }, -- Abominable
+    { titleID = 435, achievementID = 14775, categoryID = 15441 }, -- Fun Guy
+    { titleID = 447, achievementID = 15121, categoryID = 15438 }, -- Breaker of Chains
+    { titleID = 450, achievementID = 15324, categoryID = 15440 }, -- Tower Ranger
+    { titleID = 455, achievementID = 15489, categoryID = 15438 }, -- Guardian of the Pattern
+    { titleID = 460, achievementID = 15579, categoryID = 15422 }, -- of Lordaeron
+    { titleID = 462, achievementID = 15648, categoryID = 15436 }, -- Maw Walker
+    { titleID = 488, achievementID = 16353, categoryID = 15468 }, -- the Storm-Eater
+    { titleID = 471, achievementID = 16443, categoryID = 15466 }, -- Soupervisor
+    { titleID = 472, achievementID = 16446, categoryID = 15465 }, -- Birdwatcher
+    { titleID = 484, achievementID = 16494, categoryID = 15466 }, -- Agent of the Black Prince
+    { titleID = 479, achievementID = 16601, categoryID = 15283 }, -- Malicious
+    { titleID = 477, achievementID = 16648, categoryID = 15272 }, -- the Thundering
+    { titleID = 480, achievementID = 16731, categoryID = 15118 }, -- Knight of Feathersworth
+    { titleID = 483, achievementID = 16760, categoryID = 15466 }, -- Paragon of the Obsidian Brood
+    { titleID = 485, achievementID = 16791, categoryID = 169 }, -- Merchant Artisan
+    { titleID = 486, achievementID = 16799, categoryID = 169 }, -- Personal Crafter
+    { titleID = 494, achievementID = 17413, categoryID = 15465 }, -- the Key Master
+    { titleID = 495, achievementID = 17543, categoryID = 15465 }, -- the Forbidden
+    { titleID = 498, achievementID = 17734, categoryID = 15455 }, -- the Reconciler
+    { titleID = 502, achievementID = 17841, categoryID = 15246 }, -- Barter Boss
+    { titleID = 505, achievementID = 18159, categoryID = 15468 }, -- Heir to the Void
+    { titleID = 508, achievementID = 18200, categoryID = 15465 }, -- Field Researcher
+    { titleID = 507, achievementID = 18284, categoryID = 15465 }, -- Sniffenseeker
+    { titleID = 510, achievementID = 18383, categoryID = 15118 }, -- Whelptender
+    { titleID = 512, achievementID = 18642, categoryID = 15465 }, -- the Inquisitive
+    { titleID = 519, achievementID = 18646, categoryID = 15465 }, -- Honorary Preservationist
+    { titleID = 514, achievementID = 18705, categoryID = 15272 }, -- of the Infinite
+    { titleID = 516, achievementID = 18958, categoryID = 15455 }, -- of the Tyr's Guard
+    { titleID = 527, achievementID = 19198, categoryID = 15465 }, -- Blossom Bringer
+    { titleID = 55, achievementID = 19318, categoryID = 15455 }, -- of the Emerald Dream
+    { titleID = 530, achievementID = 19343, categoryID = 15468 }, -- the Blazing
+    { titleID = 536, achievementID = 19790, categoryID = 15455 }, -- Isles Archivist
+    { titleID = 547, achievementID = 20206, categoryID = 15455 }, -- Champion of the Dragonflights
+    { titleID = 562, achievementID = 40097, categoryID = 15283 }, -- Slayer of the Deeps
+    { titleID = 549, achievementID = 40098, categoryID = 15531 }, -- Immortal Spelunker
+    { titleID = 576, achievementID = 40222, categoryID = 15521 }, -- Echochaser
+    { titleID = 556, achievementID = 40243, categoryID = 15526 }, -- Queenslayer
+    { titleID = 570, achievementID = 40506, categoryID = 15523 }, -- Seeker of Loot
+    { titleID = 563, achievementID = 40617, categoryID = 15525 }, -- Deephauler
+    { titleID = 568, achievementID = 40662, categoryID = 15521 }, -- Machine-Warden
+    { titleID = 569, achievementID = 40791, categoryID = 15506 }, -- Witness of the Kirin Tor
+    { titleID = 571, achievementID = 40870, categoryID = 15532 }, -- Detective
+    { titleID = 572, achievementID = 40874, categoryID = 15530 }, -- Silksinger
+    { titleID = 573, achievementID = 40875, categoryID = 15530 }, -- Anub'
+    { titleID = 574, achievementID = 40876, categoryID = 15530 }, -- Hand of the Vizier
+    { titleID = 575, achievementID = 40882, categoryID = 15522 }, -- the Bountiful
+    { titleID = 603, achievementID = 41086, categoryID = 15530 }, -- the Explosive
+    { titleID = 650, achievementID = 41095, categoryID = 15522 }, -- Delver
+    { titleID = 550, achievementID = 41197, categoryID = 15531 }, -- High Explorer
+    { titleID = 605, achievementID = 41236, categoryID = 15526 }, -- Liberator of Undermine
+    { titleID = 606, achievementID = 41350, categoryID = 15530 }, -- Darkfuse Diplomat
+    { titleID = 607, achievementID = 41352, categoryID = 15530 }, -- Trade-Duke
+    { titleID = 613, achievementID = 41596, categoryID = 15526 }, -- Junkmaestro
+    { titleID = 615, achievementID = 41611, categoryID = 15526 }, -- Void Vanquisher
+    { titleID = 616, achievementID = 41629, categoryID = 15521 }, -- Part-Timer
+    { titleID = 629, achievementID = 41820, categoryID = 15506 }, -- of Hammerfall
+    { titleID = 550, achievementID = 42203, categoryID = 15531 }, -- High Explorer
+    { titleID = 551, achievementID = 42301, categoryID = 15604 }, -- Timerunner
+    { titleID = 598, achievementID = 42779, categoryID = 15523 }, -- Flickering
+    { titleID = 646, achievementID = 60935, categoryID = 15604 }, -- Chronoscholar
+    { titleID = 754, achievementID = 61052, categoryID = 15553 }, -- Dustlord
+    { titleID = 659, achievementID = 61079, categoryID = 15604 }, -- of the Infinite Chaos
+    { titleID = 680, achievementID = 61344, categoryID = 15553 }, -- Chronicler of the Haranir
+    { titleID = 690, achievementID = 61377, categoryID = 15566 }, -- Spirebane
+    { titleID = 678, achievementID = 61379, categoryID = 15566 }, -- Dawnbringer
+    { titleID = 666, achievementID = 61429, categoryID = 15567 }, -- Brawl Star
+    { titleID = 664, achievementID = 61446, categoryID = 15283 }, -- Voidslayer
+    { titleID = 669, achievementID = 61498, categoryID = 15506 }, -- Azeroth's Vanguard
+    { titleID = 688, achievementID = 61798, categoryID = 15531 }, -- the Ominous
+    { titleID = 550, achievementID = 61807, categoryID = 15531 }, -- High Explorer
+    { titleID = 691, achievementID = 61901, categoryID = 15571 }, -- Treasure Seeker
+    { titleID = 766, achievementID = 61910, categoryID = 15547 }, -- Mrglgrgl of Grglmrgl
+    { titleID = 741, achievementID = 62239, categoryID = 15489 }, -- Thalassian Alchemist
+    { titleID = 742, achievementID = 62240, categoryID = 15490 }, -- Thalassian Blacksmith
+    { titleID = 743, achievementID = 62241, categoryID = 15491 }, -- Thalassian Enchanter
+    { titleID = 744, achievementID = 62242, categoryID = 15492 }, -- Thalassian Engineer
+    { titleID = 745, achievementID = 62243, categoryID = 15493 }, -- Thalassian Scribe
+    { titleID = 746, achievementID = 62244, categoryID = 15494 }, -- Thalassian Jewelcrafter
+    { titleID = 747, achievementID = 62245, categoryID = 15495 }, -- Thalassian Leatherworker
+    { titleID = 748, achievementID = 62246, categoryID = 15496 }, -- Thalassian Tailor
+    { titleID = 751, achievementID = 62250, categoryID = 15499 }, -- Thalassian Herbalist
+    { titleID = 750, achievementID = 62251, categoryID = 15497 }, -- Thalassian Miner
+    { titleID = 752, achievementID = 62252, categoryID = 15498 }, -- Thalassian Skinner
+    { titleID = 755, achievementID = 62351, categoryID = 15605 }, -- Preyseeker
+    { titleID = 771, achievementID = 62941, categoryID = 15608 }, -- Ritual Breaker
 }

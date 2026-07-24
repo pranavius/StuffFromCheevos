@@ -1,3 +1,17 @@
+-- Registering a reusable NineSlice layout for the Rewards list items
+-- Currently unused, but who knows? Might be fun to keep around
+NineSliceUtil.AddLayout("SFCRewardItem", {
+    TopLeftCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner" },
+    TopRightCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner", mirrorLayout = true },
+    BottomLeftCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner", mirrorLayout = true },
+    BottomRightCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner", mirrorLayout = true },
+    TopEdge = { atlas = "_editmode-actionbar-highlight-nineslice-edgetop" },
+    BottomEdge = { atlas = "_editmode-actionbar-highlight-nineslice-edgebottom" },
+    LeftEdge = { atlas = "!editmode-actionbar-highlight-nineslice-edgeleft" },
+    RightEdge = { atlas = "!editmode-actionbar-highlight-nineslice-edgeright" },
+    Center = { atlas = "UI-HUD-Minimap-Button-NineSlice-Center" },
+})
+
 SLASH_SFCSLASH1 = "/stufffromcheevos"
 SLASH_SFCSLASH2 = "/sfc"
 

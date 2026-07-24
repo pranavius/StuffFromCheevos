@@ -1,27 +1,77 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
+
     <Button name="SFCCategoryButtonTemplate" virtual="true" mixin="SFCCategoryButtonMixin">
-        <ButtonText name="$parentText" parentKey="Text" inherits="GameFontNormal"/>
+        <ButtonText name="SFCCategoryButtonText" parentKey="Text" inherits="GameFontNormal"/>
         <NormalTexture atlas="common-button-tertiary-normal"/>
         <HighlightTexture atlas="common-button-tertiary-depressed-normal-glow"/>
         <DisabledTexture atlas="common-button-tertiary-disabled"/>
         <PushedTexture atlas="common-button-tertiary-depressed-normal"/>
     </Button>
 
+    <Frame name="SFCRewardFrameTemplate" virtual="true" inherits="TooltipBorderBackdropTemplate">
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture parentKey="Icon">
+                    <Size x="40" y="40"/>
+                    <Anchors>
+                        <Anchor point="LEFT" x="20"/>
+                    </Anchors>
+                </Texture>
+                <MaskTexture parentKey="IconMask" atlas="perks-border-square-gold-mask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Icon"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Icon"/>
+                    </Anchors>
+                    <MaskedTextures>
+                        <MaskedTexture childKey="Icon"/>
+                    </MaskedTextures>
+                </MaskTexture>
+                <Texture parentKey="IconBorder" atlas="perks-border-square-gold" hidden="true">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.IconMask" x="-2" y="2"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.IconMask" x="2" y="-2"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="RewardName" inherits="GameFontNormal" justifyV="TOP">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Icon" relativePoint="TOPRIGHT" x="10"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="RewardType" inherits="GameFontHighlightSmall">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.RewardName" relativePoint="BOTTOMLEFT" y="-2"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="AchievementName" inherits="GameFontNormal" justifyV="BOTTOM" enableMouseClicks="true">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT" x="10"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
     <Frame name="SFCMain" parent="UIParent" inherits="PortraitFrameTemplate" mixin="SFCMainMixin" toplevel="true" enableMouse="true" movable="true" registerForDrag="LeftButton" resizable="false" clampedToScreen="true">
+        <KeyValues>
+            <KeyValue key="category" value="" type="string"/>
+            <KeyValue key="player" value="" type="string"/>
+        </KeyValues>
         <Size x="800" y="600"/>
         <Anchors>
             <Anchor point="CENTER"/>
         </Anchors>
         <Frames>
-            <Frame parentKey="CategoryInset" inherits="InsetFrameTemplate">
+            <Frame parentKey="Categories" inherits="InsetFrameTemplate">
                 <Size x="200"/>
                 <Anchors>
                     <!-- TOPLEFT Anchor defined in mixin's OnLoad (anchored to bottom of portrait mask texture) -->
                     <Anchor point="BOTTOMLEFT" y="10"/>
                 </Anchors>
                 <Frames>
-                    <Frame parentKey="Categories" inherits="VerticalLayoutFrame">
+                    <Frame parentKey="List" inherits="VerticalLayoutFrame">
                         <Anchors>
                             <Anchor point="TOPLEFT"/>
                             <Anchor point="BOTTOMRIGHT"/>
@@ -29,15 +79,15 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     </Frame>
                 </Frames>
             </Frame>
-            <Frame parentKey="Achievements" inherits="InsetFrameTemplate">
+            <Frame parentKey="Rewards" inherits="InsetFrameTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.CategoryInset" relativePoint="TOPRIGHT" x="20"/>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Categories" relativePoint="TOPRIGHT" x="20"/>
                     <Anchor point="BOTTOMRIGHT" x="-10" y="10"/>
                 </Anchors>
                 <Frames>
                     <ScrollFrame parentKey="ScrollFrame" inherits="UIPanelScrollFrameTemplate">
                         <Anchors>
-                            <Anchor point="TOPLEFT" y="-5"/>
+                            <Anchor point="TOPLEFT" x="10" y="-5"/>
                             <Anchor point="BOTTOMRIGHT" x="-25" y="3"/>
                         </Anchors>
                         <ScrollChild>
@@ -53,14 +103,14 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <Layer level="ARTWORK">
                 <FontString parentKey="CategoryTitle" inherits="GameFontHighlight" text="Categories">
                     <Anchors>
-                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.CategoryInset" relativePoint="TOPLEFT" y="5"/>
-                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.CategoryInset" relativePoint="TOPRIGHT" y="5"/>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.Categories" relativePoint="TOPLEFT" y="5"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Categories" relativePoint="TOPRIGHT" y="5"/>
                     </Anchors>
                 </FontString>
-                <FontString parentKey="AchievementsTitle" inherits="GameFontHighlight" text="Achievements">
+                <FontString parentKey="RewardsTitle" inherits="GameFontHighlight" text="Rewards">
                     <Anchors>
-                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.Achievements" relativePoint="TOPLEFT" y="5"/>
-                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Achievements" relativePoint="TOPRIGHT" y="5"/>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.Rewards" relativePoint="TOPLEFT" y="5"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Rewards" relativePoint="TOPRIGHT" y="5"/>
                     </Anchors>
                 </FontString>
             </Layer>
