@@ -88,7 +88,7 @@ local function getMountRewards()
     for index, reward in ipairs(SFC.Mounts) do
         local mountID = C_MountJournal.GetMountFromItem(reward.itemID)
         if mountID then
-            local mountName, _, iconID, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(mountID)
+            local mountName, _, iconID = C_MountJournal.GetMountInfoByID(mountID)
             tinsert(result, {
                 index = index,
                 name = mountName,
@@ -96,7 +96,6 @@ local function getMountRewards()
                 categoryID = reward.categoryID,
                 type = "Mount",
                 icon = iconID,
-                isOwned = isOwned
             })
         else
             print("No mountID found for item ID", reward.itemID)
@@ -123,7 +122,6 @@ local function getTitleRewards()
                 categoryID = reward.categoryID,
                 type = "Title",
                 icon = "interface/icons/inv_scroll_05",
-                isOwned = IsTitleKnown(reward.titleID)
             })
         else
             print("No title returned for title ID", reward.titleID)
@@ -184,17 +182,30 @@ local function getNameTitleCombo(title)
     if title:match("^%u") then return name..", "..title end
 
     -- fallback, should never be reached (hopefully)
-    return "Title: "..title
+    return title
+end
+
+---Lifted straight from Blizzard's 12.1.0 Achievement bootstrap functions (scrap shortly after patch launches)
+---@param achievementID number
+ShowAchievementFrameForAchievement = ShowAchievementFrameForAchievement or function(achievementID)
+    if UIParentLoadAddOn("Blizzard_AchievementUI") then
+		if not AchievementFrame:IsShown() then
+			AchievementFrame_ToggleAchievementFrame(false, C_AchievementInfo.IsGuildAchievement(achievementID));
+		end
+		AchievementFrame_SelectAchievement(achievementID);
+	end
 end
 
 ---@param rewards Reward[]
 function SFCMainMixin:CreateRewardsList(rewards)
     local rewardsList = self.Rewards.ScrollFrame.ScrollChild
     for _, reward in ipairs(rewards) do
+        local _, achievementName, points, isCompleted = GetAchievementInfo(reward.achievementID)
+
         local frame = CreateFrame("Frame", nil, rewardsList, "SFCRewardFrameTemplate")
         frame:SetSize(rewardsList:GetWidth() - 4, 75)
         frame:SetBackdropColor(0.3, 0.3, 0.3)
-        if reward.isOwned then
+        if isCompleted then
             frame:SetBackdropBorderColor(0, 1, 0)
             frame:SetBackdropColor(0.1, 0.8, 0.2, 0.7)
         end
@@ -212,7 +223,40 @@ function SFCMainMixin:CreateRewardsList(rewards)
         frame.RewardType:SetText(reward.type)
         frame.RewardType:SetShown(self.category == "All")
 
-        local _, achievementName, points = GetAchievementInfo(reward.achievementID)
-        frame.AchievementName:SetText("Achievement: "..GetAchievementLink(reward.achievementID))
+        local achievementLink = GetAchievementLink(reward.achievementID)
+        frame.AchievementName:SetText(achievementLink)
+        frame.AchievementName:SetSize(frame.AchievementName.Text:GetWidth() + 10, frame.AchievementName.Text:GetHeight() + 10)
+        frame.AchievementName:SetScript("OnClick", function(_, mouseButton)
+            SetItemRef(achievementLink, achievementLink, mouseButton)
+        end)
+
+        local numCriteria = GetAchievementNumCriteria(reward.achievementID)
+        if numCriteria > 0 then
+            local numCompleted = 0
+            for i = 1, numCriteria do
+                local _, _, completed = GetAchievementCriteriaInfo(reward.achievementID, i)
+                if completed then numCompleted = numCompleted + 1 end
+            end
+
+            local progressText = numCompleted.." / "..numCriteria.." completed"
+            if numCompleted == numCriteria then progressText = DARKYELLOW_FONT_COLOR:WrapTextInColorCode(progressText) end
+
+            frame.CriteriaProgress:SetText(progressText)
+            frame.CriteriaProgress:SetShown(not isCompleted)
+        end
+
+        frame.AchievementPoints:SetText(tostring(points))
+
+        frame.OpenAchievement:SetText("View Achievement")
+        frame.OpenAchievement:SetSize(frame.OpenAchievement.Text:GetUnboundedStringWidth() + 18, frame.OpenAchievement.Text:GetHeight() + 14)
+        frame.OpenAchievement:SetScript("OnClick", function()
+            ShowAchievementFrameForAchievement(reward.achievementID)
+        end)
+        frame.OpenAchievement:SetScript("OnEnter", function(button)
+            button:SetText(WHITE_FONT_COLOR:WrapTextInColorCode("View Achievement"))
+        end)
+        frame.OpenAchievement:SetScript("OnLeave", function(button)
+            button:SetText("View Achievement")
+        end)
     end
 end

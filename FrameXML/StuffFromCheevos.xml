@@ -2,7 +2,7 @@
 https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
 
     <Button name="SFCCategoryButtonTemplate" virtual="true" mixin="SFCCategoryButtonMixin">
-        <ButtonText name="SFCCategoryButtonText" parentKey="Text" inherits="GameFontNormal"/>
+        <ButtonText parentKey="Text" inherits="GameFontNormal"/>
         <NormalTexture atlas="common-button-tertiary-normal"/>
         <HighlightTexture atlas="common-button-tertiary-depressed-normal-glow"/>
         <DisabledTexture atlas="common-button-tertiary-disabled"/>
@@ -33,6 +33,28 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchor point="BOTTOMRIGHT" relativeKey="$parent.IconMask" x="2" y="-2"/>
                     </Anchors>
                 </Texture>
+                <Texture parentKey="PointsBg">
+                    <Size x="30" y="30"/>
+                    <Anchors>
+                        <Anchor point="RIGHT" x="-20"/>
+                    </Anchors>
+                    <Color color="BLACK_FONT_COLOR"/>
+                </Texture>
+                <MaskTexture parentKey="PointsMask" atlas="common-mask-circle" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.PointsBg"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.PointsBg"/>
+                    </Anchors>
+                    <MaskedTextures>
+                        <MaskedTexture childKey="PointsBg"/>
+                    </MaskedTextures>
+                </MaskTexture>
+                <Texture parentKey="PointsBorder" atlas="CovenantChoice-Offering-Ability-Ring-Venthyr">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.PointsMask" x="-2" y="2"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.PointsMask" x="2" y="-2"/>
+                    </Anchors>
+                </Texture>
             </Layer>
             <Layer level="OVERLAY">
                 <FontString parentKey="RewardName" inherits="GameFontNormal" justifyV="TOP">
@@ -45,13 +67,33 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchor point="TOPLEFT" relativeKey="$parent.RewardName" relativePoint="BOTTOMLEFT" y="-2"/>
                     </Anchors>
                 </FontString>
-                <FontString parentKey="AchievementName" inherits="GameFontNormal" justifyV="BOTTOM" enableMouseClicks="true">
+                <FontString parentKey="CriteriaProgress" inherits="GameFontHighlightSmall" justifyV="BOTTOM" justifyH="RIGHT">
                     <Anchors>
-                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT" x="10"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.PointsBg" relativePoint="TOPLEFT" x="-10" y="0"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="AchievementPoints" inherits="GameFontHighlight">
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent.PointsBg"/>
                     </Anchors>
                 </FontString>
             </Layer>
         </Layers>
+        <Frames>
+            <Button parentKey="AchievementName" registerForClicks="LeftButtonUp, RightButtonUp">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT" x="10" y="-5"/>
+                </Anchors>
+                <ButtonText parentKey="Text" inherits="GameFontNormalSmall" justifyH="LEFT"/>
+            </Button>
+            <Button parentKey="OpenAchievement">
+                <!-- Size dynamically set in mixin -->
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.PointsBg" relativePoint="BOTTOMLEFT" x="-10" y="10"/>
+                </Anchors>
+                <ButtonText parentKey="Text" inherits="GameFontNormalSmall" justifyH="RIGHT"/>
+            </Button>
+        </Frames>
     </Frame>
 
     <Frame name="SFCMain" parent="UIParent" inherits="PortraitFrameTemplate" mixin="SFCMainMixin" toplevel="true" enableMouse="true" movable="true" registerForDrag="LeftButton" resizable="false" clampedToScreen="true">
