@@ -34,7 +34,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     </Anchors>
                 </Texture>
                 <Texture parentKey="PointsBg">
-                    <Size x="30" y="30"/>
+                    <Size x="20" y="20"/>
                     <Anchors>
                         <Anchor point="RIGHT" x="-20"/>
                     </Anchors>
@@ -70,10 +70,10 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </FontString>
                 <FontString parentKey="CriteriaProgress" inherits="GameFontHighlightSmall" justifyV="BOTTOM" justifyH="RIGHT">
                     <Anchors>
-                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.PointsBg" relativePoint="TOPLEFT" x="-10" y="0"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.PointsBg" relativePoint="TOPLEFT" x="-10" y="5"/>
                     </Anchors>
                 </FontString>
-                <FontString parentKey="CheevoPoints" inherits="GameFontHighlight">
+                <FontString parentKey="CheevoPoints" inherits="GameFontHighlightSmall">
                     <Anchors>
                         <Anchor point="CENTER" relativeKey="$parent.PointsBg"/>
                     </Anchors>

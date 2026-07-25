@@ -37,5 +37,10 @@ function DBUtils.BuildCosmeticsCache()
             end
         end)
     end
+end
 
+function DBUtils.ToggleShowCompleted()
+    if not SFC_DB.filters then SFC_DB.filters = { showCompleted = true, searchTerm = "", sortOrder = "" } end
+    SFC_DB.filters.showCompleted = not SFC_DB.filters.showCompleted
+    EventRegistry:TriggerEvent("StuffFromCheevos.FiltersUpdated")
 end

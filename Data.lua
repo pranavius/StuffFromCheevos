@@ -357,7 +357,127 @@ SFC.Cosmetics = {
     { itemID = 128364, achievementID = 10258, categoryID = 15303 }, -- Fleet Commander's Hat
     { itemID = 128365, achievementID = 10258, categoryID = 15303 }, -- Fleet Commander's Hat
     { itemID = 156666, achievementID = 12290, categoryID = 15119 }, -- Master Trainer's Tabard
+    -- Heritage of the Void (Void Elf)
+    { itemID = 156690, achievementID = 12291, categoryID = 201 }, -- Ren'dorei Helm
+    { itemID = 156691, achievementID = 12291, categoryID = 201 }, -- Ren'dorei Pauldrons
+    { itemID = 156692, achievementID = 12291, categoryID = 201 }, -- Ren'dorei Mantle
+    { itemID = 156693, achievementID = 12291, categoryID = 201 }, -- Ren'dorei Gloves
+    { itemID = 156694, achievementID = 12291, categoryID = 201 }, -- Ren'dorei Belt
+    { itemID = 156695, achievementID = 12291, categoryID = 201 }, -- Ren'dorei Leggings
+    { itemID = 156696, achievementID = 12291, categoryID = 201 }, -- Ren'dorei Boots
+    { itemID = 156697, achievementID = 12291, categoryID = 201 }, -- Ren'dorei Bracers
+    -- Heritage of the Nightborne
+    { itemID = 156675, achievementID = 12413, categoryID = 201 }, -- Shal'dorei Crown
+    { itemID = 156676, achievementID = 12413, categoryID = 201 }, -- Shal'dorei Mantle
+    { itemID = 156677, achievementID = 12413, categoryID = 201 }, -- Shal'dorei Finery
+    { itemID = 156678, achievementID = 12413, categoryID = 201 }, -- Shal'dorei Gloves
+    { itemID = 156679, achievementID = 12413, categoryID = 201 }, -- Shal'dorei Belt
+    { itemID = 156680, achievementID = 12413, categoryID = 201 }, -- Shal'dorei Leggings
+    { itemID = 156681, achievementID = 12413, categoryID = 201 }, -- Shal'dorei Slippers
+    { itemID = 156685, achievementID = 12413, categoryID = 201 }, -- Shal'dorei Bracers
+    -- Heritage of the Lightforged (Lightforged Draenei)
+    { itemID = 156699, achievementID = 12414, categoryID = 201 }, -- Lightforged Gorget
+    { itemID = 156700, achievementID = 12414, categoryID = 201 }, -- Lightforged Pauldrons
+    { itemID = 156701, achievementID = 12414, categoryID = 201 }, -- Lightforged Chestguard
+    { itemID = 156702, achievementID = 12414, categoryID = 201 }, -- Lightforged Gloves
+    { itemID = 156703, achievementID = 12414, categoryID = 201 }, -- Lightforged Girdle
+    { itemID = 156704, achievementID = 12414, categoryID = 201 }, -- Lightforged Legplates
+    { itemID = 156705, achievementID = 12414, categoryID = 201 }, -- Lightforged Hoofguards
+    { itemID = 156706, achievementID = 12414, categoryID = 201 }, -- Lightforged Bracers
+    -- Heritage of Highmountain (Highmountain Tauren)
+    { itemID = 156668, achievementID = 12415, categoryID = 201 }, -- Highmountain Headdress
+    { itemID = 156669, achievementID = 12415, categoryID = 201 }, -- Highmountain Shoulderguards
+    { itemID = 156670, achievementID = 12415, categoryID = 201 }, -- Highmountain Harness
+    { itemID = 156671, achievementID = 12415, categoryID = 201 }, -- Highmountain Gloves
+    { itemID = 156672, achievementID = 12415, categoryID = 201 }, -- Highmountain Girdle
+    { itemID = 156673, achievementID = 12415, categoryID = 201 }, -- Highmountain Leggings
+    { itemID = 156674, achievementID = 12415, categoryID = 201 }, -- Highmountain Boots
+    { itemID = 156684, achievementID = 12415, categoryID = 201 }, -- Highmountain Bracers
+    -- Heritage of the Dark Iron (Dark Iron Dwarf)
+    { itemID = 161008, achievementID = 13076, categoryID = 201 }, -- Dark Iron Helm
+    { itemID = 161009, achievementID = 13076, categoryID = 201 }, -- Dark Iron Pauldrons
+    { itemID = 161010, achievementID = 13076, categoryID = 201 }, -- Dark Iron Mantle
+    { itemID = 161011, achievementID = 13076, categoryID = 201 }, -- Dark Iron Gloves
+    { itemID = 161012, achievementID = 13076, categoryID = 201 }, -- Dark Iron Belt
+    { itemID = 161013, achievementID = 13076, categoryID = 201 }, -- Dark Iron Leggings
+    { itemID = 161014, achievementID = 13076, categoryID = 201 }, -- Dark Iron Boots
+    { itemID = 161015, achievementID = 13076, categoryID = 201 }, -- Dark Iron Bracers
+    -- Heritage of the Mag'har (Mag'har Orc) - Warsong Clan
+    { itemID = 160992, achievementID = 13077, categoryID = 201 }, -- Warsong Clan Helm
+    { itemID = 160993, achievementID = 13077, categoryID = 201 }, -- Warsong Clan Pauldrons
+    { itemID = 160994, achievementID = 13077, categoryID = 201 }, -- Warsong Clan Harness
+    { itemID = 160999, achievementID = 13077, categoryID = 201 }, -- Warsong Clan Gloves
+    { itemID = 161000, achievementID = 13077, categoryID = 201 }, -- Warsong Clan Belt
+    { itemID = 161001, achievementID = 13077, categoryID = 201 }, -- Warsong Clan Leggings
+    { itemID = 161002, achievementID = 13077, categoryID = 201 }, -- Warsong Clan Boots
+    { itemID = 161003, achievementID = 13077, categoryID = 201 }, -- Warsong Clan Bracers
+    -- Heritage of the Mag'har (Mag'har Orc) - Blackrock Clan
+    { itemID = 161050, achievementID = 13077, categoryID = 201 }, -- Blackrock Clan Helm
+    { itemID = 161051, achievementID = 13077, categoryID = 201 }, -- Blackrock Clan Pauldrons
+    { itemID = 161052, achievementID = 13077, categoryID = 201 }, -- Blackrock Clan Harness
+    { itemID = 161054, achievementID = 13077, categoryID = 201 }, -- Blackrock Clan Gloves
+    { itemID = 161055, achievementID = 13077, categoryID = 201 }, -- Blackrock Clan Belt
+    { itemID = 161056, achievementID = 13077, categoryID = 201 }, -- Blackrock Clan Leggings
+    { itemID = 161057, achievementID = 13077, categoryID = 201 }, -- Blackrock Clan Boots
+    { itemID = 161058, achievementID = 13077, categoryID = 201 }, -- Blackrock Clan Bracers
+    -- Heritage of the Mag'har (Mag'har Orc) - Frostwolf Clan
+    { itemID = 161059, achievementID = 13077, categoryID = 201 }, -- Frostwolf Clan Helm
+    { itemID = 161060, achievementID = 13077, categoryID = 201 }, -- Frostwolf Clan Pauldrons
+    { itemID = 161061, achievementID = 13077, categoryID = 201 }, -- Frostwolf Clan Harness
+    { itemID = 161062, achievementID = 13077, categoryID = 201 }, -- Frostwolf Clan Gloves
+    { itemID = 161063, achievementID = 13077, categoryID = 201 }, -- Frostwolf Clan Belt
+    { itemID = 161064, achievementID = 13077, categoryID = 201 }, -- Frostwolf Clan Leggings
+    { itemID = 161065, achievementID = 13077, categoryID = 201 }, -- Frostwolf Clan Boots
+    { itemID = 161066, achievementID = 13077, categoryID = 201 }, -- Frostwolf Clan Bracers
+    -- Heritage of the Zandalari (Zandalari Troll)
+    { itemID = 164993, achievementID = 13503, categoryID = 201 }, -- Zandalari Mask
+    { itemID = 164994, achievementID = 13503, categoryID = 201 }, -- Zandalari Pauldrons
+    { itemID = 164995, achievementID = 13503, categoryID = 201 }, -- Zandalari Torque
+    { itemID = 164996, achievementID = 13503, categoryID = 201 }, -- Zandalari Blade-Turners
+    { itemID = 164997, achievementID = 13503, categoryID = 201 }, -- Zandalari Belt
+    { itemID = 164998, achievementID = 13503, categoryID = 201 }, -- Zandalari Leggings
+    { itemID = 164999, achievementID = 13503, categoryID = 201 }, -- Zandalari Shinguards
+    { itemID = 165000, achievementID = 13503, categoryID = 201 }, -- Zandalari Bracers
+    -- Heritage of the Kul Tirans (Kul Tiran)
+    { itemID = 165002, achievementID = 13504, categoryID = 201 }, -- Kul Tiran Bicorne
+    { itemID = 165003, achievementID = 13504, categoryID = 201 }, -- Kul Tiran Tasseled Pauldron
+    { itemID = 165004, achievementID = 13504, categoryID = 201 }, -- Kul Tiran Longcoat
+    { itemID = 165005, achievementID = 13504, categoryID = 201 }, -- Kul Tiran Gloves
+    { itemID = 165006, achievementID = 13504, categoryID = 201 }, -- Kul Tiran Cinch
+    { itemID = 165007, achievementID = 13504, categoryID = 201 }, -- Kul Tiran Britches
+    { itemID = 165008, achievementID = 13504, categoryID = 201 }, -- Kul Tiran Boots
+    { itemID = 165009, achievementID = 13504, categoryID = 201 }, -- Kul Tiran Bracers
+    -- Heritage of the Vulpera
+    { itemID = 173966, achievementID = 14002, categoryID = 201 }, -- Vulpera Heritage Vest
+    { itemID = 173967, achievementID = 14002, categoryID = 201 }, -- Vulpera Heritage Handgrips
+    { itemID = 173968, achievementID = 14002, categoryID = 201 }, -- Vulpera Heritage Shawl
+    { itemID = 173969, achievementID = 14002, categoryID = 201 }, -- Vulpera Heritage Legguards
+    { itemID = 173970, achievementID = 14002, categoryID = 201 }, -- Vulpera Heritage Utility Belt
+    { itemID = 173971, achievementID = 14002, categoryID = 201 }, -- Vulpera Heritage Shoulderpads
+    { itemID = 174354, achievementID = 14002, categoryID = 201 }, -- Vulpera Heritage Footwraps
+    { itemID = 174355, achievementID = 14002, categoryID = 201 }, -- Vulpera Heritage Wristwraps
+    { itemID = 174376, achievementID = 14002, categoryID = 201 }, -- Vulpera Heritage Rucksack
+    -- Heritage of the Mechagnome - base
+    { itemID = 173958, achievementID = 14014, categoryID = 201 }, -- Mechagnome Heritage Chestpiece
+    { itemID = 173961, achievementID = 14014, categoryID = 201 }, -- Mechagnome Heritage Helmet
+    { itemID = 173962, achievementID = 14014, categoryID = 201 }, -- Mechagnome Heritage Girdle
+    { itemID = 173963, achievementID = 14014, categoryID = 201 }, -- Mechagnome Heritage Shoulderguards
+    { itemID = 173964, achievementID = 14014, categoryID = 201 }, -- Mechagnome Heritage Buckle
+    { itemID = 173972, achievementID = 14014, categoryID = 201 }, -- Mechagnome Heritage Cloak
+    -- Heritage of the Mechagnome - X-52 variant
+    { itemID = 173974, achievementID = 14014, categoryID = 201 }, -- X-52 Bomber Jacket
+    { itemID = 173975, achievementID = 14014, categoryID = 201 }, -- X-52 Fireproof Stompers
+    { itemID = 173977, achievementID = 14014, categoryID = 201 }, -- X-52 Extreme Handgrips
+    { itemID = 173978, achievementID = 14014, categoryID = 201 }, -- X-52 Precision Goggles
+    { itemID = 173979, achievementID = 14014, categoryID = 201 }, -- X-52 Reinforced Legguards
+    { itemID = 173980, achievementID = 14014, categoryID = 201 }, -- X-52 Sapper's Shoulderguards
+    { itemID = 173981, achievementID = 14014, categoryID = 201 }, -- X-52 Utility Belt
+    { itemID = 173982, achievementID = 14014, categoryID = 201 }, -- X-52 Minesweeper Wristwraps
     { itemID = 183693, achievementID = 14763, categoryID = 15441 }, -- Plague Doctor's Mask
+    { itemID = 190110, achievementID = 15392, categoryID = 15436 }, -- Arsenal: Weapons of Glorious Domination
+    { itemID = 190111, achievementID = 15392, categoryID = 15436 }, -- Arsenal: Weapons of Glorious Domination
+    { itemID = 190112, achievementID = 15392, categoryID = 15436 }, -- Arsenal: Weapons of Glorious Domination
+    { itemID = 190462, achievementID = 15392, categoryID = 15436 }, -- Arsenal: Weapons of Glorious Domination
     { itemID = 199669, achievementID = 15939, categoryID = 15462 }, -- Spiked Crimson Spaulders
     { itemID = 200882, achievementID = 16444, categoryID = 15466 }, -- Big Kinook's Spare Ladle
     { itemID = 203431, achievementID = 17334, categoryID = 92 }, -- Ensemble: Burden of Unrelenting Justice
@@ -373,6 +493,34 @@ SFC.Cosmetics = {
     { itemID = 219125, achievementID = 19515, categoryID = 169 }, -- Formed Artisan's Talent
     { itemID = 219132, achievementID = 20596, categoryID = 15506 }, -- Crimson Cartographer's Orientation
     { itemID = 219115, achievementID = 40138, categoryID = 15524 }, -- Versatile Peddler's Trinkets
+    -- Heritage of the Earthen - Dornogal
+    { itemID = 224861, achievementID = 40309, categoryID = 15506 }, -- Dornogal Crown
+    { itemID = 224862, achievementID = 40309, categoryID = 15506 }, -- Dornogal Mantle
+    { itemID = 224863, achievementID = 40309, categoryID = 15506 }, -- Dornogal Cheststraps
+    { itemID = 224864, achievementID = 40309, categoryID = 15506 }, -- Dornogal Girdle
+    { itemID = 224865, achievementID = 40309, categoryID = 15506 }, -- Dornogal Legcoat
+    { itemID = 224866, achievementID = 40309, categoryID = 15506 }, -- Dornogal Sabatons
+    { itemID = 224867, achievementID = 40309, categoryID = 15506 }, -- Dornogal Cuffs
+    { itemID = 224868, achievementID = 40309, categoryID = 15506 }, -- Dornogal Gauntlets
+    { itemID = 224869, achievementID = 40309, categoryID = 15506 }, -- Earthen Drape
+    -- Heritage of the Earthen - Freywold
+    { itemID = 224876, achievementID = 40309, categoryID = 15506 }, -- Freywold Crown
+    { itemID = 224877, achievementID = 40309, categoryID = 15506 }, -- Freywold Mantle
+    { itemID = 224878, achievementID = 40309, categoryID = 15506 }, -- Freywold Cheststraps
+    { itemID = 224879, achievementID = 40309, categoryID = 15506 }, -- Freywold Girdle
+    { itemID = 224880, achievementID = 40309, categoryID = 15506 }, -- Freywold Legcoat
+    { itemID = 224881, achievementID = 40309, categoryID = 15506 }, -- Freywold Sabatons
+    { itemID = 224882, achievementID = 40309, categoryID = 15506 }, -- Freywold Cuffs
+    { itemID = 224883, achievementID = 40309, categoryID = 15506 }, -- Freywold Gauntlets
+    -- Heritage of the Earthen - Gundargaz
+    { itemID = 224884, achievementID = 40309, categoryID = 15506 }, -- Gundargaz Crown
+    { itemID = 224885, achievementID = 40309, categoryID = 15506 }, -- Gundargaz Mantle
+    { itemID = 224886, achievementID = 40309, categoryID = 15506 }, -- Gundargaz Cheststraps
+    { itemID = 224887, achievementID = 40309, categoryID = 15506 }, -- Gundargaz Girdle
+    { itemID = 224888, achievementID = 40309, categoryID = 15506 }, -- Gundargaz Legcoat
+    { itemID = 224889, achievementID = 40309, categoryID = 15506 }, -- Gundargaz Sabatons
+    { itemID = 224890, achievementID = 40309, categoryID = 15506 }, -- Gundargaz Cuffs
+    { itemID = 224891, achievementID = 40309, categoryID = 15506 }, -- Gundargaz Gauntlets
     { itemID = 226160, achievementID = 40360, categoryID = 15506 }, -- Hillhelm Farmhand's Hoe
     { itemID = 226161, achievementID = 40360, categoryID = 15506 }, -- Hillhelm Farmhand's Watering Can
     { itemID = 219105, achievementID = 40618, categoryID = 15506 }, -- Sandy Quotidian Wear
@@ -389,6 +537,7 @@ SFC.Cosmetics = {
     { itemID = 253347, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Sash
     { itemID = 253348, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Anklets
     { itemID = 253349, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Bangles
+    { itemID = 253353, achievementID = 42630, categoryID = 15604 }, -- Illusion: Felshatter
     { itemID = 253231, achievementID = 42666, categoryID = 15604 }, -- Fallen King's Corrupted Blades
     { itemID = 257105, achievementID = 42690, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Hellforged Regalia
     { itemID = 143518, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
@@ -407,4 +556,36 @@ SFC.Cosmetics = {
     { itemID = 257104, achievementID = 61070, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Voidscarred Regalia
     { itemID = 257106, achievementID = 61078, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Lightbound Regalia
     { itemID = 253343, achievementID = 61337, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Felscorned Regalia
+    -- Heritage of the Haranir (achievementID 61942, categoryID 15547) is not yet itemized in the DB export - revisit later
+}
+
+SFC.Customizations = {
+    { icon = "RaceIcon128-VoidElf-Male", achievementID = 12242, categoryID = 201 }, -- Race Unlocked: Void Elf
+    { icon = "RaceIcon128-Lightforged-Male", achievementID = 12243, categoryID = 201 }, -- Race Unlocked: Lightforged Draenei
+    { icon = "RaceIcon128-Nightborne-Male", achievementID = 12244, categoryID = 201 }, -- Race Unlocked: Nightborne
+    { icon = "RaceIcon128-Highmountain-Male", achievementID = 12245, categoryID = 201 }, -- Race Unlocked: Highmountain Tauren
+    { icon = "RaceIcon128-DarkIronDwarf-Male", achievementID = 12515, categoryID = 201 }, -- Race Unlocked: Dark Iron Dwarf
+    { icon = "RaceIcon128-MagharOrc-Male", achievementID = 12518, categoryID = 201 }, -- Race Unlocked: Mag'har Orc
+    { icon = "RaceIcon128-Zandalari-Male", achievementID = 13161, categoryID = 201 }, -- Race Unlocked: Zandalari Troll
+    { icon = "RaceIcon128-KulTiran-Male", achievementID = 13163, categoryID = 201 }, -- Race Unlocked: Kul Tiran
+    { icon = "RaceIcon128-Vulpera-Male", achievementID = 13206, categoryID = 201 }, -- Race Unlocked: Vulpera
+    { icon = 7449410, achievementID = 13513, categoryID = 15248 }, -- Paint Color: Battletorn Blue
+    { icon = "RaceIcon128-Mechagnome-Male", achievementID = 14013, categoryID = 201 }, -- Race Unlocked: Mechagnome
+    -- { itemID = 190182, achievementID = 15508, categoryID = 15436 }, -- Pet Costume: Lovely Regal Pocopoc (this is a toy)
+    { icon = 254288, achievementID = 15916, categoryID = 15462 }, -- Drake Customization: Renewed Proto-Drake - Red Hair
+    { icon = 303622, achievementID = 15919, categoryID = 15462 }, -- Drake Customization: Windborne Velocidrake - Red Hair
+    { icon = 254289, achievementID = 15925, categoryID = 15462 }, -- Drake Customization: Cliffside Wylderdrake - Blonde Hair
+    { icon = 254288, achievementID = 15928, categoryID = 15462 }, -- Drake Customization: Renewed Proto-Drake - Gold and Red Armor
+    { icon = 303622, achievementID = 15931, categoryID = 15462 }, -- Drake Customization: Windborne Velocidrake - Gold and Red Armor
+    { icon = 254291, achievementID = 15934, categoryID = 15462 }, -- Drake Customization: Highland Drake - Gold and Red Armor
+    { icon = 254289, achievementID = 15937, categoryID = 15462 }, -- Drake Customization: Cliffside Wylderdrake - Gold and Orange Armor
+    { icon = 1711329, achievementID = 18854, categoryID = 15455 }, -- Customization: Man'ari Eredar Appearances for Draenei
+    { icon = 254288, achievementID = 19478, categoryID = 15462 }, -- Drake Customization: Grotto Netherwing Drake - Black Scales
+    { icon = "RaceIcon128-Earthen-Male", achievementID = 40307, categoryID = 15506 }, -- Race Unlocked: Earthen
+    { icon = 6124644, achievementID = 41555, categoryID = 15521 }, -- Warband Campsite: Freywold Spring
+    { icon = 6124644, achievementID = 41586, categoryID = 15521 }, -- Warband Campsite: Gallagio Grand Gallery
+    { icon = 236438, achievementID = 41803, categoryID = 15547 }, -- Customization: Amani Appearances for Darkspear Troll
+    { icon = 6124644, achievementID = 41970, categoryID = 15506 }, -- Warband Campsite: The Fate of the Devoured
+    { icon = 2915721, achievementID = 60933, categoryID = 15531 }, -- Delver's Dirigible Horde Vs Alliance Colors and Decals Unlocked
+    { icon = 7455385, achievementID = 61916, categoryID = 15547 }, -- Race/Class Unlocked: Void Elf Demon Hunter
 }
