@@ -36,7 +36,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 <Texture parentKey="PointsBg">
                     <Size x="20" y="20"/>
                     <Anchors>
-                        <Anchor point="RIGHT" x="-20"/>
+                        <Anchor point="TOPRIGHT" x="-10" y="-10"/>
                     </Anchors>
                     <Color color="BLACK_FONT_COLOR"/>
                 </Texture>
@@ -65,34 +65,34 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </FontString>
                 <FontString parentKey="RewardType" inherits="GameFontHighlightSmall">
                     <Anchors>
-                        <Anchor point="TOPLEFT" relativeKey="$parent.RewardName" relativePoint="BOTTOMLEFT" y="-2"/>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.RewardName" relativePoint="BOTTOMLEFT" y="-5"/>
                     </Anchors>
                 </FontString>
                 <FontString parentKey="CriteriaProgress" inherits="GameFontHighlightSmall" justifyV="BOTTOM" justifyH="RIGHT">
                     <Anchors>
-                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.PointsBg" relativePoint="TOPLEFT" x="-10" y="5"/>
+                        <Anchor point="RIGHT" relativeKey="$parent.PointsBg" relativePoint="LEFT" x="-5"/>
                     </Anchors>
                 </FontString>
-                <FontString parentKey="CheevoPoints" inherits="GameFontHighlightSmall">
+                <FontString parentKey="CheevoPoints" inherits="GameFontHighlightSmall" justifyV="MIDDLE" justifyH="CENTER">
                     <Anchors>
-                        <Anchor point="CENTER" relativeKey="$parent.PointsBg"/>
+                        <Anchor point="CENTER" relativeKey="$parent.PointsBg" x="1"/>
                     </Anchors>
                 </FontString>
             </Layer>
         </Layers>
         <Frames>
-            <Button parentKey="CheevoName" registerForClicks="LeftButtonUp, RightButtonUp">
+            <Button parentKey="CheevoLink" registerForClicks="LeftButtonUp, RightButtonUp">
                 <Anchors>
-                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT" x="10" y="-5"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT" x="10" y="-10"/>
                 </Anchors>
                 <ButtonText parentKey="Text" inherits="GameFontNormalSmall" justifyH="LEFT"/>
             </Button>
             <Button parentKey="OpenCheevo">
                 <!-- Size dynamically set in mixin -->
                 <Anchors>
-                    <Anchor point="TOPRIGHT" relativeKey="$parent.PointsBg" relativePoint="BOTTOMLEFT" x="-10" y="10"/>
+                    <Anchor point="BOTTOMRIGHT" y="5"/>
                 </Anchors>
-                <ButtonText parentKey="Text" inherits="GameFontNormalSmall" justifyH="RIGHT"/>
+                <ButtonText parentKey="Text" inherits="GameFontNormalSmall"/>
             </Button>
         </Frames>
     </Frame>

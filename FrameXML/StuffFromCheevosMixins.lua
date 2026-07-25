@@ -249,13 +249,13 @@ end
 function SFCMainMixin:CreateRewardsList(rewards)
     local rewardsList = self.Rewards.ScrollFrame.ScrollChild
     for _, reward in ipairs(rewards) do
-        local _, achievementName, points, isCompleted, completedMonth, completedDay, completedYear = GetAchievementInfo(reward.achievementID)
+        local _, achievementName, points, isCompleted, completedMonth, completedDay, completedYear, description = GetAchievementInfo(reward.achievementID)
 
         local frame = CreateFrame("Frame", nil, rewardsList, "SFCRewardFrameTemplate")
-        frame:SetSize(rewardsList:GetWidth() - 4, 75)
+        frame:SetSize(rewardsList:GetWidth() - 4, self.Rewards.ScrollFrame:GetHeight() / 6)
         frame:SetBackdropColor(0.3, 0.3, 0.3)
         if isCompleted then
-            frame:SetBackdropBorderColor(0, 1, 0)
+            -- frame:SetBackdropBorderColor(0, 1, 0)
             frame:SetBackdropColor(0.1, 0.8, 0.2, 0.7)
         end
         frame.align = "center"
@@ -273,9 +273,9 @@ function SFCMainMixin:CreateRewardsList(rewards)
         frame.RewardType:SetShown(self.category == "All")
 
         local achievementLink = GetAchievementLink(reward.achievementID)
-        frame.CheevoName:SetText(achievementLink)
-        frame.CheevoName:SetSize(frame.CheevoName.Text:GetWidth() + 10, frame.CheevoName.Text:GetHeight() + 10)
-        frame.CheevoName:SetScript("OnClick", function(_, mouseButton)
+        frame.CheevoLink:SetText(achievementLink)
+        frame.CheevoLink:SetSize(frame.CheevoLink:GetTextWidth() + 10, frame.CheevoLink:GetTextHeight() + 10)
+        frame.CheevoLink:SetScript("OnClick", function(_, mouseButton)
             SetItemRef(achievementLink, achievementLink, mouseButton)
         end)
 
@@ -297,12 +297,9 @@ function SFCMainMixin:CreateRewardsList(rewards)
         frame.CriteriaProgress:SetText(progressText)
 
         frame.CheevoPoints:SetText(tostring(points))
-        frame.CheevoPoints:SetShown(points > 0)
-        frame.PointsBg:SetShown(points > 0)
-        frame.PointsBorder:SetShown(points > 0)
 
         frame.OpenCheevo:SetText("View Achievement")
-        frame.OpenCheevo:SetSize(frame.OpenCheevo.Text:GetUnboundedStringWidth() + 18, frame.OpenCheevo.Text:GetHeight() + 14)
+        frame.OpenCheevo:SetSize(frame.OpenCheevo.Text:GetUnboundedStringWidth() + 18, frame.OpenCheevo:GetTextHeight() + 14)
         frame.OpenCheevo:SetScript("OnClick", function()
             ShowAchievementFrameForAchievement(reward.achievementID)
         end)
