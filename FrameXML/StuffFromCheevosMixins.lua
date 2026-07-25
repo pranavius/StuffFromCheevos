@@ -23,12 +23,15 @@ SFCMainMixin = {}
 ---@field type string
 ---@field achievementID number
 ---@field categoryID number
----@field isOwned boolean
 ---@field itemID number?
 ---@field icon number|string|nil
 ---@field atlas string?
 
 function SFCMainMixin:OnLoad()
+    EventRegistry:RegisterCallback("StuffFromCheevos.CosmeticsCached", function()
+        print("Cosmetics built! Refresh rewards list")
+        self:PopulateRewardsList(self.category)
+    end)
     self.player = UnitName("player")
     local _, classFilename = UnitClass("player")
     self.classColor = C_ClassColor.GetClassColor(classFilename)
@@ -59,10 +62,10 @@ function SFCMainMixin:OnLoad()
     local rewardsList = self.Rewards.ScrollFrame.ScrollChild
     rewardsList:SetWidth(self.Rewards.ScrollFrame:GetWidth())
 
-    -- Initialize window with "All" category pre-selected
-    self:PopulateRewardsList("All")
+    -- Initialize window with default category pre-selected (currently "All")
+    self:PopulateRewardsList(self.category)
     ---@type Button & SFCCategoryButtonTemplate
-    SFCCategoryButtonAll:SetNormalAtlas("common-button-tertiary-selected")
+    _G["SFCCategoryButton"..self.category]:SetNormalAtlas("common-button-tertiary-selected")
 end
 
 function SFCMainMixin:OnDragStart()
@@ -131,6 +134,26 @@ local function getTitleRewards()
     return result
 end
 
+---@return Reward[]
+local function getCosmeticRewards()
+    ---@type Reward[]
+    local result = {}
+    if not SFC_DB or not SFC_DB.cosmetics then return result end
+
+    for index, reward in ipairs(SFC.Cosmetics) do
+        tinsert(result, {
+            index = index,
+            name = SFC_DB.cosmetics[reward.itemID].name or "Unknown Cosmetic Reward",
+            achievementID = reward.achievementID,
+            categoryID = reward.categoryID,
+            type = "Cosmetic",
+            icon = SFC_DB.cosmetics[reward.itemID].icon
+        })
+    end
+
+    return result
+end
+
 ---@param category string
 function SFCMainMixin:PopulateRewardsList(category)
     self.category = category
@@ -146,11 +169,13 @@ function SFCMainMixin:PopulateRewardsList(category)
     local rewardLists = {
         mounts = getMountRewards(),
         titles = getTitleRewards(),
+        cosmetics = getCosmeticRewards(),
         all = {}
     }
     if category == "All" then
         tAppendAll(rewardLists.all, rewardLists.mounts)
         tAppendAll(rewardLists.all, rewardLists.titles)
+        tAppendAll(rewardLists.all, rewardLists.cosmetics)
         -- When showing all rewards, sort them by achievement, category, then name
         table.sort(rewardLists.all, function(a, b)
             if a.achievementID ~= b.achievementID then return a.achievementID < b.achievementID end
@@ -166,7 +191,8 @@ function SFCMainMixin:PopulateRewardsList(category)
         self:CreateRewardsList(rewardLists.mounts)
     elseif category == "Titles" then
         self:CreateRewardsList(rewardLists.titles)
-        
+    elseif category == "Cosmetics" then
+        self:CreateRewardsList(rewardLists.cosmetics)
     end
     rewardsList:Layout()
 end
@@ -224,9 +250,9 @@ function SFCMainMixin:CreateRewardsList(rewards)
         frame.RewardType:SetShown(self.category == "All")
 
         local achievementLink = GetAchievementLink(reward.achievementID)
-        frame.AchievementName:SetText(achievementLink)
-        frame.AchievementName:SetSize(frame.AchievementName.Text:GetWidth() + 10, frame.AchievementName.Text:GetHeight() + 10)
-        frame.AchievementName:SetScript("OnClick", function(_, mouseButton)
+        frame.CheevoName:SetText(achievementLink)
+        frame.CheevoName:SetSize(frame.CheevoName.Text:GetWidth() + 10, frame.CheevoName.Text:GetHeight() + 10)
+        frame.CheevoName:SetScript("OnClick", function(_, mouseButton)
             SetItemRef(achievementLink, achievementLink, mouseButton)
         end)
 
@@ -245,17 +271,20 @@ function SFCMainMixin:CreateRewardsList(rewards)
             frame.CriteriaProgress:SetShown(not isCompleted)
         end
 
-        frame.AchievementPoints:SetText(tostring(points))
+        frame.CheevoPoints:SetText(tostring(points))
+        frame.CheevoPoints:SetShown(points > 0)
+        frame.PointsBg:SetShown(points > 0)
+        frame.PointsBorder:SetShown(points > 0)
 
-        frame.OpenAchievement:SetText("View Achievement")
-        frame.OpenAchievement:SetSize(frame.OpenAchievement.Text:GetUnboundedStringWidth() + 18, frame.OpenAchievement.Text:GetHeight() + 14)
-        frame.OpenAchievement:SetScript("OnClick", function()
+        frame.OpenCheevo:SetText("View Achievement")
+        frame.OpenCheevo:SetSize(frame.OpenCheevo.Text:GetUnboundedStringWidth() + 18, frame.OpenCheevo.Text:GetHeight() + 14)
+        frame.OpenCheevo:SetScript("OnClick", function()
             ShowAchievementFrameForAchievement(reward.achievementID)
         end)
-        frame.OpenAchievement:SetScript("OnEnter", function(button)
+        frame.OpenCheevo:SetScript("OnEnter", function(button)
             button:SetText(WHITE_FONT_COLOR:WrapTextInColorCode("View Achievement"))
         end)
-        frame.OpenAchievement:SetScript("OnLeave", function(button)
+        frame.OpenCheevo:SetScript("OnLeave", function(button)
             button:SetText("View Achievement")
         end)
     end

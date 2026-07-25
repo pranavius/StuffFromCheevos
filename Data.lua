@@ -5,6 +5,7 @@ SFC.Categories = {
     "Mounts",
     "Titles",
     "Cosmetics",
+    "Customizations",
     "Toys",
     "Pets",
     "Decor",
@@ -344,4 +345,66 @@ SFC.Titles = {
     { titleID = 752, achievementID = 62252, categoryID = 15498 }, -- Thalassian Skinner
     { titleID = 755, achievementID = 62351, categoryID = 15605 }, -- Preyseeker
     { titleID = 771, achievementID = 62941, categoryID = 15608 }, -- Ritual Breaker
+}
+
+SFC.Cosmetics = {
+    { itemID = 43348, achievementID = 45, categoryID = 97 }, -- Tabard of the Explorer
+    { itemID = 49052, achievementID = 3957, categoryID = 15003 }, -- Tabard of Conquest
+    { itemID = 49054, achievementID = 3957, categoryID = 15003 }, -- Tabard of Conquest
+    { itemID = 43300, achievementID = 7520, categoryID = 96 }, -- Loremaster's Colors
+    { itemID = 128362, achievementID = 10255, categoryID = 15303 }, -- Captain's Hat
+    { itemID = 128363, achievementID = 10255, categoryID = 15303 }, -- Captain's Hat
+    { itemID = 128364, achievementID = 10258, categoryID = 15303 }, -- Fleet Commander's Hat
+    { itemID = 128365, achievementID = 10258, categoryID = 15303 }, -- Fleet Commander's Hat
+    { itemID = 156666, achievementID = 12290, categoryID = 15119 }, -- Master Trainer's Tabard
+    { itemID = 183693, achievementID = 14763, categoryID = 15441 }, -- Plague Doctor's Mask
+    { itemID = 199669, achievementID = 15939, categoryID = 15462 }, -- Spiked Crimson Spaulders
+    { itemID = 200882, achievementID = 16444, categoryID = 15466 }, -- Big Kinook's Spare Ladle
+    { itemID = 203431, achievementID = 17334, categoryID = 92 }, -- Ensemble: Burden of Unrelenting Justice
+    { itemID = 208150, achievementID = 18643, categoryID = 15465 }, -- Blue Tweed Cap
+    { itemID = 208149, achievementID = 18645, categoryID = 15465 }, -- Brown Tweed Cap
+    { itemID = 208490, achievementID = 18706, categoryID = 15467 }, -- Ensemble: Infinite Acolyte's Regalia
+    { itemID = 209062, achievementID = 18901, categoryID = 15492 }, -- Ensemble: Chromatically Calibrated Holo-Gogs
+    { itemID = 209064, achievementID = 18905, categoryID = 15492 }, -- Ensemble: Chromatically Calibrated Retinal Armor
+    { itemID = 209066, achievementID = 18906, categoryID = 15492 }, -- Ensemble: Chromatically Calibrated Cranial Cannons
+    { itemID = 209067, achievementID = 18907, categoryID = 15492 }, -- Ensemble: Chromatically Calibrated Ectoplasmic Specs
+    { itemID = 209063, achievementID = 18908, categoryID = 15492 }, -- Ensemble: Chromatically Calibrated Bio-Optic Killshades
+    { itemID = 210414, achievementID = 19317, categoryID = 15465 }, -- Forest Lord's Antlers
+    { itemID = 219125, achievementID = 19515, categoryID = 169 }, -- Formed Artisan's Talent
+    { itemID = 219132, achievementID = 20596, categoryID = 15506 }, -- Crimson Cartographer's Orientation
+    { itemID = 219115, achievementID = 40138, categoryID = 15524 }, -- Versatile Peddler's Trinkets
+    { itemID = 226160, achievementID = 40360, categoryID = 15506 }, -- Hillhelm Farmhand's Hoe
+    { itemID = 226161, achievementID = 40360, categoryID = 15506 }, -- Hillhelm Farmhand's Watering Can
+    { itemID = 219105, achievementID = 40618, categoryID = 15506 }, -- Sandy Quotidian Wear
+    { itemID = 232646, achievementID = 41052, categoryID = 15506 }, -- Root Defender's Spear
+    { itemID = 232647, achievementID = 41052, categoryID = 15506 }, -- Root Defender's Shield
+    { itemID = 219110, achievementID = 41169, categoryID = 15530 }, -- Vermillion Patron's Elegance
+    { itemID = 234521, achievementID = 41351, categoryID = 15530 }, -- Ensemble: Rusty Bruiser's Outfit
+    { itemID = 253200, achievementID = 42583, categoryID = 15604 }, -- Felscorned Scythe of the Unmaker
+    { itemID = 253201, achievementID = 42583, categoryID = 15604 }, -- Felscorned Scythe of the Unmaker
+    { itemID = 253285, achievementID = 42583, categoryID = 15604 }, -- Felscorned Scythe of the Unmaker
+    { itemID = 253344, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Sarong
+    { itemID = 253345, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Crown
+    { itemID = 253346, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Robe
+    { itemID = 253347, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Sash
+    { itemID = 253348, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Anklets
+    { itemID = 253349, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Bangles
+    { itemID = 253231, achievementID = 42666, categoryID = 15604 }, -- Fallen King's Corrupted Blades
+    { itemID = 257105, achievementID = 42690, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Hellforged Regalia
+    { itemID = 143518, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
+    { itemID = 143519, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
+    { itemID = 143520, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
+    { itemID = 143521, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
+    { itemID = 241595, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
+    { itemID = 241603, achievementID = 61026, categoryID = 15604 }, -- Ensemble: Garb of the Chosen Dead
+    { itemID = 241604, achievementID = 61026, categoryID = 15604 }, -- Ensemble: Garb of the Chosen Dead
+    { itemID = 241605, achievementID = 61026, categoryID = 15604 }, -- Ensemble: Garb of the Chosen Dead
+    { itemID = 241606, achievementID = 61026, categoryID = 15604 }, -- Ensemble: Garb of the Chosen Dead
+    { itemID = 241607, achievementID = 61027, categoryID = 15604 }, -- Ensemble: Regalia of the Chosen Dead
+    { itemID = 241608, achievementID = 61027, categoryID = 15604 }, -- Ensemble: Regalia of the Chosen Dead
+    { itemID = 241609, achievementID = 61027, categoryID = 15604 }, -- Ensemble: Regalia of the Chosen Dead
+    { itemID = 241610, achievementID = 61027, categoryID = 15604 }, -- Ensemble: Regalia of the Chosen Dead
+    { itemID = 257104, achievementID = 61070, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Voidscarred Regalia
+    { itemID = 257106, achievementID = 61078, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Lightbound Regalia
+    { itemID = 253343, achievementID = 61337, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Felscorned Regalia
 }

@@ -1,3 +1,5 @@
+local SFC = select(2, ...)
+
 -- Registering a reusable NineSlice layout for the Rewards list items
 -- Currently unused, but who knows? Might be fun to keep around
 NineSliceUtil.AddLayout("SFCRewardItem", {
@@ -11,6 +13,18 @@ NineSliceUtil.AddLayout("SFCRewardItem", {
     RightEdge = { atlas = "!editmode-actionbar-highlight-nineslice-edgeright" },
     Center = { atlas = "UI-HUD-Minimap-Button-NineSlice-Center" },
 })
+
+-- Event handling (probably a better way to do this but idk)
+local ef = CreateFrame("Frame")
+ef:HookScript("OnEvent", function(self, event, ...)
+    if event == "ADDON_LOADED" and ... == "StuffFromCheevos" then
+        print("Hi, the addon has loaded")
+        if not SFC_DB then SFC_DB = {} end
+        SFC.DBUtils.BuildCosmeticsCache()
+        self:UnregisterEvent("ADDON_LOADED")
+    end
+end)
+ef:RegisterEvent("ADDON_LOADED")
 
 SLASH_SFCSLASH1 = "/stufffromcheevos"
 SLASH_SFCSLASH2 = "/sfc"

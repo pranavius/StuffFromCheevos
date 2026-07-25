@@ -57,7 +57,8 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Texture>
             </Layer>
             <Layer level="OVERLAY">
-                <FontString parentKey="RewardName" inherits="GameFontNormal" justifyV="TOP">
+                <FontString parentKey="RewardName" inherits="GameFontNormal" justifyV="TOP" justifyH="LEFT" wordwrap="false">
+                    <Size x="250"/>
                     <Anchors>
                         <Anchor point="TOPLEFT" relativeKey="$parent.Icon" relativePoint="TOPRIGHT" x="10"/>
                     </Anchors>
@@ -72,7 +73,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchor point="BOTTOMRIGHT" relativeKey="$parent.PointsBg" relativePoint="TOPLEFT" x="-10" y="0"/>
                     </Anchors>
                 </FontString>
-                <FontString parentKey="AchievementPoints" inherits="GameFontHighlight">
+                <FontString parentKey="CheevoPoints" inherits="GameFontHighlight">
                     <Anchors>
                         <Anchor point="CENTER" relativeKey="$parent.PointsBg"/>
                     </Anchors>
@@ -80,13 +81,13 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Layer>
         </Layers>
         <Frames>
-            <Button parentKey="AchievementName" registerForClicks="LeftButtonUp, RightButtonUp">
+            <Button parentKey="CheevoName" registerForClicks="LeftButtonUp, RightButtonUp">
                 <Anchors>
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT" x="10" y="-5"/>
                 </Anchors>
                 <ButtonText parentKey="Text" inherits="GameFontNormalSmall" justifyH="LEFT"/>
             </Button>
-            <Button parentKey="OpenAchievement">
+            <Button parentKey="OpenCheevo">
                 <!-- Size dynamically set in mixin -->
                 <Anchors>
                     <Anchor point="TOPRIGHT" relativeKey="$parent.PointsBg" relativePoint="BOTTOMLEFT" x="-10" y="10"/>
@@ -98,7 +99,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
 
     <Frame name="SFCMain" parent="UIParent" inherits="PortraitFrameTemplate" mixin="SFCMainMixin" toplevel="true" enableMouse="true" movable="true" registerForDrag="LeftButton" resizable="false" clampedToScreen="true">
         <KeyValues>
-            <KeyValue key="category" value="" type="string"/>
+            <KeyValue key="category" value="All" type="string"/>
             <KeyValue key="player" value="" type="string"/>
         </KeyValues>
         <Size x="800" y="600"/>
