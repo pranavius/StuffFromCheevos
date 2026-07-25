@@ -18,9 +18,9 @@ NineSliceUtil.AddLayout("SFCRewardItem", {
 local ef = CreateFrame("Frame")
 ef:HookScript("OnEvent", function(self, event, ...)
     if event == "ADDON_LOADED" and ... == "StuffFromCheevos" then
-        print("Hi, the addon has loaded")
+        SFC.LogUtils.Message("AddOn Loaded")
         if not SFC_DB then SFC_DB = {} end
-        SFC.DBUtils.BuildCosmeticsCache()
+        SFC.DBUtils.BuildItemsCache()
         self:UnregisterEvent("ADDON_LOADED")
     end
 end)

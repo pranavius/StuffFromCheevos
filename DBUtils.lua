@@ -13,10 +13,17 @@ local function isTableInvalidOrHasNilValues(tbl)
     return false
 end
 
-function DBUtils.BuildCosmeticsCache()
-    if not SFC_DB.cosmetics then SFC_DB.cosmetics = {} end
-    local cosmetics = SFC_DB.cosmetics
-    local toLoad = #SFC.Cosmetics
+local function getTableEntryCount(tbl)
+    local n = 0
+    for _ in pairs(tbl) do n = n + 1 end
+    return n
+end
+
+function DBUtils.BuildItemsCache()
+    if not SFC_DB.itemsCache then SFC_DB.itemsCache = {} end
+    local itemsCache = SFC_DB.itemsCache
+    local toLoad = #SFC.Cosmetics + #SFC.Toys + #SFC.Pets
+    local updatesCount = 0
 
     for _, item in ipairs(SFC.Cosmetics) do
         Item:CreateFromItemID(item.itemID):ContinueOnItemLoad(function()
@@ -24,18 +31,64 @@ function DBUtils.BuildCosmeticsCache()
             local icon = select(5, C_Item.GetItemInfoInstant(item.itemID))
             local name = C_Item.GetItemNameByID(item.itemID)
 
-            if not cosmetics[item.itemID] or isTableInvalidOrHasNilValues(cosmetics[item.itemID]) then
-                cosmetics[item.itemID] = {
+            if not itemsCache[item.itemID] or isTableInvalidOrHasNilValues(itemsCache[item.itemID]) then
+                itemsCache[item.itemID] = {
                     name = name,
                     icon = icon
                 }
+                updatesCount = updatesCount + 1
             end
 
             if toLoad == 0 then
-                print("Loaded cosmetics cache :O")
-                EventRegistry:TriggerEvent("StuffFromCheevos.CosmeticsCached")
+                SFC.LogUtils.Message("item caching completed,", updatesCount, "item records updated")
+                EventRegistry:TriggerEvent("StuffFromCheevos.ItemsCached")
             end
         end)
+    end
+
+    for _, item in ipairs(SFC.Toys) do
+        Item:CreateFromItemID(item.itemID):ContinueOnItemLoad(function()
+            toLoad = toLoad - 1
+            local icon = select(5, C_Item.GetItemInfoInstant(item.itemID))
+            local name = C_Item.GetItemNameByID(item.itemID)
+
+            if not itemsCache[item.itemID] or isTableInvalidOrHasNilValues(itemsCache[item.itemID]) then
+                itemsCache[item.itemID] = {
+                    name = name,
+                    icon = icon
+                }
+                updatesCount = updatesCount + 1
+            end
+
+            if toLoad == 0 then
+                SFC.LogUtils.Message("item caching completed,", updatesCount, "item records updated")
+                EventRegistry:TriggerEvent("StuffFromCheevos.ItemsCached")
+            end
+        end)
+    end
+    
+    for _, item in ipairs(SFC.Pets) do
+        if not item.itemID then
+            toLoad = toLoad - 1
+        else
+            Item:CreateFromItemID(item.itemID):ContinueOnItemLoad(function()
+                toLoad = toLoad - 1
+                local name, icon = C_PetJournal.GetPetInfoByItemID(item.itemID)
+    
+                if not itemsCache[item.itemID] or isTableInvalidOrHasNilValues(itemsCache[item.itemID]) then
+                    itemsCache[item.itemID] = {
+                        name = name,
+                        icon = icon
+                    }
+                    updatesCount = updatesCount + 1
+                end
+    
+                if toLoad == 0 then
+                    SFC.LogUtils.Message("item caching completed,", updatesCount, "item records updated")
+                    EventRegistry:TriggerEvent("StuffFromCheevos.ItemsCached")
+                end
+            end)
+        end
     end
 end
 

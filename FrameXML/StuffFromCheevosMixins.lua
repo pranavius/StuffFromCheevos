@@ -28,7 +28,7 @@ SFCMainMixin = {}
 ---@field atlas string?
 
 function SFCMainMixin:OnLoad()
-    EventRegistry:RegisterCallback("StuffFromCheevos.CosmeticsCached", function() self:PopulateRewardsList(self.category) end)
+    EventRegistry:RegisterCallback("StuffFromCheevos.ItemsCached", function() self:PopulateRewardsList(self.category) end)
     EventRegistry:RegisterCallback("StuffFromCheevos.FiltersUpdated", function() self:PopulateRewardsList(self.category) end)
     self.player = UnitName("player")
     local _, classFilename = UnitClass("player")
@@ -99,7 +99,7 @@ local function getMountRewards()
                 icon = iconID,
             })
         else
-            print("No mountID found for item ID", reward.itemID)
+            -- print("No mountID found for item ID", reward.itemID)
         end
     end
 
@@ -113,8 +113,6 @@ local function getTitleRewards()
     for index, reward in ipairs(SFC.Titles) do
         local title = GetTitleName(reward.titleID)
 
-        -- title = title:gsub("%s", "--")
-
         if title and title ~= "" then
             tinsert(result, {
                 index = index,
@@ -125,7 +123,7 @@ local function getTitleRewards()
                 icon = "interface/icons/inv_scroll_05",
             })
         else
-            print("No title returned for title ID", reward.titleID)
+            -- print("No title returned for title ID", reward.titleID)
         end
     end
 
@@ -136,16 +134,16 @@ end
 local function getCosmeticRewards()
     ---@type Reward[]
     local result = {}
-    if not SFC_DB or not SFC_DB.cosmetics then return result end
+    if not SFC_DB or not SFC_DB.itemsCache then return result end
 
     for index, reward in ipairs(SFC.Cosmetics) do
         tinsert(result, {
             index = index,
-            name = SFC_DB.cosmetics[reward.itemID].name or "Unknown Cosmetic Reward",
+            name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Cosmetic",
             achievementID = reward.achievementID,
             categoryID = reward.categoryID,
             type = "Cosmetic",
-            icon = SFC_DB.cosmetics[reward.itemID].icon
+            icon = SFC_DB.itemsCache[reward.itemID].icon or 134110
         })
     end
 
@@ -173,6 +171,55 @@ local function getCustomizationRewards()
     return result
 end
 
+---@return Reward[]
+local function getToyRewards()
+    ---@type Reward[]
+    local result = {}
+
+    for index, reward in ipairs(SFC.Toys) do
+        tinsert(result, {
+            index = index,
+            name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Toy",
+            achievementID = reward.achievementID,
+            categoryID = reward.categoryID,
+            type = "Toy",
+            icon = SFC_DB.itemsCache[reward.itemID].icon or 134110
+        })
+    end
+
+    return result
+end
+
+---@return Reward[]
+local function getPetRewards()
+    ---@type Reward[]
+    local result = {}
+    for index, reward in ipairs(SFC.Pets) do
+        if reward.spellID then
+            local spellInfo = C_Spell.GetSpellInfo(reward.spellID)
+            tinsert(result, {
+                index = index,
+                name = spellInfo.name,
+                achievementID = reward.achievementID,
+                categoryID = reward.categoryID,
+                type = "Pet",
+                icon = spellInfo.originalIconID,
+            })
+        else
+            tinsert(result, {
+            index = index,
+            name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Pet",
+            achievementID = reward.achievementID,
+            categoryID = reward.categoryID,
+            type = "Pet",
+            icon = SFC_DB.itemsCache[reward.itemID].icon or 134110
+        })
+        end
+    end
+
+    return result
+end
+
 ---@param category string
 function SFCMainMixin:PopulateRewardsList(category)
     self.category = category
@@ -190,6 +237,8 @@ function SFCMainMixin:PopulateRewardsList(category)
         titles = getTitleRewards(),
         cosmetics = getCosmeticRewards(),
         customizations = getCustomizationRewards(),
+        toys = getToyRewards(),
+        pets = getPetRewards(),
         all = {}
     }
     if category == "All" then
@@ -197,6 +246,8 @@ function SFCMainMixin:PopulateRewardsList(category)
         tAppendAll(rewardLists.all, rewardLists.titles)
         tAppendAll(rewardLists.all, rewardLists.cosmetics)
         tAppendAll(rewardLists.all, rewardLists.customizations)
+        tAppendAll(rewardLists.all, rewardLists.toys)
+        tAppendAll(rewardLists.all, rewardLists.pets)
         -- When showing all rewards, sort them by achievement, category, then name
         table.sort(rewardLists.all, function(a, b)
             if a.achievementID ~= b.achievementID then return a.achievementID < b.achievementID end
@@ -216,6 +267,10 @@ function SFCMainMixin:PopulateRewardsList(category)
         self:CreateRewardsList(rewardLists.cosmetics)
     elseif category == "Customizations" then
         self:CreateRewardsList(rewardLists.customizations)
+    elseif category == "Toys" then
+        self:CreateRewardsList(rewardLists.toys)
+    elseif category == "Pets" then
+        self:CreateRewardsList(rewardLists.pets)
     end
     rewardsList:Layout()
 end
