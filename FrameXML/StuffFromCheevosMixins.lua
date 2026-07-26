@@ -175,6 +175,7 @@ end
 local function getToyRewards()
     ---@type Reward[]
     local result = {}
+    if not SFC_DB or not SFC_DB.itemsCache then return result end
 
     for index, reward in ipairs(SFC.Toys) do
         tinsert(result, {
@@ -194,6 +195,8 @@ end
 local function getPetRewards()
     ---@type Reward[]
     local result = {}
+    if not SFC_DB or not SFC_DB.itemsCache then return result end
+    
     for index, reward in ipairs(SFC.Pets) do
         if reward.spellID then
             local spellInfo = C_Spell.GetSpellInfo(reward.spellID)

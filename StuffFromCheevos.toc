@@ -5,6 +5,7 @@
 ## Author: @project-author@
 ## Version: @project-version@
 ## SavedVariables: SFC_DB
+## LoadSavedVariablesFirst: 1
 ## Category: Collections
 ## Category-deDE: Kriegsmeutesammlungen
 ## Category-esES: Colecciones de banda guerrera
