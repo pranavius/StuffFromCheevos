@@ -18,7 +18,6 @@ end
 SFCMainMixin = {}
 
 ---@class Reward
----@field index number
 ---@field name string
 ---@field type string
 ---@field achievementID number
@@ -28,8 +27,13 @@ SFCMainMixin = {}
 ---@field atlas string?
 
 function SFCMainMixin:OnLoad()
-    EventRegistry:RegisterCallback("StuffFromCheevos.ItemsCached", function() self:PopulateRewardsList(self.category) end)
+    self.Rewards.ScrollFrame:InitializeScrollFrame()
+    EventRegistry:RegisterCallback("StuffFromCheevos.ItemsCached", function()
+        self:PopulateRewardsList(self.category)
+    end)
     EventRegistry:RegisterCallback("StuffFromCheevos.FiltersUpdated", function() self:PopulateRewardsList(self.category) end)
+    self:RegisterEvent("PLAYER_STARTED_MOVING")
+    self:RegisterEvent("PLAYER_STOPPED_MOVING")
     self.player = UnitName("player")
     local _, classFilename = UnitClass("player")
     self.classColor = C_ClassColor.GetClassColor(classFilename)
@@ -56,10 +60,6 @@ function SFCMainMixin:OnLoad()
     end
     catList:Layout()
 
-    -- Rewards list init
-    local rewardsList = self.Rewards.ScrollFrame.ScrollChild
-    rewardsList:SetWidth(self.Rewards.ScrollFrame:GetWidth())
-
     -- Initialize window with default category pre-selected (currently "All")
     self:PopulateRewardsList(self.category)
     ---@type Button & SFCCategoryButtonTemplate
@@ -74,6 +74,14 @@ function SFCMainMixin:OnDragStop()
     self:StopMovingOrSizing()
 end
 
+function SFCMainMixin:OnEvent(event, ...)
+    if event == "PLAYER_STARTED_MOVING" then
+        UIFrameFadeIn(self, 0.3, self:GetAlpha(), 0.4)
+    elseif event == "PLAYER_STOPPED_MOVING" then
+        UIFrameFadeIn(self, 0.3, self:GetAlpha(), 1)
+    end
+end
+
 function SFCMainMixin:ResetCategoryButtonTextures()
     local list = self.Categories.List
     for _, button in ipairs({list:GetChildren()}) do
@@ -86,12 +94,11 @@ end
 local function getMountRewards()
     ---@type Reward[]
     local result = {}
-    for index, reward in ipairs(SFC.Mounts) do
+    for _, reward in ipairs(SFC.Mounts) do
         local mountID = C_MountJournal.GetMountFromItem(reward.itemID)
         if mountID then
             local mountName, _, iconID = C_MountJournal.GetMountInfoByID(mountID)
             tinsert(result, {
-                index = index,
                 name = mountName,
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
@@ -110,12 +117,11 @@ end
 local function getTitleRewards()
     ---@type Reward[]
     local result = {}
-    for index, reward in ipairs(SFC.Titles) do
+    for _, reward in ipairs(SFC.Titles) do
         local title = GetTitleName(reward.titleID)
 
         if title and title ~= "" then
             tinsert(result, {
-                index = index,
                 name = title,
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
@@ -136,9 +142,8 @@ local function getCosmeticRewards()
     local result = {}
     if not SFC_DB or not SFC_DB.itemsCache then return result end
 
-    for index, reward in ipairs(SFC.Cosmetics) do
+    for _, reward in ipairs(SFC.Cosmetics) do
         tinsert(result, {
-            index = index,
             name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Cosmetic",
             achievementID = reward.achievementID,
             categoryID = reward.categoryID,
@@ -155,10 +160,9 @@ local function getCustomizationRewards()
     ---@type Reward[]
     local result = {}
 
-    for index, reward in ipairs(SFC.Customizations) do
+    for _, reward in ipairs(SFC.Customizations) do
         local rewardText = select(11, GetAchievementInfo(reward.achievementID))
         tinsert(result, {
-            index = index,
             name = rewardText:gsub("^.+:%s", ""),
             achievementID = reward.achievementID,
             categoryID = reward.categoryID,
@@ -177,9 +181,8 @@ local function getToyRewards()
     local result = {}
     if not SFC_DB or not SFC_DB.itemsCache then return result end
 
-    for index, reward in ipairs(SFC.Toys) do
+    for _, reward in ipairs(SFC.Toys) do
         tinsert(result, {
-            index = index,
             name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Toy",
             achievementID = reward.achievementID,
             categoryID = reward.categoryID,
@@ -196,12 +199,11 @@ local function getPetRewards()
     ---@type Reward[]
     local result = {}
     if not SFC_DB or not SFC_DB.itemsCache then return result end
-    
-    for index, reward in ipairs(SFC.Pets) do
+
+    for _, reward in ipairs(SFC.Pets) do
         if reward.spellID then
             local spellInfo = C_Spell.GetSpellInfo(reward.spellID)
             tinsert(result, {
-                index = index,
                 name = spellInfo.name,
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
@@ -210,7 +212,6 @@ local function getPetRewards()
             })
         else
             tinsert(result, {
-            index = index,
             name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Pet",
             achievementID = reward.achievementID,
             categoryID = reward.categoryID,
@@ -226,13 +227,6 @@ end
 ---@param category string
 function SFCMainMixin:PopulateRewardsList(category)
     self.category = category
-    local rewardsList = self.Rewards.ScrollFrame.ScrollChild
-    for _, child in ipairs({ rewardsList:GetChildren() }) do
-        child:Hide()
-        child:SetParent(nil)
-    end
-    rewardsList:SetWidth(self.Rewards.ScrollFrame:GetWidth())
-
     if category ~= "All" and not SFC[category] then return end
 
     local rewardLists = {
@@ -242,6 +236,7 @@ function SFCMainMixin:PopulateRewardsList(category)
         customizations = getCustomizationRewards(),
         toys = getToyRewards(),
         pets = getPetRewards(),
+         ---@type Reward[]
         all = {}
     }
     if category == "All" then
@@ -257,25 +252,22 @@ function SFCMainMixin:PopulateRewardsList(category)
             if a.categoryID ~= b.categoryID then return a.categoryID < b.categoryID end
             return a.name < b.name
         end)
-        -- Update list indicies for accurate display orders based on sort
-        for index, reward in ipairs(rewardLists.all) do
-            reward.index = index
-        end
-        self:CreateRewardsList(rewardLists.all)
+        SFC.DataProvider = CreateDataProvider(rewardLists.all)
     elseif category == "Mounts" then
-        self:CreateRewardsList(rewardLists.mounts)
+        SFC.DataProvider = CreateDataProvider(rewardLists.mounts)
     elseif category == "Titles" then
-        self:CreateRewardsList(rewardLists.titles)
+        SFC.DataProvider = CreateDataProvider(rewardLists.titles)
     elseif category == "Cosmetics" then
-        self:CreateRewardsList(rewardLists.cosmetics)
+        SFC.DataProvider = CreateDataProvider(rewardLists.cosmetics)
     elseif category == "Customizations" then
-        self:CreateRewardsList(rewardLists.customizations)
+        SFC.DataProvider = CreateDataProvider(rewardLists.customizations)
     elseif category == "Toys" then
-        self:CreateRewardsList(rewardLists.toys)
+        SFC.DataProvider = CreateDataProvider(rewardLists.toys)
     elseif category == "Pets" then
-        self:CreateRewardsList(rewardLists.pets)
+        SFC.DataProvider = CreateDataProvider(rewardLists.pets)
     end
-    rewardsList:Layout()
+
+    self.Rewards.ScrollFrame:SetDataProvider(SFC.DataProvider, false)
 end
 
 ---@param title string
@@ -303,69 +295,77 @@ ShowAchievementFrameForAchievement = ShowAchievementFrameForAchievement or funct
 	end
 end
 
----@param rewards Reward[]
-function SFCMainMixin:CreateRewardsList(rewards)
-    local rewardsList = self.Rewards.ScrollFrame.ScrollChild
-    for _, reward in ipairs(rewards) do
-        local _, achievementName, points, isCompleted, completedMonth, completedDay, completedYear, description = GetAchievementInfo(reward.achievementID)
+---@param frame SFCRewardFrameTemplate
+---@param reward Reward
+local function createRewardsList(frame, reward)
+    if not frame or not reward then return end
 
-        local frame = CreateFrame("Frame", nil, rewardsList, "SFCRewardFrameTemplate")
-        frame:SetSize(rewardsList:GetWidth() - 4, self.Rewards.ScrollFrame:GetHeight() / 6)
-        frame:SetBackdropColor(0.3, 0.3, 0.3)
-        if isCompleted then
-            -- frame:SetBackdropBorderColor(0, 1, 0)
-            frame:SetBackdropColor(0.1, 0.8, 0.2, 0.7)
-        end
-        frame.align = "center"
-        frame.topPadding = 2
-        frame.layoutIndex = reward.index
-        
-        if reward.atlas then
-            frame.Icon:SetAtlas(reward.atlas)
-        elseif reward.icon then
-            frame.Icon:SetTexture(reward.icon)
-        end
-        frame.IconBorder:SetShown(reward.atlas ~= nil or reward.icon ~= nil)
-        frame.RewardName:SetText(reward.type == "Title" and getNameTitleCombo(reward.name) or reward.name)
-        frame.RewardType:SetText(reward.type)
-        frame.RewardType:SetShown(self.category == "All")
+    local _, _, points, isCompleted, completedMonth, completedDay, completedYear = GetAchievementInfo(reward.achievementID)
 
-        local achievementLink = GetAchievementLink(reward.achievementID)
-        frame.CheevoLink:SetText(achievementLink)
-        frame.CheevoLink:SetSize(frame.CheevoLink:GetTextWidth() + 10, frame.CheevoLink:GetTextHeight() + 10)
-        frame.CheevoLink:SetScript("OnClick", function(_, mouseButton)
-            SetItemRef(achievementLink, achievementLink, mouseButton)
-        end)
-
-        local progressText
-        if isCompleted then
-            progressText = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Completed "..FormatShortDate(completedDay, completedMonth, completedYear))
-        else
-            local numCriteria = GetAchievementNumCriteria(reward.achievementID)
-            if numCriteria > 0 then
-                local numCompleted = 0
-                for i = 1, numCriteria do
-                    local _, _, isCriteriaComplete = GetAchievementCriteriaInfo(reward.achievementID, i)
-                    if isCriteriaComplete then numCompleted = numCompleted + 1 end
-                end
-    
-                progressText = numCompleted.." / "..numCriteria.." completed"
-            end
-        end
-        frame.CriteriaProgress:SetText(progressText)
-
-        frame.CheevoPoints:SetText(tostring(points))
-
-        frame.OpenCheevo:SetText("View Achievement")
-        frame.OpenCheevo:SetSize(frame.OpenCheevo.Text:GetUnboundedStringWidth() + 18, frame.OpenCheevo:GetTextHeight() + 14)
-        frame.OpenCheevo:SetScript("OnClick", function()
-            ShowAchievementFrameForAchievement(reward.achievementID)
-        end)
-        frame.OpenCheevo:SetScript("OnEnter", function(button)
-            button:SetText(WHITE_FONT_COLOR:WrapTextInColorCode("View Achievement"))
-        end)
-        frame.OpenCheevo:SetScript("OnLeave", function(button)
-            button:SetText("View Achievement")
-        end)
+    frame:SetBackdropColor(0.3, 0.3, 0.3)
+    if isCompleted then
+        frame:SetBackdropColor(0.1, 0.8, 0.2, 0.7)
     end
+    
+    if reward.atlas then
+        frame.Icon:SetAtlas(reward.atlas)
+    elseif reward.icon then
+        frame.Icon:SetTexture(reward.icon)
+    end
+    frame.IconBorder:SetShown(reward.atlas ~= nil or reward.icon ~= nil)
+    frame.RewardName:SetText(reward.type == "Title" and getNameTitleCombo(reward.name) or reward.name)
+    frame.RewardType:SetText(reward.type)
+    frame.RewardType:SetShown(SFCMain.category == "All")
+
+    local achievementLink = GetAchievementLink(reward.achievementID)
+    frame.CheevoLink:SetText(achievementLink)
+    frame.CheevoLink:SetSize(frame.CheevoLink:GetTextWidth() + 10, frame.CheevoLink:GetTextHeight() + 10)
+    frame.CheevoLink:SetScript("OnClick", function(_, mouseButton)
+        SetItemRef(achievementLink, achievementLink, mouseButton)
+    end)
+
+    local progressText
+    if isCompleted then
+        progressText = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Completed "..FormatShortDate(completedDay, completedMonth, completedYear))
+    else
+        local numCriteria = GetAchievementNumCriteria(reward.achievementID)
+        if numCriteria > 0 then
+            local numCompleted = 0
+            for i = 1, numCriteria do
+                local _, _, isCriteriaComplete = GetAchievementCriteriaInfo(reward.achievementID, i)
+                if isCriteriaComplete then numCompleted = numCompleted + 1 end
+            end
+
+            progressText = numCompleted.." / "..numCriteria.." completed"
+        end
+    end
+    frame.CriteriaProgress:SetText(progressText)
+
+    frame.CheevoPoints:SetText(tostring(points))
+
+    frame.OpenCheevo:SetText("View Achievement")
+    frame.OpenCheevo:SetSize(frame.OpenCheevo.Text:GetUnboundedStringWidth() + 18, frame.OpenCheevo:GetTextHeight() + 14)
+    frame.OpenCheevo:SetScript("OnClick", function()
+        ShowAchievementFrameForAchievement(reward.achievementID)
+    end)
+    frame.OpenCheevo:SetScript("OnEnter", function(button)
+        button:SetText(WHITE_FONT_COLOR:WrapTextInColorCode("View Achievement"))
+    end)
+    frame.OpenCheevo:SetScript("OnLeave", function(button)
+        button:SetText("View Achievement")
+    end)
+end
+
+---@class SFCScrollFrame: WowScrollBoxList
+SFCScrollFrameMixin = {}
+
+function SFCScrollFrameMixin:InitializeScrollFrame()
+    self.ScrollView = CreateScrollBoxListLinearView()
+
+    ScrollUtil.InitScrollBoxListWithScrollBar(self, SFCMain.Rewards.ScrollBar, self.ScrollView)
+    self.ScrollView:SetElementFactory(function(factory)
+        factory("SFCRewardFrameTemplate", createRewardsList)
+    end)
+    self.ScrollView:SetElementExtent(self.ScrollView:GetTemplateExtent("SFCRewardFrameTemplate"))
+    self.ScrollView:SetDataProvider(CreateDataProvider())
 end

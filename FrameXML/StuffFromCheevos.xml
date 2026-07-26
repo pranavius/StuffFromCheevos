@@ -10,6 +10,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
     </Button>
 
     <Frame name="SFCRewardFrameTemplate" virtual="true" inherits="TooltipBorderBackdropTemplate">
+        <Size y="85"/>
         <Layers>
             <Layer level="ARTWORK">
                 <Texture parentKey="Icon">
@@ -128,17 +129,19 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Anchor point="BOTTOMRIGHT" x="-10" y="10"/>
                 </Anchors>
                 <Frames>
-                    <ScrollFrame parentKey="ScrollFrame" inherits="UIPanelScrollFrameTemplate">
+                    <EventFrame name="SFCScrollBar" parentKey="ScrollBar" inherits="WowTrimScrollBar">
+                        <Anchors>
+                            <Anchor point="TOPRIGHT" x="-5" y="-5"/>
+                            <Anchor point="BOTTOMRIGHT" y="5"/>
+                        </Anchors>
+                    </EventFrame>
+                    <Frame name="SFCScrollFrame" parentKey="ScrollFrame" inherits="WowScrollBoxList" mixin="SFCScrollFrameMixin">
                         <Anchors>
                             <Anchor point="TOPLEFT" x="10" y="-5"/>
-                            <Anchor point="BOTTOMRIGHT" x="-25" y="3"/>
+                            <Anchor point="BOTTOMRIGHT" relativeTo="SFCScrollBar" relativePoint="BOTTOMLEFT" x="-5"/>
                         </Anchors>
-                        <ScrollChild>
-                            <Frame parentKey="ScrollChild" inherits="VerticalLayoutFrame">
-                                <Size x="1" y="1"/>
-                            </Frame>
-                        </ScrollChild>
-                    </ScrollFrame>
+                    </Frame>
+                    
                 </Frames>
             </Frame>
         </Frames>
@@ -161,7 +164,8 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         <Scripts>
             <OnLoad method="OnLoad"/>
             <OnDragStart method="OnDragStart"/>
-            <OnDragStop method="OnDragStop"/>            
+            <OnDragStop method="OnDragStop"/>
+            <OnEvent method="OnEvent"/>
         </Scripts>
     </Frame>
 </Ui>

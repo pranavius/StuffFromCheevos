@@ -40,7 +40,9 @@ function DBUtils.BuildItemsCache()
             end
 
             if toLoad == 0 then
-                SFC.LogUtils.Message("item caching completed,", updatesCount, "item records updated")
+                if updatesCount > 0 then
+                    SFC.LogUtils.Message(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Stuff From Cheevos"), "database updates:", HEIRLOOM_BLUE_COLOR:WrapTextInColorCode(updatesCount), "records")
+                end
                 EventRegistry:TriggerEvent("StuffFromCheevos.ItemsCached")
             end
         end)
@@ -61,7 +63,9 @@ function DBUtils.BuildItemsCache()
             end
 
             if toLoad == 0 then
-                SFC.LogUtils.Message("item caching completed,", updatesCount, "item records updated")
+                if updatesCount > 0 then
+                    SFC.LogUtils.Message(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Stuff From Cheevos"), "database updates:", HEIRLOOM_BLUE_COLOR:WrapTextInColorCode(updatesCount), "records")
+                end
                 EventRegistry:TriggerEvent("StuffFromCheevos.ItemsCached")
             end
         end)
@@ -84,7 +88,9 @@ function DBUtils.BuildItemsCache()
                 end
     
                 if toLoad == 0 then
-                    SFC.LogUtils.Message("item caching completed,", updatesCount, "item records updated")
+                    if updatesCount > 0 then
+                        SFC.LogUtils.Message(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Stuff From Cheevos"), "database updates:", HEIRLOOM_BLUE_COLOR:WrapTextInColorCode(updatesCount), "records")
+                    end
                     EventRegistry:TriggerEvent("StuffFromCheevos.ItemsCached")
                 end
             end)
