@@ -36,8 +36,9 @@ SlashCmdList["SFCSLASH"] = function(msg)
 end
 
 function SFC_Reset()
-    SFC_DB = {}
-    print("SFC DB Reset")
+    if not SFC_DB then SFC_DB = {}
+    else SFC_DB.categories = {} end
+    print("SFC DB dump Reset")
 end
 
 ---Dumps all available achievement info from in-game (**INTENDED FOR DEVELOPMENT PURPOSES ONLY**)
@@ -57,20 +58,19 @@ function SFC_Dump()
         end
 
         for index = 1, GetCategoryNumAchievements(categoryID, true) do
-            local achievementID, achievement, points, _, _, _, _, description, achievementFlags, _, rewardText, isGuild, _, earnedBy, isStatistic = GetAchievementInfo(categoryID, index)
+            local achievementID, achievement, points, _, _, _, _, description, achievementFlags, _, rewardText = GetAchievementInfo(categoryID, index)
             if achievementID then
                 local rewardItemID = C_AchievementInfo.GetRewardItemID(achievementID) or -1
-                SFC_DB.categories[categoryID].achievements[achievementID] = {
-                    achievement = achievement,
-                    points = points,
-                    description = description,
-                    flags = achievementFlags,
-                    rewardText = rewardText,
-                    rewardItemID = rewardItemID,
-                    earnedBy = earnedBy,
-                    isGuild = isGuild,
-                    isStatistic = isStatistic
-                }
+                if rewardText ~= "" or rewardItemID ~= -1 then
+                    SFC_DB.categories[categoryID].achievements[achievementID] = {
+                        achievement = achievement,
+                        points = points,
+                        description = description,
+                        flags = achievementFlags,
+                        rewardText = rewardText,
+                        rewardItemID = rewardItemID,
+                    }
+                end
             else
                 if not SFC_DB.notFound then SFC_DB.notFound = {} end
                 if not SFC_DB.notFound[category] then SFC_DB.notFound[category] = { id = categoryID, indicies = {} } end

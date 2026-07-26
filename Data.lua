@@ -1,5 +1,10 @@
 local SFC = select(2, ...)
 
+local FACTION_NAME = {
+    ALLIANCE = "Alliance",
+    HORDE = "Horde"
+}
+
 SFC.Categories = {
     "All",
     "Mounts",
@@ -12,7 +17,8 @@ SFC.Categories = {
 }
 
 SFC.Mounts = {
-    { itemID = 44224, achievementID = 619, categoryID = 95 }, -- Black War Bear
+    { itemID = 44223, achievementID = 614, categoryID = 95, FACTION_NAME.ALLIANCE }, -- Black War Bear (Alliance)
+    { itemID = 44224, achievementID = 619, categoryID = 95, FACTION_NAME.HORDE }, -- Black War Bear
     { itemID = 44160, achievementID = 2136, categoryID = 168 }, -- Red Proto-Drake
     { itemID = 44177, achievementID = 2144, categoryID = 155 }, -- Violet Proto-Drake
     { itemID = 51954, achievementID = 4602, categoryID = 168 }, -- Bloodbathed Frostbrood Vanquisher
@@ -22,14 +28,16 @@ SFC.Mounts = {
     { itemID = 69230, achievementID = 5828, categoryID = 168 }, -- Corrupted Egg of Millagazor
     { itemID = 69213, achievementID = 5866, categoryID = 15070 }, -- Flameward Hippogryph
     { itemID = 77068, achievementID = 6169, categoryID = 168 }, -- Twilight Harbinger
-    { itemID = 81559, achievementID = 6827, categoryID = 15114 }, -- Pandaren Kite String
+    { itemID = 81559, achievementID = 6827, categoryID = 15114, FACTION_NAME.HORDE }, -- Pandaren Kite String
+    { itemID = 89785, achievementID = 6828, categoryID = 15114, FACTION_NAME.ALLIANCE }, -- Pandaren Kite String (Alliance)
     { itemID = 87769, achievementID = 6927, categoryID = 168 }, -- Crimson Cloud Serpent
     { itemID = 87773, achievementID = 6932, categoryID = 168 }, -- Heavenly Crimson Cloud Serpent
     { itemID = 93662, achievementID = 8124, categoryID = 168 }, -- Armored Skyscreamer
     { itemID = 104208, achievementID = 8454, categoryID = 168 }, -- Galakras
     { itemID = 116383, achievementID = 8985, categoryID = 168 }, -- Gorestrider Gronnling
     { itemID = 116670, achievementID = 9396, categoryID = 168 }, -- Frostplains Battleboar
-    { itemID = 116668, achievementID = 9705, categoryID = 15303 }, -- Armored Frostboar
+    { itemID = 116668, achievementID = 9539, categoryID = 15303, FACTION_NAME.ALLIANCE }, -- Armored Frostboar (Alliance)
+    { itemID = 116668, achievementID = 9705, categoryID = 15303, FACTION_NAME.HORDE }, -- Armored Frostboar
     { itemID = 118676, achievementID = 9713, categoryID = 15248 }, -- Emerald Drake
     { itemID = 120968, achievementID = 9909, categoryID = 15246 }, -- Chauffeured Chopper
     { itemID = 128706, achievementID = 10018, categoryID = 15235 }, -- Soaring Skyterror
@@ -41,7 +49,8 @@ SFC.Mounts = {
     { itemID = 129280, achievementID = 11474, categoryID = 15283 }, -- Prestigious War Steed
     { itemID = 143864, achievementID = 11474, categoryID = 15283 }, -- Prestigious War Wolf
     { itemID = 152815, achievementID = 11987, categoryID = 168 }, -- Antoran Gloomhound
-    { itemID = 45801, achievementID = 12401, categoryID = 168 }, -- Rusted Proto-Drake and Ironbound Proto-Drake
+    { itemID = 45801, achievementID = 12401, categoryID = 168 }, -- Ironbound Proto-Drake
+    { itemID = 45802, achievementID = 12401, categoryID = 168 }, -- Rusted Proto-Drake
     { itemID = 163216, achievementID = 12806, categoryID = 168 }, -- Bloodgorged Crawg
     { itemID = 161215, achievementID = 12812, categoryID = 168 }, -- Reins of the Obsidian Krolusk
     { itemID = 140228, achievementID = 12895, categoryID = 15266 }, -- Prestigious Bronze Courser
@@ -65,7 +74,8 @@ SFC.Mounts = {
     { itemID = 188736, achievementID = 15322, categoryID = 15440 }, -- Colossal Soulshredder Mawrat
     { itemID = 187673, achievementID = 15336, categoryID = 15422 }, -- Cryptic Aurelid
     { itemID = 187675, achievementID = 15491, categoryID = 168 }, -- Shimmering Aurelid
-    { itemID = 198654, achievementID = 15833, categoryID = 15248 }, -- Otterworldly Ottuk Carrier
+    { itemID = 198654, achievementID = 15833, categoryID = 15248, FACTION_NAME.HORDE }, -- Otterworldly Ottuk Carrier
+    { itemID = 198654, achievementID = 15834, categoryID = 15248, FACTION_NAME.ALLIANCE }, -- Otterworldly Ottuk Carrier (Alliance)
     { itemID = 192784, achievementID = 16295, categoryID = 168 }, -- Shellack
     { itemID = 192806, achievementID = 16355, categoryID = 168 }, -- Raging Magmammoth
     { itemID = 192774, achievementID = 16492, categoryID = 15465 }, -- Coralscale Salamanther
@@ -123,10 +133,12 @@ SFC.Mounts = {
     { itemID = 258884, achievementID = 61463, categoryID = 15454 }, -- Spawn of Vyranoth
     { itemID = 257145, achievementID = 61584, categoryID = 15462 }, -- Crimson Dragonhawk
     { itemID = 257199, achievementID = 61906, categoryID = 15571 }, -- Giganto Manis
-    { itemID = 265656, achievementID = 62096, categoryID = 15248 }, -- Anu'shalla, Shadow's Guidance
+    { itemID = 265656, achievementID = 62096, categoryID = 15248, FACTION_NAME.HORDE }, -- Anu'shalla, Shadow's Guidance
+    { itemID = 265656, achievementID = 62103, categoryID = 15248, FACTION_NAME.ALLIANCE }, -- Anu'shalla, Shadow's Guidance (Alliance)
     { itemID = 257144, achievementID = 62190, categoryID = 15600 }, -- Umbral Dragonhawk
     { itemID = 260697, achievementID = 62385, categoryID = 15547 }, -- Lab-grown Stormray
     { itemID = 252011, achievementID = 62386, categoryID = 15553 }, -- Brilliant Petalwing
+    -- TODO List:
     -- Seasonal Gladiator mount
     -- Seasonal AOTC and/or Cutting Edge mount
     -- Seasonal KSM and KSL mount
@@ -135,16 +147,21 @@ SFC.Mounts = {
 -- titleID corresponds to CharTitles.Mask_ID in db2
 SFC.Titles = {
     { titleID = 47, achievementID = 46, categoryID = 97 }, -- the Explorer
-    { titleID = 34, achievementID = 714, categoryID = 95 }, -- Conqueror
-    { titleID = 98, achievementID = 762, categoryID = 201 }, -- Ambassador
+    { titleID = 41, achievementID = 230, categoryID = 95, faction = FACTION_NAME.ALLIANCE }, -- Battlemaster (Alliance)
+    { titleID = 41, achievementID = 1175, categoryID = 95, faction = FACTION_NAME.HORDE }, -- Battlemaster
+    { titleID = 98, achievementID = 948, categoryID = 201, faction = FACTION_NAME.ALLIANCE }, -- Ambassador (Alliance)
+    { titleID = 98, achievementID = 762, categoryID = 201, faction = FACTION_NAME.HORDE }, -- Ambassador
+    { titleID = 34, achievementID = 714, categoryID = 95, faction = FACTION_NAME.HORDE }, -- Conqueror
+    { titleID = 35, achievementID = 907, categoryID = 95, faction = FACTION_NAME.ALLIANCE }, -- Justicar
     { titleID = 43, achievementID = 913, categoryID = 155 }, -- Elder
-    { titleID = 48, achievementID = 943, categoryID = 201 }, -- the Diplomat
+    { titleID = 48, achievementID = 942, categoryID = 201, faction = FACTION_NAME.ALLIANCE }, -- the Diplomat
+    { titleID = 48, achievementID = 943, categoryID = 201, faction = FACTION_NAME.HORDE }, -- the Diplomat
     { titleID = 99, achievementID = 945, categoryID = 201 }, -- the Argent Champion
     { titleID = 100, achievementID = 953, categoryID = 201 }, -- Guardian of Cenarius
     { titleID = 42, achievementID = 978, categoryID = 96 }, -- the Seeker
     { titleID = 46, achievementID = 1015, categoryID = 201 }, -- the Exalted
-    { titleID = 45, achievementID = 1039, categoryID = 155 }, -- Flame Keeper
-    { titleID = 41, achievementID = 1175, categoryID = 95 }, -- Battlemaster
+    { titleID = 44, achievementID = 1038, categoryID = 155, faction = FACTION_NAME.ALLIANCE }, -- Flame Warden
+    { titleID = 45, achievementID = 1039, categoryID = 155, faction = FACTION_NAME.HORDE }, -- Flame Keeper
     { titleID = 51, achievementID = 1516, categoryID = 171 }, -- Salty
     { titleID = 52, achievementID = 1563, categoryID = 170 }, -- Chef
     { titleID = 92, achievementID = 1656, categoryID = 155 }, -- the Hallowed
@@ -156,9 +173,9 @@ SFC.Titles = {
     { titleID = 105, achievementID = 1793, categoryID = 155 }, -- Patron
     { titleID = 107, achievementID = 2051, categoryID = 14922 }, -- of the Nightfall
     { titleID = 89, achievementID = 2054, categoryID = 14922 }, -- Twilight Vanquisher
-    { titleID = 119, achievementID = 2767, categoryID = 14941 }, -- of Silvermoon
-    { titleID = 120, achievementID = 2768, categoryID = 14941 }, -- of Thunder Bluff
-    { titleID = 121, achievementID = 2769, categoryID = 14941 }, -- of the Undercity
+    { titleID = 119, achievementID = 2767, categoryID = 14941, faction = FACTION_NAME.HORDE }, -- of Silvermoon
+    { titleID = 120, achievementID = 2768, categoryID = 14941, faction = FACTION_NAME.HORDE }, -- of Thunder Bluff
+    { titleID = 121, achievementID = 2769, categoryID = 14941, faction = FACTION_NAME.HORDE }, -- of the Undercity
     { titleID = 122, achievementID = 2798, categoryID = 155 }, -- the Noble
     { titleID = 133, achievementID = 3478, categoryID = 155 }, -- the Pilgrim
     { titleID = 139, achievementID = 4583, categoryID = 14922 }, -- Bane of the Fallen King
@@ -169,21 +186,36 @@ SFC.Titles = {
     { titleID = 187, achievementID = 5116, categoryID = 15068 }, -- Blackwing's Bane
     { titleID = 186, achievementID = 5121, categoryID = 15068 }, -- Dragonslayer
     { titleID = 151, achievementID = 5123, categoryID = 15068 }, -- of the Four Winds
-    { titleID = 153, achievementID = 5325, categoryID = 15092 }, -- Veteran of the Horde
-    { titleID = 23, achievementID = 5338, categoryID = 15092 }, -- Centurion
-    { titleID = 27, achievementID = 5342, categoryID = 15092 }, -- Warlord
-    { titleID = 15, achievementID = 5345, categoryID = 15092 }, -- Scout
-    { titleID = 16, achievementID = 5346, categoryID = 15092 }, -- Grunt
-    { titleID = 3, achievementID = 5347, categoryID = 15092 }, -- Sergeant
-    { titleID = 18, achievementID = 5348, categoryID = 15092 }, -- Senior Sergeant
-    { titleID = 19, achievementID = 5349, categoryID = 15092 }, -- First Sergeant
-    { titleID = 20, achievementID = 5350, categoryID = 15092 }, -- Stone Guard
-    { titleID = 21, achievementID = 5351, categoryID = 15092 }, -- Blood Guard
-    { titleID = 22, achievementID = 5352, categoryID = 15092 }, -- Legionnaire
-    { titleID = 24, achievementID = 5353, categoryID = 15092 }, -- Champion
-    { titleID = 25, achievementID = 5354, categoryID = 15092 }, -- Lieutenant General
-    { titleID = 26, achievementID = 5355, categoryID = 15092 }, -- General
-    { titleID = 28, achievementID = 5356, categoryID = 15092 }, -- High Warlord
+    { titleID = 153, achievementID = 5325, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Veteran of the Horde
+    { titleID = 152, achievementID = 5328, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Veteran of the Alliance
+    { titleID = 1, achievementID = 5330, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Private
+    { titleID = 15, achievementID = 5345, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Scout
+    { titleID = 2, achievementID = 5331, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Corporal
+    { titleID = 16, achievementID = 5346, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Grunt
+    { titleID = 3, achievementID = 5332, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Sergeant (Alliance)
+    { titleID = 3, achievementID = 5347, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Sergeant
+    { titleID = 4, achievementID = 5333, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Master Sergeant
+    { titleID = 18, achievementID = 5348, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Senior Sergeant
+    { titleID = 5, achievementID = 5334, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Sergeant Major
+    { titleID = 19, achievementID = 5349, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- First Sergeant
+    { titleID = 6, achievementID = 5335, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Knight
+    { titleID = 20, achievementID = 5350, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Stone Guard
+    { titleID = 7, achievementID = 5336, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Knight-Lieutenant
+    { titleID = 21, achievementID = 5351, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Blood Guard
+    { titleID = 8, achievementID = 5337, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Knight-Captain
+    { titleID = 22, achievementID = 5352, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Legionnaire
+    { titleID = 9, achievementID = 5359, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Knight-Champion
+    { titleID = 23, achievementID = 5338, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Centurion
+    { titleID = 11, achievementID = 5340, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Commander
+    { titleID = 25, achievementID = 5354, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Lieutenant General
+    { titleID = 10, achievementID = 5339, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Lieutenant Commander
+    { titleID = 24, achievementID = 5353, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Champion
+    { titleID = 12, achievementID = 5341, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Marshal
+    { titleID = 26, achievementID = 5355, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- General
+    { titleID = 13, achievementID = 5357, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Field Marshal
+    { titleID = 27, achievementID = 5342, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Warlord
+    { titleID = 14, achievementID = 5343, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Grand Marshal
+    { titleID = 28, achievementID = 5356, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- High Warlord
     { titleID = 185, achievementID = 5506, categoryID = 168 }, -- Defender of a Shattered World
     { titleID = 190, achievementID = 5803, categoryID = 15068 }, -- Firelord
     { titleID = 188, achievementID = 5827, categoryID = 15072 }, -- Avenger of Hyjal
@@ -194,21 +226,25 @@ SFC.Titles = {
     { titleID = 207, achievementID = 6607, categoryID = 15119 }, -- Tamer
     { titleID = 204, achievementID = 6724, categoryID = 15107 }, -- Delver of the Vaults
     { titleID = 198, achievementID = 6734, categoryID = 15107 }, -- the Fearless
+    { titleID = 206, achievementID = 6874, categoryID = 15302, faction = FACTION_NAME.ALLIANCE }, -- the Scenaturdist (Alliance)
+    { titleID = 206, achievementID = 7509, categoryID = 15302, faction = FACTION_NAME.HORDE }, -- the Scenaturdist
     { titleID = 203, achievementID = 6926, categoryID = 168 }, -- the Tranquil Master
-    { titleID = 183, achievementID = 6941, categoryID = 15092 }, -- Hero of the Horde
+    { titleID = 183, achievementID = 6941, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Hero of the Horde
+    { titleID = 182, achievementID = 6942, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Hero of the Alliance
     { titleID = 202, achievementID = 7306, categoryID = 170 }, -- Master of the Ways
     { titleID = 205, achievementID = 7479, categoryID = 15114 }, -- Shado-Master
-    { titleID = 206, achievementID = 7509, categoryID = 15302 }, -- the Scenaturdist
     { titleID = 93, achievementID = 7520, categoryID = 96 }, -- Loremaster
     { titleID = 208, achievementID = 7612, categoryID = 15071 }, -- Seeker of Knowledge
     { titleID = 218, achievementID = 8023, categoryID = 15114 }, -- the Wakener
-    { titleID = 220, achievementID = 8055, categoryID = 95 }, -- Khan
+    { titleID = 220, achievementID = 8052, categoryID = 95, faction = FACTION_NAME.ALLIANCE }, -- Khan (Alliance)
+    { titleID = 220, achievementID = 8055, categoryID = 95, faction = FACTION_NAME.HORDE }, -- Khan
     { titleID = 222, achievementID = 8067, categoryID = 15107 }, -- Storm's End
     { titleID = 221, achievementID = 8121, categoryID = 15110 }, -- the Stormbreaker
     { titleID = 240, achievementID = 8397, categoryID = 15118 }, -- the Crazy Cat Lady
     { titleID = 252, achievementID = 8397, categoryID = 15118 }, -- the Crazy Cat Man
     { titleID = 214, achievementID = 8482, categoryID = 15107 }, -- Hellscream's Downfall
-    { titleID = 212, achievementID = 8680, categoryID = 15107 }, -- Liberator of Orgrimmar
+    { titleID = 211, achievementID = 8679, categoryID = 15107, faction = FACTION_NAME.ALLIANCE }, -- Conqueror of Orgrimmar (Alliance)
+    { titleID = 212, achievementID = 8680, categoryID = 15107, faction = FACTION_NAME.HORDE }, -- Liberator of Orgrimmar
     { titleID = 304, achievementID = 8965, categoryID = 15231 }, -- Empire's Twilight
     { titleID = 301, achievementID = 8973, categoryID = 15231 }, -- Ironbane
     { titleID = 110, achievementID = 9058, categoryID = 15228 }, -- Jenkins
@@ -216,20 +252,30 @@ SFC.Titles = {
     { titleID = 279, achievementID = 9072, categoryID = 15232 }, -- Talon Queen
     { titleID = 260, achievementID = 9094, categoryID = 15303 }, -- Architect
     { titleID = 305, achievementID = 9464, categoryID = 169 }, -- Artisan
-    { titleID = 269, achievementID = 9508, categoryID = 15303 }, -- Warlord of Draenor
-    { titleID = 267, achievementID = 9509, categoryID = 15303 }, -- Draenei Destroyer
-    { titleID = 264, achievementID = 9510, categoryID = 15303 }, -- the Dwarfstalker
-    { titleID = 263, achievementID = 9511, categoryID = 15303 }, -- Gnomebane
-    { titleID = 262, achievementID = 9512, categoryID = 15303 }, -- the Manslayer
-    { titleID = 266, achievementID = 9513, categoryID = 15303 }, -- Scourge of the Kaldorei
-    { titleID = 268, achievementID = 9514, categoryID = 15303 }, -- Terror of the Tushui
-    { titleID = 265, achievementID = 9515, categoryID = 15303 }, -- Worgen Hunter
+    { titleID = 269, achievementID = 9738, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Warlord of Draenor (Alliance)
+    { titleID = 269, achievementID = 9508, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Warlord of Draenor
+    { titleID = 267, achievementID = 9509, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Draenei Destroyer
+    { titleID = 264, achievementID = 9510, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- the Dwarfstalker
+    { titleID = 263, achievementID = 9511, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Gnomebane
+    { titleID = 262, achievementID = 9512, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- the Manslayer
+    { titleID = 266, achievementID = 9513, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Scourge of the Kaldorei
+    { titleID = 268, achievementID = 9514, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Terror of the Tushui
+    { titleID = 265, achievementID = 9515, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Worgen Hunter
+    { titleID = 275, achievementID = 9516, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Slayer of Sin'dorei
+    { titleID = 272, achievementID = 9517, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- The Death Stalker
+    { titleID = 273, achievementID = 9518, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Killer of Kezan
+    { titleID = 271, achievementID = 9519, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Orcslayer
+    { titleID = 276, achievementID = 9520, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Huojin's Fall
+    { titleID = 270, achievementID = 9521, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- the Butcher
+    { titleID = 274, achievementID = 9522, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Troll Hunter
+    { titleID = 277, achievementID = 9540, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- The Stable Master (Alliance)
+    { titleID = 277, achievementID = 9706, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Stable Master
     { titleID = 300, achievementID = 9619, categoryID = 168 }, -- the Savage Hero
-    { titleID = 277, achievementID = 9706, categoryID = 15303 }, -- Stable Master
     { titleID = 307, achievementID = 9924, categoryID = 97 }, -- Field Photographer
     { titleID = 319, achievementID = 10043, categoryID = 15231 }, -- Defiler's End
+    { titleID = 318, achievementID = 10072, categoryID = 15220, faction = FACTION_NAME.ALLIANCE }, -- of the Jungle (Alliance)
+    { titleID = 318, achievementID = 10265, categoryID = 15220, faction = FACTION_NAME.HORDE }, -- of the Jungle
     { titleID = 317, achievementID = 10164, categoryID = 15303 }, -- Captain
-    { titleID = 318, achievementID = 10265, categoryID = 15220 }, -- of the Jungle
     { titleID = 53, achievementID = 10354, categoryID = 15247 }, -- Crashin' Thrashin'
     { titleID = 334, achievementID = 10694, categoryID = 15259 }, -- the Fabulous
     { titleID = 341, achievementID = 10827, categoryID = 15255 }, -- the Dreamer
@@ -246,14 +292,16 @@ SFC.Titles = {
     { titleID = 373, achievementID = 12412, categoryID = 15292 }, -- Prospector
     { titleID = 372, achievementID = 12439, categoryID = 15252 }, -- Postmaster
     { titleID = 381, achievementID = 12533, categoryID = 15286 }, -- the Purifier
-    { titleID = 377, achievementID = 12604, categoryID = 15283 }, -- Conqueror of Azeroth
+    { titleID = 377, achievementID = 12604, categoryID = 15283, faction = FACTION_NAME.HORDE }, -- Conqueror of Azeroth
+    { titleID = 377, achievementID = 12605, categoryID = 15283, faction = FACTION_NAME.ALLIANCE }, -- Conqueror of Azeroth (Alliance)
     { titleID = 383, achievementID = 12861, categoryID = 15283 }, -- Contender
     { titleID = 382, achievementID = 13134, categoryID = 15307 }, -- Expedition Leader
     { titleID = 386, achievementID = 13314, categoryID = 15286 }, -- Hero of Dazar'alor
     { titleID = 403, achievementID = 13555, categoryID = 15298 }, -- Junkyard
     { titleID = 405, achievementID = 13638, categoryID = 15298 }, -- of the Deeps
     { titleID = 404, achievementID = 13733, categoryID = 15286 }, -- the Eternal
-    { titleID = 412, achievementID = 13924, categoryID = 15284 }, -- Veteran of the Fourth War
+    { titleID = 412, achievementID = 13924, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Veteran of the Fourth War
+    { titleID = 412, achievementID = 13925, categoryID = 15284, faction = FACTION_NAME.ALLIANCE }, -- Veteran of the Fourth War (Alliance)
     { titleID = 417, achievementID = 14055, categoryID = 15286 }, -- the Uncorrupted
     { titleID = 229, achievementID = 14175, categoryID = 15218 }, -- Gorgeous
     { titleID = 423, achievementID = 14277, categoryID = 15436 }, -- Cryptkeeper
@@ -315,7 +363,8 @@ SFC.Titles = {
     { titleID = 613, achievementID = 41596, categoryID = 15526 }, -- Junkmaestro
     { titleID = 615, achievementID = 41611, categoryID = 15526 }, -- Void Vanquisher
     { titleID = 616, achievementID = 41629, categoryID = 15521 }, -- Part-Timer
-    { titleID = 629, achievementID = 41820, categoryID = 15506 }, -- of Hammerfall
+    { titleID = 630, achievementID = 41818, categoryID = 15506, faction = FACTION_NAME.ALLIANCE }, -- of Stromgarde (Alliance)
+    { titleID = 629, achievementID = 41820, categoryID = 15506, faction = FACTION_NAME.HORDE }, -- of Hammerfall
     { titleID = 550, achievementID = 42203, categoryID = 15531 }, -- High Explorer
     { titleID = 551, achievementID = 42301, categoryID = 15604 }, -- Timerunner
     { titleID = 598, achievementID = 42779, categoryID = 15523 }, -- Flickering
@@ -345,15 +394,24 @@ SFC.Titles = {
     { titleID = 752, achievementID = 62252, categoryID = 15498 }, -- Thalassian Skinner
     { titleID = 755, achievementID = 62351, categoryID = 15605 }, -- Preyseeker
     { titleID = 771, achievementID = 62941, categoryID = 15608 }, -- Ritual Breaker
+    -- TODO List:
+    -- Seasonal Gladiator/Viscious Gladiator title
+    -- Seasonal raid HOF title
 }
 
 SFC.Cosmetics = {
     { itemID = 43348, achievementID = 45, categoryID = 97 }, -- Tabard of the Explorer
+    { itemID = 49052, achievementID = 3857, categoryID = 15003 }, -- Tabard of Conquest (Alliance)
+    { itemID = 49054, achievementID = 3857, categoryID = 15003 }, -- Tabard of Conquest (Alliance)
     { itemID = 49052, achievementID = 3957, categoryID = 15003 }, -- Tabard of Conquest
     { itemID = 49054, achievementID = 3957, categoryID = 15003 }, -- Tabard of Conquest
     { itemID = 43300, achievementID = 7520, categoryID = 96 }, -- Loremaster's Colors
+    { itemID = 128362, achievementID = 10172, categoryID = 15303 }, -- Captain's Hat (Alliance)
+    { itemID = 128363, achievementID = 10172, categoryID = 15303 }, -- Captain's Hat (Alliance)
     { itemID = 128362, achievementID = 10255, categoryID = 15303 }, -- Captain's Hat
     { itemID = 128363, achievementID = 10255, categoryID = 15303 }, -- Captain's Hat
+    { itemID = 128364, achievementID = 10256, categoryID = 15303 }, -- Fleet Commander's Hat (Alliance)
+    { itemID = 128365, achievementID = 10256, categoryID = 15303 }, -- Fleet Commander's Hat (Alliance)
     { itemID = 128364, achievementID = 10258, categoryID = 15303 }, -- Fleet Commander's Hat
     { itemID = 128365, achievementID = 10258, categoryID = 15303 }, -- Fleet Commander's Hat
     { itemID = 156666, achievementID = 12290, categoryID = 15119 }, -- Master Trainer's Tabard
@@ -525,6 +583,7 @@ SFC.Cosmetics = {
     { itemID = 226160, achievementID = 40360, categoryID = 15506 }, -- Hillhelm Farmhand's Hoe
     { itemID = 226161, achievementID = 40360, categoryID = 15506 }, -- Hillhelm Farmhand's Watering Can
     { itemID = 219105, achievementID = 40618, categoryID = 15506 }, -- Sandy Quotidian Wear
+    { itemID = 237358, achievementID = 40882, categoryID = 15522 }, -- Silver Coffer Key
     { itemID = 232646, achievementID = 41052, categoryID = 15506 }, -- Root Defender's Spear
     { itemID = 232647, achievementID = 41052, categoryID = 15506 }, -- Root Defender's Shield
     { itemID = 219110, achievementID = 41169, categoryID = 15530 }, -- Vermillion Patron's Elegance

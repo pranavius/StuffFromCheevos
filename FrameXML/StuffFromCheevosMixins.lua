@@ -75,9 +75,9 @@ function SFCMainMixin:OnDragStop()
 end
 
 function SFCMainMixin:OnEvent(event, ...)
-    if event == "PLAYER_STARTED_MOVING" then
+    if event == "PLAYER_STARTED_MOVING" and self:IsShown() then
         UIFrameFadeIn(self, 0.3, self:GetAlpha(), 0.4)
-    elseif event == "PLAYER_STOPPED_MOVING" then
+    elseif event == "PLAYER_STOPPED_MOVING" and self:IsShown() then
         UIFrameFadeIn(self, 0.3, self:GetAlpha(), 1)
     end
 end
@@ -300,7 +300,7 @@ end
 local function createRewardsList(frame, reward)
     if not frame or not reward then return end
 
-    local _, _, points, isCompleted, completedMonth, completedDay, completedYear = GetAchievementInfo(reward.achievementID)
+    local _, _, points, isCompleted, completedMonth, completedDay, completedYear, _, flags = GetAchievementInfo(reward.achievementID)
 
     frame:SetBackdropColor(0.3, 0.3, 0.3)
     if isCompleted then
@@ -327,9 +327,18 @@ local function createRewardsList(frame, reward)
     local progressText
     if isCompleted then
         progressText = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Completed "..FormatShortDate(completedDay, completedMonth, completedYear))
+    elseif bit.band(flags, ACHIEVEMENT_FLAGS_HAS_PROGRESS_BAR) ~= 0 then
+        -- Achievements that have a progress bar shown in the Achievements UI seem to only have 1 criteria, so we **SHOULDN'T** need to iterate over any
+        local barText = select(9, GetAchievementCriteriaInfo(reward.achievementID, 1))
+        progressText = barText.." completed"
     else
         local numCriteria = GetAchievementNumCriteria(reward.achievementID)
-        if numCriteria > 0 then
+        -- GetAchievementCriteriaInfo also returns bit flags, so we need to check for that here as well because sometimes the bit isn't set on the Achievement itself :')
+        if numCriteria == 1 then
+            local _, _, _, _, _, _, criteriaFlags, _, barText = GetAchievementCriteriaInfo(reward.achievementID, 1)
+            -- "Show progress bar" flag appears to be '1' for this bit (https://wowdev.wiki/DB/CriteriaTree#Flags)
+            if bit.band(criteriaFlags, 1) ~= 0 then progressText = barText.." completed" end
+        elseif numCriteria > 0 then
             local numCompleted = 0
             for i = 1, numCriteria do
                 local _, _, isCriteriaComplete = GetAchievementCriteriaInfo(reward.achievementID, i)
