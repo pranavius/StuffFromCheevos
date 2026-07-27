@@ -12,6 +12,13 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
     <Frame name="SFCRewardFrameTemplate" virtual="true" inherits="TooltipBorderBackdropTemplate">
         <Size y="85"/>
         <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="FactionBg" alpha="0.2">
+                    <Anchors>
+                        <Anchor point="RIGHT" x="-10"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
             <Layer level="ARTWORK">
                 <Texture parentKey="Icon">
                     <Size x="40" y="40"/>
@@ -76,7 +83,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </FontString>
                 <FontString parentKey="CheevoPoints" inherits="GameFontHighlightSmall" justifyV="MIDDLE" justifyH="CENTER">
                     <Anchors>
-                        <Anchor point="CENTER" relativeKey="$parent.PointsBg" x="1"/>
+                        <Anchor point="CENTER" relativeKey="$parent.PointsBg"/>
                     </Anchors>
                 </FontString>
             </Layer>

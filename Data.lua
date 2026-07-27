@@ -17,8 +17,8 @@ SFC.Categories = {
 }
 
 SFC.Mounts = {
-    { itemID = 44223, achievementID = 614, categoryID = 95, FACTION_NAME.ALLIANCE }, -- Black War Bear (Alliance)
-    { itemID = 44224, achievementID = 619, categoryID = 95, FACTION_NAME.HORDE }, -- Black War Bear
+    { itemID = 44223, achievementID = 614, categoryID = 95, faction = FACTION_NAME.ALLIANCE }, -- Black War Bear (Alliance)
+    { itemID = 44224, achievementID = 619, categoryID = 95, faction = FACTION_NAME.HORDE }, -- Black War Bear
     { itemID = 44160, achievementID = 2136, categoryID = 168 }, -- Red Proto-Drake
     { itemID = 44177, achievementID = 2144, categoryID = 155 }, -- Violet Proto-Drake
     { itemID = 51954, achievementID = 4602, categoryID = 168 }, -- Bloodbathed Frostbrood Vanquisher
@@ -28,16 +28,16 @@ SFC.Mounts = {
     { itemID = 69230, achievementID = 5828, categoryID = 168 }, -- Corrupted Egg of Millagazor
     { itemID = 69213, achievementID = 5866, categoryID = 15070 }, -- Flameward Hippogryph
     { itemID = 77068, achievementID = 6169, categoryID = 168 }, -- Twilight Harbinger
-    { itemID = 81559, achievementID = 6827, categoryID = 15114, FACTION_NAME.HORDE }, -- Pandaren Kite String
-    { itemID = 89785, achievementID = 6828, categoryID = 15114, FACTION_NAME.ALLIANCE }, -- Pandaren Kite String (Alliance)
+    { itemID = 81559, achievementID = 6827, categoryID = 15114, faction = FACTION_NAME.HORDE }, -- Pandaren Kite String
+    { itemID = 89785, achievementID = 6828, categoryID = 15114, faction = FACTION_NAME.ALLIANCE }, -- Pandaren Kite String (Alliance)
     { itemID = 87769, achievementID = 6927, categoryID = 168 }, -- Crimson Cloud Serpent
     { itemID = 87773, achievementID = 6932, categoryID = 168 }, -- Heavenly Crimson Cloud Serpent
     { itemID = 93662, achievementID = 8124, categoryID = 168 }, -- Armored Skyscreamer
     { itemID = 104208, achievementID = 8454, categoryID = 168 }, -- Galakras
     { itemID = 116383, achievementID = 8985, categoryID = 168 }, -- Gorestrider Gronnling
     { itemID = 116670, achievementID = 9396, categoryID = 168 }, -- Frostplains Battleboar
-    { itemID = 116668, achievementID = 9539, categoryID = 15303, FACTION_NAME.ALLIANCE }, -- Armored Frostboar (Alliance)
-    { itemID = 116668, achievementID = 9705, categoryID = 15303, FACTION_NAME.HORDE }, -- Armored Frostboar
+    { itemID = 116668, achievementID = 9539, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Armored Frostboar (Alliance)
+    { itemID = 116668, achievementID = 9705, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Armored Frostboar
     { itemID = 118676, achievementID = 9713, categoryID = 15248 }, -- Emerald Drake
     { itemID = 120968, achievementID = 9909, categoryID = 15246 }, -- Chauffeured Chopper
     { itemID = 128706, achievementID = 10018, categoryID = 15235 }, -- Soaring Skyterror
@@ -74,8 +74,8 @@ SFC.Mounts = {
     { itemID = 188736, achievementID = 15322, categoryID = 15440 }, -- Colossal Soulshredder Mawrat
     { itemID = 187673, achievementID = 15336, categoryID = 15422 }, -- Cryptic Aurelid
     { itemID = 187675, achievementID = 15491, categoryID = 168 }, -- Shimmering Aurelid
-    { itemID = 198654, achievementID = 15833, categoryID = 15248, FACTION_NAME.HORDE }, -- Otterworldly Ottuk Carrier
-    { itemID = 198654, achievementID = 15834, categoryID = 15248, FACTION_NAME.ALLIANCE }, -- Otterworldly Ottuk Carrier (Alliance)
+    { itemID = 198654, achievementID = 15833, categoryID = 15248, faction = FACTION_NAME.HORDE }, -- Otterworldly Ottuk Carrier
+    { itemID = 198654, achievementID = 15834, categoryID = 15248, faction = FACTION_NAME.ALLIANCE }, -- Otterworldly Ottuk Carrier (Alliance)
     { itemID = 192784, achievementID = 16295, categoryID = 168 }, -- Shellack
     { itemID = 192806, achievementID = 16355, categoryID = 168 }, -- Raging Magmammoth
     { itemID = 192774, achievementID = 16492, categoryID = 15465 }, -- Coralscale Salamanther
@@ -133,8 +133,8 @@ SFC.Mounts = {
     { itemID = 258884, achievementID = 61463, categoryID = 15454 }, -- Spawn of Vyranoth
     { itemID = 257145, achievementID = 61584, categoryID = 15462 }, -- Crimson Dragonhawk
     { itemID = 257199, achievementID = 61906, categoryID = 15571 }, -- Giganto Manis
-    { itemID = 265656, achievementID = 62096, categoryID = 15248, FACTION_NAME.HORDE }, -- Anu'shalla, Shadow's Guidance
-    { itemID = 265656, achievementID = 62103, categoryID = 15248, FACTION_NAME.ALLIANCE }, -- Anu'shalla, Shadow's Guidance (Alliance)
+    { itemID = 265656, achievementID = 62096, categoryID = 15248, faction = FACTION_NAME.HORDE }, -- Anu'shalla, Shadow's Guidance
+    { itemID = 265656, achievementID = 62103, categoryID = 15248, faction = FACTION_NAME.ALLIANCE }, -- Anu'shalla, Shadow's Guidance (Alliance)
     { itemID = 257144, achievementID = 62190, categoryID = 15600 }, -- Umbral Dragonhawk
     { itemID = 260697, achievementID = 62385, categoryID = 15547 }, -- Lab-grown Stormray
     { itemID = 252011, achievementID = 62386, categoryID = 15553 }, -- Brilliant Petalwing

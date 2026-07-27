@@ -25,6 +25,7 @@ SFCMainMixin = {}
 ---@field itemID number?
 ---@field icon number|string|nil
 ---@field atlas string?
+---@field faction string?
 
 function SFCMainMixin:OnLoad()
     self.Rewards.ScrollFrame:InitializeScrollFrame()
@@ -37,6 +38,7 @@ function SFCMainMixin:OnLoad()
     self.player = UnitName("player")
     local _, classFilename = UnitClass("player")
     self.classColor = C_ClassColor.GetClassColor(classFilename)
+    self.faction = UnitFactionGroup("player")
     self:SetTitle("Stuff From Cheevos")
     -- Positioning logic
     self.Categories:SetPoint("TOPLEFT", self.PortraitContainer.CircleMask, "BOTTOMLEFT", 10, -20)
@@ -96,7 +98,7 @@ local function getMountRewards()
     local result = {}
     for _, reward in ipairs(SFC.Mounts) do
         local mountID = C_MountJournal.GetMountFromItem(reward.itemID)
-        if mountID then
+        if mountID and (not reward.faction or reward.faction == SFCMain.faction) then
             local mountName, _, iconID = C_MountJournal.GetMountInfoByID(mountID)
             tinsert(result, {
                 name = mountName,
@@ -104,6 +106,7 @@ local function getMountRewards()
                 categoryID = reward.categoryID,
                 type = "Mount",
                 icon = iconID,
+                faction = reward.faction
             })
         else
             -- print("No mountID found for item ID", reward.itemID)
@@ -120,13 +123,14 @@ local function getTitleRewards()
     for _, reward in ipairs(SFC.Titles) do
         local title = GetTitleName(reward.titleID)
 
-        if title and title ~= "" then
+        if title and title ~= "" and (not reward.faction or reward.faction == SFCMain.faction) then
             tinsert(result, {
                 name = title,
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
                 type = "Title",
                 icon = "interface/icons/inv_scroll_05",
+                faction = reward.faction
             })
         else
             -- print("No title returned for title ID", reward.titleID)
@@ -143,13 +147,16 @@ local function getCosmeticRewards()
     if not SFC_DB or not SFC_DB.itemsCache then return result end
 
     for _, reward in ipairs(SFC.Cosmetics) do
-        tinsert(result, {
-            name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Cosmetic",
-            achievementID = reward.achievementID,
-            categoryID = reward.categoryID,
-            type = "Cosmetic",
-            icon = SFC_DB.itemsCache[reward.itemID].icon or 134110
-        })
+        if not reward.faction or reward.faction == SFCMain.faction then
+            tinsert(result, {
+                name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Cosmetic",
+                achievementID = reward.achievementID,
+                categoryID = reward.categoryID,
+                type = "Cosmetic",
+                icon = SFC_DB.itemsCache[reward.itemID].icon or 134110,
+                faction = reward.faction
+            })
+        end
     end
 
     return result
@@ -162,14 +169,17 @@ local function getCustomizationRewards()
 
     for _, reward in ipairs(SFC.Customizations) do
         local rewardText = select(11, GetAchievementInfo(reward.achievementID))
-        tinsert(result, {
-            name = rewardText:gsub("^.+:%s", ""),
-            achievementID = reward.achievementID,
-            categoryID = reward.categoryID,
-            type = "Customization",
-            icon = type(reward.icon) == "number" and reward.icon or nil,
-            atlas = type(reward.icon) == "string" and reward.icon or nil,
-        })
+        if not reward.faction or reward.faction == SFCMain.faction then
+            tinsert(result, {
+                name = rewardText:gsub("^.+:%s", ""),
+                achievementID = reward.achievementID,
+                categoryID = reward.categoryID,
+                type = "Customization",
+                icon = type(reward.icon) == "number" and reward.icon or nil,
+                atlas = type(reward.icon) == "string" and reward.icon or nil,
+                faction = reward.faction
+            })
+        end
     end
 
     return result
@@ -182,13 +192,16 @@ local function getToyRewards()
     if not SFC_DB or not SFC_DB.itemsCache then return result end
 
     for _, reward in ipairs(SFC.Toys) do
-        tinsert(result, {
-            name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Toy",
-            achievementID = reward.achievementID,
-            categoryID = reward.categoryID,
-            type = "Toy",
-            icon = SFC_DB.itemsCache[reward.itemID].icon or 134110
-        })
+        if not reward.faction or reward.faction == SFCMain.faction then
+            tinsert(result, {
+                name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Toy",
+                achievementID = reward.achievementID,
+                categoryID = reward.categoryID,
+                type = "Toy",
+                icon = SFC_DB.itemsCache[reward.itemID].icon or 134110,
+                faction = reward.faction
+            })
+        end
     end
 
     return result
@@ -201,7 +214,7 @@ local function getPetRewards()
     if not SFC_DB or not SFC_DB.itemsCache then return result end
 
     for _, reward in ipairs(SFC.Pets) do
-        if reward.spellID then
+        if reward.spellID and (not reward.faction or reward.faction == SFCMain.faction) then
             local spellInfo = C_Spell.GetSpellInfo(reward.spellID)
             tinsert(result, {
                 name = spellInfo.name,
@@ -209,14 +222,16 @@ local function getPetRewards()
                 categoryID = reward.categoryID,
                 type = "Pet",
                 icon = spellInfo.originalIconID,
+                faction = reward.faction
             })
-        else
+        elseif not reward.faction or reward.faction == SFCMain.faction then
             tinsert(result, {
             name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Pet",
             achievementID = reward.achievementID,
             categoryID = reward.categoryID,
             type = "Pet",
-            icon = SFC_DB.itemsCache[reward.itemID].icon or 134110
+            icon = SFC_DB.itemsCache[reward.itemID].icon or 134110,
+            faction = reward.faction
         })
         end
     end
@@ -302,10 +317,20 @@ local function createRewardsList(frame, reward)
 
     local _, _, points, isCompleted, completedMonth, completedDay, completedYear, _, flags = GetAchievementInfo(reward.achievementID)
 
-    frame:SetBackdropColor(0.3, 0.3, 0.3)
+    frame.FactionBg:SetSize((frame:GetHeight() - 10) * 0.92, frame:GetHeight() - 10)
     if isCompleted then
-        frame:SetBackdropColor(0.1, 0.8, 0.2, 0.7)
+        frame:SetBackdropColor(0.1, 0.8, 0.2, 0.5)
+    else
+        if reward.faction == "Alliance" then
+            -- frame:SetBackdropColor(0, 0.678, 0.941, 0.5)
+            frame.FactionBg:SetAtlas("charactercreate-icon-alliance")
+        elseif reward.faction == "Horde" then
+            -- frame:SetBackdropColor(1, 0.161, 0.204, 0.5)
+            frame.FactionBg:SetAtlas("charactercreate-icon-horde")
+        end
+        frame:SetBackdropColor(0.3, 0.3, 0.3)
     end
+    frame.FactionBg:SetShown(not isCompleted and reward.faction ~= nil)
     
     if reward.atlas then
         frame.Icon:SetAtlas(reward.atlas)
