@@ -10,7 +10,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
     </Button>
 
     <Frame name="SFCRewardFrameTemplate" virtual="true" inherits="TooltipBorderBackdropTemplate">
-        <Size y="85"/>
+        <Size y="90"/>
         <Layers>
             <Layer level="BACKGROUND">
                 <Texture parentKey="FactionBg" alpha="0.2">
@@ -23,7 +23,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 <Texture parentKey="Icon">
                     <Size x="40" y="40"/>
                     <Anchors>
-                        <Anchor point="LEFT" x="20"/>
+                        <Anchor point="TOPLEFT" x="10" y="-10"/>
                     </Anchors>
                 </Texture>
                 <MaskTexture parentKey="IconMask" atlas="perks-border-square-gold-mask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
@@ -73,7 +73,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </FontString>
                 <FontString parentKey="RewardType" inherits="GameFontHighlightSmall">
                     <Anchors>
-                        <Anchor point="TOPLEFT" relativeKey="$parent.RewardName" relativePoint="BOTTOMLEFT" y="-5"/>
+                        <Anchor point="LEFT" relativeKey="$parent.Icon" relativePoint="RIGHT" x="10"/>
                     </Anchors>
                 </FontString>
                 <FontString parentKey="CriteriaProgress" inherits="GameFontHighlightSmall" justifyV="BOTTOM" justifyH="RIGHT">
@@ -86,12 +86,17 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchor point="CENTER" relativeKey="$parent.PointsBg"/>
                     </Anchors>
                 </FontString>
+                <FontString parentKey="CheevoCategory" inherits="GameFontHighlightSmall" wordwrap="false">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" x="10" y="10"/>
+                    </Anchors>
+                </FontString>
             </Layer>
         </Layers>
         <Frames>
-            <Button parentKey="CheevoLink" registerForClicks="LeftButtonUp, RightButtonUp">
+            <Button parentKey="CheevoLink" registerForClicks="LeftButtonUp">
                 <Anchors>
-                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT" x="10" y="-10"/>
+                    <Anchor point="LEFT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT" x="10"/>
                 </Anchors>
                 <ButtonText parentKey="Text" inherits="GameFontNormalSmall" justifyH="LEFT"/>
             </Button>
@@ -132,14 +137,14 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Frame>
             <Frame parentKey="Rewards" inherits="InsetFrameTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.Categories" relativePoint="TOPRIGHT" x="20"/>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Categories" relativePoint="TOPRIGHT" x="20" y="-45"/>
                     <Anchor point="BOTTOMRIGHT" x="-10" y="10"/>
                 </Anchors>
                 <Frames>
                     <EventFrame name="SFCScrollBar" parentKey="ScrollBar" inherits="WowTrimScrollBar">
                         <Anchors>
                             <Anchor point="TOPRIGHT" x="-5" y="-5"/>
-                            <Anchor point="BOTTOMRIGHT" y="5"/>
+                            <Anchor point="BOTTOMRIGHT" y="2"/>
                         </Anchors>
                     </EventFrame>
                     <Frame name="SFCScrollFrame" parentKey="ScrollFrame" inherits="WowScrollBoxList" mixin="SFCScrollFrameMixin">
@@ -148,9 +153,20 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <Anchor point="BOTTOMRIGHT" relativeTo="SFCScrollBar" relativePoint="BOTTOMLEFT" x="-5"/>
                         </Anchors>
                     </Frame>
-                    
                 </Frames>
             </Frame>
+            <StatusBar name="SFCRewardsProgress" parentKey="RewardsProgress" inherits="AchievementProgressBarTemplate">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.Rewards" relativePoint="TOPLEFT" x="3" y="10"/>
+                </Anchors>
+            </StatusBar>
+            <EditBox parentKey="RewardSearch" inherits="SearchBoxTemplate" autoFocus="false">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="SFCRewardsProgressBorderRight" relativePoint="TOPRIGHT" x="50"/>
+                    <Anchor point="BOTTOMLEFT" relativeTo="SFCRewardsProgressBorderRight" relativePoint="BOTTOMRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Rewards" relativePoint="TOPRIGHT" y="10"/>
+                </Anchors>
+            </EditBox>
         </Frames>
         <Layers>
             <Layer level="ARTWORK">
@@ -160,10 +176,10 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Categories" relativePoint="TOPRIGHT" y="5"/>
                     </Anchors>
                 </FontString>
-                <FontString parentKey="RewardsTitle" inherits="GameFontHighlight" text="Rewards">
+                <FontString parentKey="RewardsTitle" inherits="GameFontHighlight" text="Rewards" justifyH="LEFT">
                     <Anchors>
-                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.Rewards" relativePoint="TOPLEFT" y="5"/>
-                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Rewards" relativePoint="TOPRIGHT" y="5"/>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.RewardsProgress" relativePoint="TOPLEFT" y="10"/>
+                        <!-- <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Rewards" relativePoint="TOPRIGHT" y="40"/> -->
                     </Anchors>
                 </FontString>
             </Layer>

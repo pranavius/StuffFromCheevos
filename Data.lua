@@ -93,7 +93,6 @@ SFC.Mounts = {
     { itemID = 192765, achievementID = 19485, categoryID = 15465 }, -- Bestowed Sandskimmer
     { itemID = 192751, achievementID = 19486, categoryID = 15465 }, -- Stormtouched Bruffalon
     { itemID = 217612, achievementID = 20501, categoryID = 15301 }, -- Zovaal's Soul Eater
-    { itemID = 226357, achievementID = 20525, categoryID = 15272 }, -- Diamond Mechsuit
     { itemID = 223158, achievementID = 40097, categoryID = 15283 }, -- Raging Cinderbee
     { itemID = 223266, achievementID = 40232, categoryID = 168 }, -- Shadowed Swarmite
     { itemID = 224415, achievementID = 40438, categoryID = 15523 }, -- Ivory Goliathus
@@ -102,23 +101,19 @@ SFC.Mounts = {
     { itemID = 235515, achievementID = 40953, categoryID = 15301 }, -- Jani's Trashpile Mount
     { itemID = 170070, achievementID = 40956, categoryID = 15298 }, -- Honeyback Hivemother
     { itemID = 228760, achievementID = 40976, categoryID = 15268 }, -- Coldflame Tempest
-    { itemID = 232624, achievementID = 41056, categoryID = 15274 }, -- Timely Buzzbee
     { itemID = 232991, achievementID = 41133, categoryID = 15521 }, -- The Breaker's Song
     { itemID = 223313, achievementID = 41201, categoryID = 15521 }, -- Shadow of Doubt
     { itemID = 231173, achievementID = 41286, categoryID = 168 }, -- Junkmaestro's Magnetomech
-    { itemID = 235549, achievementID = 41533, categoryID = 15272 }, -- Crimson Shreddertank
     { itemID = 242714, achievementID = 41597, categoryID = 168 }, -- Umbral K'arroc
-    { itemID = 238739, achievementID = 41779, categoryID = 15274 }, -- Chrono Corsair
     { itemID = 174654, achievementID = 41929, categoryID = 15546 }, -- Black Serpent of N'Zoth
     { itemID = 235709, achievementID = 41966, categoryID = 15546 }, -- Ny'alothan Shadow Worm
     { itemID = 237485, achievementID = 41980, categoryID = 15506 }, -- Terror of the Night
-    { itemID = 246237, achievementID = 42212, categoryID = 15531 }, -- OC91 Chariot
     { itemID = 257193, achievementID = 42703, categoryID = 15605 }, -- Preyseeker's Nightmare
     { itemID = 250240, achievementID = 61017, categoryID = 15521 }, -- Phase-Lost Slateback
     { itemID = 263579, achievementID = 61263, categoryID = 15553 }, -- Vivacious Chloroceros
     { itemID = 260887, achievementID = 61380, categoryID = 168 }, -- Tenebrous Harrower
     { itemID = 258188, achievementID = 61451, categoryID = 15301 }, -- Geargrinder Mk. 11
-    { itemID = 258884, achievementID = 61463, categoryID = 15454 }, -- Spawn of Vyranoth
+    { itemID = 258884, achievementID = 61463, categoryID = 15454 }, -- Spawn of Vyranoth (TODO: Move to Legacy after TT5 ends)
     { itemID = 257145, achievementID = 61584, categoryID = 15462 }, -- Crimson Dragonhawk
     { itemID = 257199, achievementID = 61906, categoryID = 15571 }, -- Giganto Manis
     { itemID = 265656, achievementID = 62096, categoryID = 15248, faction = FACTION_NAME.HORDE }, -- Anu'shalla, Shadow's Guidance
@@ -136,20 +131,20 @@ SFC.Mounts = {
 SFC.Titles = {
     { titleID = 47, achievementID = 46, categoryID = 97 }, -- the Explorer
     { titleID = 41, achievementID = 230, categoryID = 95, faction = FACTION_NAME.ALLIANCE }, -- Battlemaster (Alliance)
-    { titleID = 41, achievementID = 1175, categoryID = 95, faction = FACTION_NAME.HORDE }, -- Battlemaster
-    { titleID = 98, achievementID = 948, categoryID = 201, faction = FACTION_NAME.ALLIANCE }, -- Ambassador (Alliance)
-    { titleID = 98, achievementID = 762, categoryID = 201, faction = FACTION_NAME.HORDE }, -- Ambassador
     { titleID = 34, achievementID = 714, categoryID = 95, faction = FACTION_NAME.HORDE }, -- Conqueror
+    { titleID = 98, achievementID = 762, categoryID = 201, faction = FACTION_NAME.HORDE }, -- Ambassador
     { titleID = 35, achievementID = 907, categoryID = 95, faction = FACTION_NAME.ALLIANCE }, -- Justicar
     { titleID = 43, achievementID = 913, categoryID = 155 }, -- Elder
     { titleID = 48, achievementID = 942, categoryID = 201, faction = FACTION_NAME.ALLIANCE }, -- the Diplomat
     { titleID = 48, achievementID = 943, categoryID = 201, faction = FACTION_NAME.HORDE }, -- the Diplomat
     { titleID = 99, achievementID = 945, categoryID = 201 }, -- the Argent Champion
+    { titleID = 98, achievementID = 948, categoryID = 201, faction = FACTION_NAME.ALLIANCE }, -- Ambassador (Alliance)
     { titleID = 100, achievementID = 953, categoryID = 201 }, -- Guardian of Cenarius
     { titleID = 42, achievementID = 978, categoryID = 96 }, -- the Seeker
     { titleID = 46, achievementID = 1015, categoryID = 201 }, -- the Exalted
     { titleID = 44, achievementID = 1038, categoryID = 155, faction = FACTION_NAME.ALLIANCE }, -- Flame Warden
     { titleID = 45, achievementID = 1039, categoryID = 155, faction = FACTION_NAME.HORDE }, -- Flame Keeper
+    { titleID = 41, achievementID = 1175, categoryID = 95, faction = FACTION_NAME.HORDE }, -- Battlemaster
     { titleID = 51, achievementID = 1516, categoryID = 171 }, -- Salty
     { titleID = 52, achievementID = 1563, categoryID = 170 }, -- Chef
     { titleID = 92, achievementID = 1656, categoryID = 155 }, -- the Hallowed
@@ -180,33 +175,33 @@ SFC.Titles = {
     { titleID = 153, achievementID = 5325, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Veteran of the Horde
     { titleID = 152, achievementID = 5328, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Veteran of the Alliance
     { titleID = 1, achievementID = 5330, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Private
-    { titleID = 15, achievementID = 5345, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Scout
     { titleID = 2, achievementID = 5331, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Corporal
-    { titleID = 16, achievementID = 5346, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Grunt
     { titleID = 3, achievementID = 5332, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Sergeant (Alliance)
-    { titleID = 3, achievementID = 5347, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Sergeant
     { titleID = 4, achievementID = 5333, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Master Sergeant
-    { titleID = 18, achievementID = 5348, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Senior Sergeant
     { titleID = 5, achievementID = 5334, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Sergeant Major
-    { titleID = 19, achievementID = 5349, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- First Sergeant
     { titleID = 6, achievementID = 5335, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Knight
-    { titleID = 20, achievementID = 5350, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Stone Guard
     { titleID = 7, achievementID = 5336, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Knight-Lieutenant
-    { titleID = 21, achievementID = 5351, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Blood Guard
     { titleID = 8, achievementID = 5337, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Knight-Captain
-    { titleID = 22, achievementID = 5352, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Legionnaire
-    { titleID = 9, achievementID = 5359, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Knight-Champion
     { titleID = 23, achievementID = 5338, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Centurion
-    { titleID = 11, achievementID = 5340, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Commander
-    { titleID = 25, achievementID = 5354, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Lieutenant General
     { titleID = 10, achievementID = 5339, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Lieutenant Commander
-    { titleID = 24, achievementID = 5353, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Champion
+    { titleID = 11, achievementID = 5340, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Commander
     { titleID = 12, achievementID = 5341, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Marshal
-    { titleID = 26, achievementID = 5355, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- General
-    { titleID = 13, achievementID = 5357, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Field Marshal
     { titleID = 27, achievementID = 5342, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Warlord
     { titleID = 14, achievementID = 5343, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Grand Marshal
+    { titleID = 15, achievementID = 5345, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Scout
+    { titleID = 16, achievementID = 5346, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Grunt
+    { titleID = 3, achievementID = 5347, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Sergeant
+    { titleID = 18, achievementID = 5348, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Senior Sergeant
+    { titleID = 19, achievementID = 5349, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- First Sergeant
+    { titleID = 20, achievementID = 5350, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Stone Guard
+    { titleID = 21, achievementID = 5351, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Blood Guard
+    { titleID = 22, achievementID = 5352, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Legionnaire
+    { titleID = 24, achievementID = 5353, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Champion
+    { titleID = 25, achievementID = 5354, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Lieutenant General
+    { titleID = 26, achievementID = 5355, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- General
     { titleID = 28, achievementID = 5356, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- High Warlord
+    { titleID = 13, achievementID = 5357, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Field Marshal
+    { titleID = 9, achievementID = 5359, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Knight-Champion
     { titleID = 185, achievementID = 5506, categoryID = 168 }, -- Defender of a Shattered World
     { titleID = 190, achievementID = 5803, categoryID = 15068 }, -- Firelord
     { titleID = 188, achievementID = 5827, categoryID = 15072 }, -- Avenger of Hyjal
@@ -218,12 +213,12 @@ SFC.Titles = {
     { titleID = 204, achievementID = 6724, categoryID = 15107 }, -- Delver of the Vaults
     { titleID = 198, achievementID = 6734, categoryID = 15107 }, -- the Fearless
     { titleID = 206, achievementID = 6874, categoryID = 15302, faction = FACTION_NAME.ALLIANCE }, -- the Scenaturdist (Alliance)
-    { titleID = 206, achievementID = 7509, categoryID = 15302, faction = FACTION_NAME.HORDE }, -- the Scenaturdist
     { titleID = 203, achievementID = 6926, categoryID = 168 }, -- the Tranquil Master
     { titleID = 183, achievementID = 6941, categoryID = 15092, faction = FACTION_NAME.HORDE }, -- Hero of the Horde
     { titleID = 182, achievementID = 6942, categoryID = 15092, faction = FACTION_NAME.ALLIANCE }, -- Hero of the Alliance
     { titleID = 202, achievementID = 7306, categoryID = 170 }, -- Master of the Ways
     { titleID = 205, achievementID = 7479, categoryID = 15114 }, -- Shado-Master
+    { titleID = 206, achievementID = 7509, categoryID = 15302, faction = FACTION_NAME.HORDE }, -- the Scenaturdist
     { titleID = 93, achievementID = 7520, categoryID = 96 }, -- Loremaster
     { titleID = 208, achievementID = 7612, categoryID = 15071 }, -- Seeker of Knowledge
     { titleID = 218, achievementID = 8023, categoryID = 15114 }, -- the Wakener
@@ -243,7 +238,6 @@ SFC.Titles = {
     { titleID = 279, achievementID = 9072, categoryID = 15232 }, -- Talon Queen
     { titleID = 260, achievementID = 9094, categoryID = 15303 }, -- Architect
     { titleID = 305, achievementID = 9464, categoryID = 169 }, -- Artisan
-    { titleID = 269, achievementID = 9738, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Warlord of Draenor (Alliance)
     { titleID = 269, achievementID = 9508, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Warlord of Draenor
     { titleID = 267, achievementID = 9509, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Draenei Destroyer
     { titleID = 264, achievementID = 9510, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- the Dwarfstalker
@@ -260,13 +254,14 @@ SFC.Titles = {
     { titleID = 270, achievementID = 9521, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- the Butcher
     { titleID = 274, achievementID = 9522, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Troll Hunter
     { titleID = 277, achievementID = 9540, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- The Stable Master (Alliance)
-    { titleID = 277, achievementID = 9706, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Stable Master
     { titleID = 300, achievementID = 9619, categoryID = 168 }, -- the Savage Hero
+    { titleID = 277, achievementID = 9706, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Stable Master
+    { titleID = 269, achievementID = 9738, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Warlord of Draenor (Alliance)
     { titleID = 307, achievementID = 9924, categoryID = 97 }, -- Field Photographer
     { titleID = 319, achievementID = 10043, categoryID = 15231 }, -- Defiler's End
     { titleID = 318, achievementID = 10072, categoryID = 15220, faction = FACTION_NAME.ALLIANCE }, -- of the Jungle (Alliance)
-    { titleID = 318, achievementID = 10265, categoryID = 15220, faction = FACTION_NAME.HORDE }, -- of the Jungle
     { titleID = 317, achievementID = 10164, categoryID = 15303 }, -- Captain
+    { titleID = 318, achievementID = 10265, categoryID = 15220, faction = FACTION_NAME.HORDE }, -- of the Jungle
     { titleID = 53, achievementID = 10354, categoryID = 15247 }, -- Crashin' Thrashin'
     { titleID = 334, achievementID = 10694, categoryID = 15259 }, -- the Fabulous
     { titleID = 341, achievementID = 10827, categoryID = 15255 }, -- the Dreamer
@@ -576,8 +571,8 @@ SFC.Cosmetics = {
     { itemID = 232647, achievementID = 41052, categoryID = 15506 }, -- Root Defender's Shield
     { itemID = 219110, achievementID = 41169, categoryID = 15530 }, -- Vermillion Patron's Elegance
     { itemID = 234521, achievementID = 41351, categoryID = 15530 }, -- Ensemble: Rusty Bruiser's Outfit
-    { itemID = 263413, achievementID = 61797, categoryID = 15531 }, -- Nullaeus Domaneye (until end of Midnight S1 only)
-    { itemID = 265071, achievementID = 61858, categoryID = 15259 }, -- Gleaming Sunmote (until end of Midnight S1 only)
+    { itemID = 263413, achievementID = 61797, categoryID = 15531 }, -- Nullaeus Domaneye (TODO: Move to Legacy at the end of Midnight S1)
+    { itemID = 265071, achievementID = 61858, categoryID = 15259 }, -- Gleaming Sunmote (TODO: Move to Legacy at the end of Midnight S1)
     -- TODO List:
     -- Heritage of the Haranir (achievementID 61942, categoryID 15547) needs appearances to be itemized
     -- Stormheim achievement from Lemix (achievementID 42582, categoryID 15604) needs appearance itemization as well
@@ -748,8 +743,8 @@ SFC.Decor = {
     { itemID = 247727, achievementID = 5223, categoryID = 15074 }, -- Iron Dragonmaw Gate
     { itemID = 256896, achievementID = 5245, categoryID = 15073 }, -- Smoke Lamppost
     { itemID = 248796, achievementID = 5442, categoryID = 14861 }, -- Goldshire Food Cart
-    { itemID = 247741, achievementID = 6981, categoryID = 15163 }, -- Kotmogu Orb of Power
     { itemID = 247740, achievementID = 6981, categoryID = 15163 }, -- Kotmogu Pedestal
+    { itemID = 247741, achievementID = 6981, categoryID = 15163 }, -- Kotmogu Orb of Power
     { itemID = 256425, achievementID = 8316, categoryID = 15302 }, -- Shadowforge Stone Chair
     { itemID = 258740, achievementID = 9415, categoryID = 15071 }, -- Glorious Pendant of Rukhmar
     { itemID = 245697, achievementID = 10698, categoryID = 15252 }, -- Shala'nir Feather Bed
@@ -906,23 +901,21 @@ SFC.Decor = {
 }
 
 SFC.Legacy = {
+    { itemID = 226357, achievementID = 20525, categoryID = 15272 }, -- Diamond Mechsuit
     { itemID = 220766, achievementID = 20593, categoryID = 15536 }, -- August Phoenix
-    { itemID = 253028, achievementID = 42504, categoryID = 15604 }, -- Felscorned Highlord's Charger
-    { itemID = 253033, achievementID = 42684, categoryID = 15604 }, -- Felscorned War Wyrm
-    { itemID = 252954, achievementID = 42685, categoryID = 15604 }, -- Felscorned Vilebrood Vanquisher
-    { itemID = 253031, achievementID = 42686, categoryID = 15604 }, -- Farseer's Felscorned Tempest
-    { itemID = 253025, achievementID = 42687, categoryID = 15604 }, -- Felscorned Wolfhawk
-    { itemID = 253030, achievementID = 61084, categoryID = 15604 }, -- Shadowblade's Felscorned Omen
-    { itemID = 253027, achievementID = 61085, categoryID = 15604 }, -- Felscorned Grandmaster's Companion
-    { itemID = 253024, achievementID = 61086, categoryID = 15604 }, -- Feldruid's Scornwing Idol (not an actual mount)
-    { itemID = 253013, achievementID = 61087, categoryID = 15604 }, -- Slayer's Felscorned Shrieker
-    { itemID = 253029, achievementID = 61088, categoryID = 15604 }, -- High Priest's Felscorned Seeker
-    { itemID = 253026, achievementID = 61089, categoryID = 15604 }, -- Archmage's Felscorned Disc
-    { itemID = 253032, achievementID = 61090, categoryID = 15604 }, -- Felscorned Netherlord's Dreadsteed
+    { itemID = 232624, achievementID = 41056, categoryID = 15274 }, -- Timely Buzzbee
+    { itemID = 235549, achievementID = 41533, categoryID = 15272 }, -- Crimson Shreddertank
+    { itemID = 238739, achievementID = 41779, categoryID = 15274 }, -- Chrono Corsair
+    { itemID = 246237, achievementID = 42212, categoryID = 15531 }, -- OC91 Chariot
     { titleID = 551, achievementID = 42301, categoryID = 15604 }, -- Timerunner
-    { titleID = 658, achievementID = 42691, categoryID = 15604 }, -- the Infernal
-    { titleID = 646, achievementID = 60935, categoryID = 15604 }, -- Chronoscholar
-    { titleID = 659, achievementID = 61079, categoryID = 15604 }, -- of the Infinite Chaos
+    { itemID = 250307, achievementID = 42318, categoryID = 15604 }, -- Tome of the Corrupt
+    { spellID = 1254381, achievementID = 42319, categoryID = 15604 }, -- Fledgling Warden's Companion
+    { itemID = 250406, achievementID = 42321, categoryID = 15604 }, -- Corruption Pit
+    { itemID = 253028, achievementID = 42504, categoryID = 15604 }, -- Felscorned Highlord's Charger
+    { itemID = 246339, achievementID = 42541, categoryID = 15604 }, -- Duskytooth Fel Snooter
+    { itemID = 258299, achievementID = 42547, categoryID = 15604 }, -- Hanging Felsteel Cage
+    { itemID = 253219, achievementID = 42549, categoryID = 15604 }, -- Bulwark of Mannoroth (Shield)
+    { itemID = 253220, achievementID = 42549, categoryID = 15604 }, -- Bulwark of Mannoroth (Back)
     { itemID = 253201, achievementID = 42583, categoryID = 15604 }, -- Felscorned Scythe of the Unmaker
     { itemID = 253344, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Sarong
     { itemID = 253345, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Crown
@@ -930,27 +923,34 @@ SFC.Legacy = {
     { itemID = 253347, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Sash
     { itemID = 253348, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Anklets
     { itemID = 253349, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Bangles
+    { itemID = 250407, achievementID = 42619, categoryID = 15604 }, -- Legion's Fel Brazier
+    { itemID = 256677, achievementID = 42628, categoryID = 15604 }, -- Large Legion Candle
     { itemID = 253353, achievementID = 42630, categoryID = 15604 }, -- Illusion: Felshatter
+    { itemID = 252753, achievementID = 42655, categoryID = 15604 }, -- Demonic Storage Chest
+    { itemID = 250402, achievementID = 42658, categoryID = 15604 }, -- Vrykul Lord's Throne
     { itemID = 253231, achievementID = 42666, categoryID = 15604 }, -- Fallen King's Corrupted Blades
-    { itemID = 253219, achievementID = 42549, categoryID = 15604 }, -- Bulwark of Mannoroth (Shield)
-    { itemID = 253220, achievementID = 42549, categoryID = 15604 }, -- Bulwark of Mannoroth (Back)
+    { itemID = 250693, achievementID = 42674, categoryID = 15604 }, -- Altar of the Corrupted Flames
+    { itemID = 253033, achievementID = 42684, categoryID = 15604 }, -- Felscorned War Wyrm
+    { itemID = 252954, achievementID = 42685, categoryID = 15604 }, -- Felscorned Vilebrood Vanquisher
+    { itemID = 253031, achievementID = 42686, categoryID = 15604 }, -- Farseer's Felscorned Tempest
+    { itemID = 253025, achievementID = 42687, categoryID = 15604 }, -- Felscorned Wolfhawk
     { itemID = 257105, achievementID = 42690, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Hellforged Regalia
+    { titleID = 658, achievementID = 42691, categoryID = 15604 }, -- the Infernal
+    { itemID = 250403, achievementID = 42692, categoryID = 15604 }, -- Legion's Holo-Communicator
+    { titleID = 646, achievementID = 60935, categoryID = 15604 }, -- Chronoscholar
     { itemID = 241596, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
     { itemID = 241599, achievementID = 61025, categoryID = 15604 }, -- Ensemble: Chains of the Chosen Dead
     { itemID = 241603, achievementID = 61026, categoryID = 15604 }, -- Ensemble: Garb of the Chosen Dead
     { itemID = 241608, achievementID = 61027, categoryID = 15604 }, -- Ensemble: Regalia of the Chosen Dead
     { itemID = 257104, achievementID = 61070, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Voidscarred Regalia
     { itemID = 257106, achievementID = 61078, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Lightbound Regalia
+    { titleID = 659, achievementID = 61079, categoryID = 15604 }, -- of the Infinite Chaos
+    { itemID = 253030, achievementID = 61084, categoryID = 15604 }, -- Shadowblade's Felscorned Omen
+    { itemID = 253027, achievementID = 61085, categoryID = 15604 }, -- Felscorned Grandmaster's Companion
+    { itemID = 253024, achievementID = 61086, categoryID = 15604 }, -- Feldruid's Scornwing Idol (not an actual mount)
+    { itemID = 253013, achievementID = 61087, categoryID = 15604 }, -- Slayer's Felscorned Shrieker
+    { itemID = 253029, achievementID = 61088, categoryID = 15604 }, -- High Priest's Felscorned Seeker
+    { itemID = 253026, achievementID = 61089, categoryID = 15604 }, -- Archmage's Felscorned Disc
+    { itemID = 253032, achievementID = 61090, categoryID = 15604 }, -- Felscorned Netherlord's Dreadsteed
     { itemID = 253343, achievementID = 61337, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Felscorned Regalia
-    { spellID = 1254381, achievementID = 42319, categoryID = 15604 }, -- Fledgling Warden's Companion
-    { itemID = 246339, achievementID = 42541, categoryID = 15604 }, -- Duskytooth Fel Snooter
-    { itemID = 250307, achievementID = 42318, categoryID = 15604 }, -- Tome of the Corrupt
-    { itemID = 250406, achievementID = 42321, categoryID = 15604 }, -- Corruption Pit
-    { itemID = 258299, achievementID = 42547, categoryID = 15604 }, -- Hanging Felsteel Cage
-    { itemID = 250407, achievementID = 42619, categoryID = 15604 }, -- Legion's Fel Brazier
-    { itemID = 256677, achievementID = 42628, categoryID = 15604 }, -- Large Legion Candle
-    { itemID = 252753, achievementID = 42655, categoryID = 15604 }, -- Demonic Storage Chest
-    { itemID = 250402, achievementID = 42658, categoryID = 15604 }, -- Vrykul Lord's Throne
-    { itemID = 250693, achievementID = 42674, categoryID = 15604 }, -- Altar of the Corrupted Flames
-    { itemID = 250403, achievementID = 42692, categoryID = 15604 }, -- Legion's Holo-Communicator
 }

@@ -19,8 +19,13 @@ local function getTableEntryCount(tbl)
     return n
 end
 
+local function printDbUpdatesCount(updatesCount)
+    if updatesCount > 0 then
+        SFC.LogUtils.Message(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Stuff From Cheevos"), "database updates:", HEIRLOOM_BLUE_COLOR:WrapTextInColorCode(updatesCount), updatesCount == 1 and "record" or "records")
+    end
+end
+
 function DBUtils.BuildItemsCache()
-    if not SFC_DB.itemsCache then SFC_DB.itemsCache = {} end
     local itemsCache = SFC_DB.itemsCache
     local toLoad = #SFC.Cosmetics + #SFC.Toys + #SFC.Pets + #SFC.Decor
     local updatesCount = 0
@@ -40,9 +45,7 @@ function DBUtils.BuildItemsCache()
             end
 
             if toLoad == 0 then
-                if updatesCount > 0 then
-                    SFC.LogUtils.Message(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Stuff From Cheevos"), "database updates:", HEIRLOOM_BLUE_COLOR:WrapTextInColorCode(updatesCount), "records")
-                end
+                printDbUpdatesCount(updatesCount)
                 EventRegistry:TriggerEvent("StuffFromCheevos.ItemsCached")
             end
         end)
@@ -63,9 +66,7 @@ function DBUtils.BuildItemsCache()
             end
 
             if toLoad == 0 then
-                if updatesCount > 0 then
-                    SFC.LogUtils.Message(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Stuff From Cheevos"), "database updates:", HEIRLOOM_BLUE_COLOR:WrapTextInColorCode(updatesCount), "records")
-                end
+                printDbUpdatesCount(updatesCount)
                 EventRegistry:TriggerEvent("StuffFromCheevos.ItemsCached")
             end
         end)
@@ -112,17 +113,26 @@ function DBUtils.BuildItemsCache()
             end
 
             if toLoad == 0 then
-                if updatesCount > 0 then
-                    SFC.LogUtils.Message(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Stuff From Cheevos"), "database updates:", HEIRLOOM_BLUE_COLOR:WrapTextInColorCode(updatesCount), "records")
-                end
+                printDbUpdatesCount(updatesCount)
                 EventRegistry:TriggerEvent("StuffFromCheevos.ItemsCached")
             end
         end)
     end
 end
 
+---@param itemID number
+---@return table entry
+function DBUtils.GetItemFromCache(itemID)
+    if not SFC_DB or not SFC_DB.itemsCache or not SFC_DB.itemsCache[itemID] then return {} end
+    return SFC_DB.itemsCache[itemID]
+end
+
+function DBUtils.ToggleDebugMode()
+    SFC_DB.debug = not SFC_DB.debug
+    SFC.LogUtils.Message("Debugging mode is", DARKYELLOW_FONT_COLOR:WrapTextInColorCode(SFC_DB.debug and "enabled" or "disabled"))
+end
+
 function DBUtils.ToggleShowCompleted()
-    if not SFC_DB.filters then SFC_DB.filters = { showCompleted = true, searchTerm = "", sortOrder = "" } end
     SFC_DB.filters.showCompleted = not SFC_DB.filters.showCompleted
     EventRegistry:TriggerEvent("StuffFromCheevos.FiltersUpdated")
 end

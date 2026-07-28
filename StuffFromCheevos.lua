@@ -1,4 +1,4 @@
-local SFC = select(2, ...)
+local addonName, SFC = ...
 
 -- Registering a reusable NineSlice layout for the Rewards list items
 -- Currently unused, but who knows? Might be fun to keep around
@@ -14,12 +14,18 @@ NineSliceUtil.AddLayout("SFCRewardItem", {
     Center = { atlas = "UI-HUD-Minimap-Button-NineSlice-Center" },
 })
 
+SFC_DB_DEFAULTS = {
+    debug = false,
+    itemsCache = {},
+    filters = { showCompleted = true, searchTerm = "", sortOrder = "" }
+}
+
 -- Event handling (probably a better way to do this but idk)
 local ef = CreateFrame("Frame")
 ef:HookScript("OnEvent", function(self, event, ...)
-    if event == "ADDON_LOADED" and ... == "StuffFromCheevos" then
-        SFC.LogUtils.Message("AddOn Loaded")
-        if not SFC_DB then SFC_DB = {} end
+    if event == "ADDON_LOADED" and ... == addonName then
+        if not SFC_DB then SFC_DB = SFC_DB_DEFAULTS end
+        SFC.LogUtils.DebugMessage("AddOn Loaded")
         SFC.DBUtils.BuildItemsCache()
         self:UnregisterEvent("ADDON_LOADED")
     end
@@ -30,26 +36,33 @@ SLASH_SFCSLASH1 = "/stufffromcheevos"
 SLASH_SFCSLASH2 = "/sfc"
 
 SlashCmdList["SFCSLASH"] = function(msg)
+    if msg == "debug" or msg == "d" then
+        SFC.DBUtils.ToggleDebugMode()
+    end
     if msg == "" then
         if SFCMain:IsShown() then SFCMain:Hide() else SFCMain:Show() end
     end
 end
 
 function SFC_Reset()
-    if not SFC_DB then SFC_DB = {}
-    else SFC_DB.categories = {} end
+    SFC_DB = SFC_DB_DEFAULTS
+    ReloadUI()
+end
+
+function SFC_ResetDump()
+    if not SFC_DB then SFC_DB = SFC_DB_DEFAULTS
+    else SFC_DB.dump = {} end
     print("SFC DB dump Reset")
 end
 
 ---Dumps all available achievement info from in-game (**INTENDED FOR DEVELOPMENT PURPOSES ONLY**)
 function SFC_Dump()
-   if not SFC_DB then SFC_DB = {} end
-
     for _, categoryID in ipairs(GetCategoryList()) do
-        if not SFC_DB.categories then SFC_DB.categories = {} end
+        if not SFC_DB.dump then SFC_DB.dump = { categories = {}, notFound = {} } end
+
         local category, parentID, categoryFlags = GetCategoryInfo(categoryID)
-        if not SFC_DB.categories[categoryID] then
-            SFC_DB.categories[categoryID] = {
+        if not SFC_DB.dump.categories[categoryID] then
+            SFC_DB.dump.categories[categoryID] = {
                 category = category,
                 parentID = parentID,
                 flags = categoryFlags,
@@ -62,7 +75,7 @@ function SFC_Dump()
             if achievementID then
                 local rewardItemID = C_AchievementInfo.GetRewardItemID(achievementID) or -1
                 if rewardText ~= "" or rewardItemID ~= -1 then
-                    SFC_DB.categories[categoryID].achievements[achievementID] = {
+                    SFC_DB.dump.categories[categoryID].achievements[achievementID] = {
                         achievement = achievement,
                         points = points,
                         description = description,
@@ -72,9 +85,8 @@ function SFC_Dump()
                     }
                 end
             else
-                if not SFC_DB.notFound then SFC_DB.notFound = {} end
-                if not SFC_DB.notFound[category] then SFC_DB.notFound[category] = { id = categoryID, indicies = {} } end
-                local notFoundCategory = SFC_DB.notFound[category]
+                if not SFC_DB.dump.notFound[category] then SFC_DB.dump.notFound[category] = { id = categoryID, indicies = {} } end
+                local notFoundCategory = SFC_DB.dump.notFound[category]
                 if not tContains(notFoundCategory.indicies, index) then
                     tinsert(notFoundCategory.indicies, index)
                 end

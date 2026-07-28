@@ -29,6 +29,7 @@ SFCMainMixin = {}
 
 function SFCMainMixin:OnLoad()
     self.Rewards.ScrollFrame:InitializeScrollFrame()
+    tinsert(UISpecialFrames, self:GetName())
     EventRegistry:RegisterCallback("StuffFromCheevos.ItemsCached", function()
         self:PopulateRewardsList(self.category)
     end)
@@ -149,11 +150,11 @@ local function getCosmeticRewards()
     for _, reward in ipairs(SFC.Cosmetics) do
         if not reward.faction or reward.faction == SFCMain.faction then
             tinsert(result, {
-                name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Cosmetic",
+                name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Cosmetic",
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
                 type = "Cosmetic",
-                icon = SFC_DB.itemsCache[reward.itemID].icon or 134110,
+                icon = SFC.DBUtils.GetItemFromCache(reward.itemID).icon or 134110,
                 faction = reward.faction
             })
         end
@@ -194,11 +195,11 @@ local function getToyRewards()
     for _, reward in ipairs(SFC.Toys) do
         if not reward.faction or reward.faction == SFCMain.faction then
             tinsert(result, {
-                name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Toy",
+                name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Toy",
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
                 type = "Toy",
-                icon = SFC_DB.itemsCache[reward.itemID].icon or 134110,
+                icon = SFC.DBUtils.GetItemFromCache(reward.itemID).icon or 134110,
                 faction = reward.faction
             })
         end
@@ -226,11 +227,11 @@ local function getPetRewards()
             })
         elseif not reward.faction or reward.faction == SFCMain.faction then
             tinsert(result, {
-            name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Pet",
+            name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Pet",
             achievementID = reward.achievementID,
             categoryID = reward.categoryID,
             type = "Pet",
-            icon = SFC_DB.itemsCache[reward.itemID].icon or 134110,
+            icon = SFC.DBUtils.GetItemFromCache(reward.itemID).icon or 134110,
             faction = reward.faction
         })
         end
@@ -248,17 +249,47 @@ local function getDecorRewards()
     for _, reward in ipairs(SFC.Decor) do
         if not reward.faction or reward.faction == SFCMain.faction then
             tinsert(result, {
-                name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Decor",
+                name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Decor",
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
                 type = "Decor",
-                icon = SFC_DB.itemsCache[reward.itemID].icon or 134110,
+                icon = SFC.DBUtils.GetItemFromCache(reward.itemID).icon or 134110,
                 faction = reward.faction
             })
         end
     end
 
     return result
+end
+
+---@param bar StatusBar
+---@param value number
+local function animateProgressBar(bar, value)
+    local current = bar:GetValue()
+    if current == value then return end
+
+    local elapsed = 0
+    bar:SetScript("OnUpdate", function(self, delta)
+        elapsed = elapsed + delta
+        local animPct = math.min(elapsed / 0.3, 1)
+        self:SetValue(current + (value - current) * animPct)
+        if animPct >= 1 then
+            self:SetScript("OnUpdate", nil)
+        end
+    end)
+end
+
+---@param rewards Reward[]
+---@return number completed
+---@return number total
+local function getProgressValues(rewards)
+    local completed = 0
+    for _, reward in ipairs(rewards) do
+        local isCompleted = select(4, GetAchievementInfo(reward.achievementID))
+        if isCompleted then completed = completed + 1 end
+    end
+
+    return completed, #rewards
 end
 
 ---@param category string
@@ -311,6 +342,10 @@ function SFCMainMixin:PopulateRewardsList(category)
     end
 
     self.Rewards.ScrollFrame:SetDataProvider(SFC.DataProvider, false)
+    local completed, total = getProgressValues(SFC.DataProvider:GetCollection())
+    self.RewardsProgress.Text:SetText(completed.."/"..total)
+    -- self.RewardsProgress:SetValue(completed/total * 100)
+    animateProgressBar(self.RewardsProgress, completed/total * 100)
 end
 
 ---@param title string
@@ -336,6 +371,20 @@ ShowAchievementFrameForAchievement = ShowAchievementFrameForAchievement or funct
 		end
 		AchievementFrame_SelectAchievement(achievementID);
 	end
+end
+
+---@param categoryID number
+---@return string tree
+local function getCategoryTree(categoryID)
+    local categories = {}
+    local name, parentID = GetCategoryInfo(categoryID)
+    tinsert(categories, name)
+    while parentID ~= -1 do
+        name, parentID = GetCategoryInfo(parentID)
+        tinsert(categories, 1, name)
+    end
+
+    return table.concat(categories, DARKYELLOW_FONT_COLOR:WrapTextInColorCode(" > "))
 end
 
 ---@param frame SFCRewardFrameTemplate
@@ -376,6 +425,11 @@ local function createRewardsList(frame, reward)
     frame.CheevoLink:SetScript("OnClick", function(_, mouseButton)
         SetItemRef(achievementLink, achievementLink, mouseButton)
     end)
+    -- Set anchor dynamically to improve spacing when viewing a specific category instead of "All"
+    frame.CheevoLink:ClearAllPoints()
+    frame.CheevoLink:SetPoint("BOTTOMLEFT", frame.Icon, "BOTTOMRIGHT", 10, frame.RewardType:IsShown() and -5 or 0)
+
+    frame.CheevoCategory:SetText(getCategoryTree(reward.categoryID))
 
     local progressText
     if isCompleted then
