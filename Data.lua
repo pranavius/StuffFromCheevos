@@ -56,7 +56,8 @@ SFC.Mounts = {
     { itemID = 140228, achievementID = 12895, categoryID = 15266 }, -- Prestigious Bronze Courser
     { itemID = 169162, achievementID = 13250, categoryID = 15298 }, -- Wonderwing 2.0
     { itemID = 166539, achievementID = 13315, categoryID = 168 }, -- Dazar'alor Windreaver
-    { itemID = 168056, achievementID = 13517, categoryID = 15284 }, -- Bloodflank Charger and Ironclad Frostclaw
+    { itemID = 168055, achievementID = 13517, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Bloodflank Charger
+    { itemID = 168056, achievementID = 13517, categoryID = 15284, faction = FACTION_NAME.ALLIANCE }, -- Ironclad Frostclaw
     { itemID = 168329, achievementID = 13541, categoryID = 15298 }, -- Keys to the Model W
     { itemID = 169194, achievementID = 13638, categoryID = 15298 }, -- Snapback Scuttler
     { itemID = 167171, achievementID = 13687, categoryID = 168 }, -- Azshari Bloatray
@@ -93,7 +94,6 @@ SFC.Mounts = {
     { itemID = 192751, achievementID = 19486, categoryID = 15465 }, -- Stormtouched Bruffalon
     { itemID = 217612, achievementID = 20501, categoryID = 15301 }, -- Zovaal's Soul Eater
     { itemID = 226357, achievementID = 20525, categoryID = 15272 }, -- Diamond Mechsuit
-    { itemID = 220766, achievementID = 20593, categoryID = 15536 }, -- August Phoenix
     { itemID = 223158, achievementID = 40097, categoryID = 15283 }, -- Raging Cinderbee
     { itemID = 223266, achievementID = 40232, categoryID = 168 }, -- Shadowed Swarmite
     { itemID = 224415, achievementID = 40438, categoryID = 15523 }, -- Ivory Goliathus
@@ -113,20 +113,8 @@ SFC.Mounts = {
     { itemID = 235709, achievementID = 41966, categoryID = 15546 }, -- Ny'alothan Shadow Worm
     { itemID = 237485, achievementID = 41980, categoryID = 15506 }, -- Terror of the Night
     { itemID = 246237, achievementID = 42212, categoryID = 15531 }, -- OC91 Chariot
-    { itemID = 253028, achievementID = 42504, categoryID = 15604 }, -- Felscorned Highlord's Charger
-    { itemID = 253033, achievementID = 42684, categoryID = 15604 }, -- Felscorned War Wyrm
-    { itemID = 252954, achievementID = 42685, categoryID = 15604 }, -- Felscorned Vilebrood Vanquisher
-    { itemID = 253031, achievementID = 42686, categoryID = 15604 }, -- Farseer's Felscorned Tempest
-    { itemID = 253025, achievementID = 42687, categoryID = 15604 }, -- Felscorned Wolfhawk
     { itemID = 257193, achievementID = 42703, categoryID = 15605 }, -- Preyseeker's Nightmare
     { itemID = 250240, achievementID = 61017, categoryID = 15521 }, -- Phase-Lost Slateback
-    { itemID = 253030, achievementID = 61084, categoryID = 15604 }, -- Shadowblade's Felscorned Omen
-    { itemID = 253027, achievementID = 61085, categoryID = 15604 }, -- Felscorned Grandmaster's Companion
-    { itemID = 253024, achievementID = 61086, categoryID = 15604 }, -- Feldruid's Scornwing Idol (not an actual mount)
-    { itemID = 253013, achievementID = 61087, categoryID = 15604 }, -- Slayer's Felscorned Shrieker
-    { itemID = 253029, achievementID = 61088, categoryID = 15604 }, -- High Priest's Felscorned Seeker
-    { itemID = 253026, achievementID = 61089, categoryID = 15604 }, -- Archmage's Felscorned Disc
-    { itemID = 253032, achievementID = 61090, categoryID = 15604 }, -- Felscorned Netherlord's Dreadsteed
     { itemID = 263579, achievementID = 61263, categoryID = 15553 }, -- Vivacious Chloroceros
     { itemID = 260887, achievementID = 61380, categoryID = 168 }, -- Tenebrous Harrower
     { itemID = 258188, achievementID = 61451, categoryID = 15301 }, -- Geargrinder Mk. 11
@@ -173,6 +161,9 @@ SFC.Titles = {
     { titleID = 105, achievementID = 1793, categoryID = 155 }, -- Patron
     { titleID = 107, achievementID = 2051, categoryID = 14922 }, -- of the Nightfall
     { titleID = 89, achievementID = 2054, categoryID = 14922 }, -- Twilight Vanquisher
+    { titleID = 114, achievementID = 2760, categoryID = 14941, faction = FACTION_NAME.ALLIANCE }, -- of Darnassus
+    { titleID = 113, achievementID = 2761, categoryID = 14941, faction = FACTION_NAME.ALLIANCE }, -- of the Exodar
+    { titleID = 115, achievementID = 2763, categoryID = 14941, faction = FACTION_NAME.ALLIANCE }, -- of Ironforge
     { titleID = 119, achievementID = 2767, categoryID = 14941, faction = FACTION_NAME.HORDE }, -- of Silvermoon
     { titleID = 120, achievementID = 2768, categoryID = 14941, faction = FACTION_NAME.HORDE }, -- of Thunder Bluff
     { titleID = 121, achievementID = 2769, categoryID = 14941, faction = FACTION_NAME.HORDE }, -- of the Undercity
@@ -366,11 +357,8 @@ SFC.Titles = {
     { titleID = 630, achievementID = 41818, categoryID = 15506, faction = FACTION_NAME.ALLIANCE }, -- of Stromgarde (Alliance)
     { titleID = 629, achievementID = 41820, categoryID = 15506, faction = FACTION_NAME.HORDE }, -- of Hammerfall
     { titleID = 550, achievementID = 42203, categoryID = 15531 }, -- High Explorer
-    { titleID = 551, achievementID = 42301, categoryID = 15604 }, -- Timerunner
     { titleID = 598, achievementID = 42779, categoryID = 15523 }, -- Flickering
-    { titleID = 646, achievementID = 60935, categoryID = 15604 }, -- Chronoscholar
     { titleID = 754, achievementID = 61052, categoryID = 15553 }, -- Dustlord
-    { titleID = 659, achievementID = 61079, categoryID = 15604 }, -- of the Infinite Chaos
     { titleID = 680, achievementID = 61344, categoryID = 15553 }, -- Chronicler of the Haranir
     { titleID = 690, achievementID = 61377, categoryID = 15566 }, -- Spirebane
     { titleID = 678, achievementID = 61379, categoryID = 15566 }, -- Dawnbringer
@@ -588,35 +576,11 @@ SFC.Cosmetics = {
     { itemID = 232647, achievementID = 41052, categoryID = 15506 }, -- Root Defender's Shield
     { itemID = 219110, achievementID = 41169, categoryID = 15530 }, -- Vermillion Patron's Elegance
     { itemID = 234521, achievementID = 41351, categoryID = 15530 }, -- Ensemble: Rusty Bruiser's Outfit
-    { itemID = 253200, achievementID = 42583, categoryID = 15604 }, -- Felscorned Scythe of the Unmaker
-    { itemID = 253201, achievementID = 42583, categoryID = 15604 }, -- Felscorned Scythe of the Unmaker
-    { itemID = 253285, achievementID = 42583, categoryID = 15604 }, -- Felscorned Scythe of the Unmaker
-    { itemID = 253344, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Sarong
-    { itemID = 253345, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Crown
-    { itemID = 253346, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Robe
-    { itemID = 253347, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Sash
-    { itemID = 253348, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Anklets
-    { itemID = 253349, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Bangles
-    { itemID = 253353, achievementID = 42630, categoryID = 15604 }, -- Illusion: Felshatter
-    { itemID = 253231, achievementID = 42666, categoryID = 15604 }, -- Fallen King's Corrupted Blades
-    { itemID = 257105, achievementID = 42690, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Hellforged Regalia
-    { itemID = 143518, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
-    { itemID = 143519, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
-    { itemID = 143520, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
-    { itemID = 143521, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
-    { itemID = 241595, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
-    { itemID = 241603, achievementID = 61026, categoryID = 15604 }, -- Ensemble: Garb of the Chosen Dead
-    { itemID = 241604, achievementID = 61026, categoryID = 15604 }, -- Ensemble: Garb of the Chosen Dead
-    { itemID = 241605, achievementID = 61026, categoryID = 15604 }, -- Ensemble: Garb of the Chosen Dead
-    { itemID = 241606, achievementID = 61026, categoryID = 15604 }, -- Ensemble: Garb of the Chosen Dead
-    { itemID = 241607, achievementID = 61027, categoryID = 15604 }, -- Ensemble: Regalia of the Chosen Dead
-    { itemID = 241608, achievementID = 61027, categoryID = 15604 }, -- Ensemble: Regalia of the Chosen Dead
-    { itemID = 241609, achievementID = 61027, categoryID = 15604 }, -- Ensemble: Regalia of the Chosen Dead
-    { itemID = 241610, achievementID = 61027, categoryID = 15604 }, -- Ensemble: Regalia of the Chosen Dead
-    { itemID = 257104, achievementID = 61070, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Voidscarred Regalia
-    { itemID = 257106, achievementID = 61078, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Lightbound Regalia
-    { itemID = 253343, achievementID = 61337, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Felscorned Regalia
-    -- Heritage of the Haranir (achievementID 61942, categoryID 15547) is not yet itemized in the DB export - revisit later
+    { itemID = 263413, achievementID = 61797, categoryID = 15531 }, -- Nullaeus Domaneye (until end of Midnight S1 only)
+    { itemID = 265071, achievementID = 61858, categoryID = 15259 }, -- Gleaming Sunmote (until end of Midnight S1 only)
+    -- TODO List:
+    -- Heritage of the Haranir (achievementID 61942, categoryID 15547) needs appearances to be itemized
+    -- Stormheim achievement from Lemix (achievementID 42582, categoryID 15604) needs appearance itemization as well
 }
 
 SFC.Customizations = {
@@ -642,11 +606,13 @@ SFC.Customizations = {
     { icon = 1711329, achievementID = 18854, categoryID = 15455 }, -- Customization: Man'ari Eredar Appearances for Draenei
     { icon = 254288, achievementID = 19478, categoryID = 15462 }, -- Drake Customization: Grotto Netherwing Drake - Black Scales
     { icon = "RaceIcon128-Earthen-Male", achievementID = 40307, categoryID = 15506 }, -- Race Unlocked: Earthen
+    { icon = 6383560, achievementID = 41081, categoryID = 15462 }, -- D.R.I.V.E Engine: the Pozzik Standard
     { icon = 6124644, achievementID = 41555, categoryID = 15521 }, -- Warband Campsite: Freywold Spring
     { icon = 6124644, achievementID = 41586, categoryID = 15521 }, -- Warband Campsite: Gallagio Grand Gallery
     { icon = 236438, achievementID = 41803, categoryID = 15547 }, -- Customization: Amani Appearances for Darkspear Troll
     { icon = 6124644, achievementID = 41970, categoryID = 15506 }, -- Warband Campsite: The Fate of the Devoured
-    { icon = 2915721, achievementID = 60933, categoryID = 15531 }, -- Delver's Dirigible Horde Vs Alliance Colors and Decals Unlocked
+    { icon = 2915721, achievementID = 60933, categoryID = 15531, faction = FACTION_NAME.HORDE }, -- Delver's Dirigible Horde Vs Alliance Colors and Decals Unlocked
+    { icon = 2915721, achievementID = 60934, categoryID = 15531, faction = FACTION_NAME.ALLIANCE }, -- Delver's Dirigible Horde Vs Alliance Colors and Decals Unlocked (Alliance)
     { icon = 7455385, achievementID = 61916, categoryID = 15547 }, -- Race/Class Unlocked: Void Elf Demon Hunter
 }
 
@@ -664,6 +630,7 @@ SFC.Toys = {
     { itemID = 143660, achievementID = 11427, categoryID = 15252 }, -- Mrgrglhjorn
     { itemID = 134026, achievementID = 12894, categoryID = 15266 }, -- Honorable Pennant
     { itemID = 163697, achievementID = 12936, categoryID = 15119 }, -- Laser Pointer
+    { itemID = 166247, achievementID = 13285, categoryID = 15117, faction = FACTION_NAME.ALLIANCE }, -- Citizens Bridage Whistle
     { itemID = 167698, achievementID = 13489, categoryID = 171 }, -- Secret Fish Goggles
     { itemID = 168016, achievementID = 13502, categoryID = 171 }, -- Hyper-Compressed Ocean
     { itemID = 174830, achievementID = 14020, categoryID = 15117 }, -- Shadowy Disguise
@@ -715,11 +682,13 @@ SFC.Pets = {
     { itemID = 141352, achievementID = 11233, categoryID = 15118 }, -- Rescued Fawn
     { itemID = 142100, achievementID = 11320, categoryID = 15118 }, -- Stardust (Achievement rewards item 142210 which begins the quest that gives you this pet on turn-in)
     { itemID = 147543, achievementID = 11765, categoryID = 15117 }, -- Son of Skum
+    { itemID = 151632, achievementID = 11856, categoryID = 15117 }, -- Mining Monkey
     { itemID = 152963, achievementID = 12079, categoryID = 15118 }, -- Amalgam of Destruction
     { itemID = 153040, achievementID = 12100, categoryID = 15119 }, -- Felclaw Marsuul
     { itemID = 156721, achievementID = 12431, categoryID = 15252 }, -- Mailemental
     { itemID = 161214, achievementID = 12723, categoryID = 15285 }, -- Miimii
     { itemID = 163634, achievementID = 12930, categoryID = 15118 }, -- Dreadtick Leecher
+    { itemID = 163776, achievementID = 13062, categoryID = 15284, faction = FACTION_NAME.ALLIANCE }, -- Bumbles
     { itemID = 165894, achievementID = 13269, categoryID = 15117 }, -- Mini Spider Tank
     { itemID = 165907, achievementID = 13279, categoryID = 15119 }, -- Wicker Wraith
     { itemID = 167057, achievementID = 13469, categoryID = 15118 }, -- Happiness
@@ -751,8 +720,6 @@ SFC.Pets = {
     { itemID = 232855, achievementID = 41551, categoryID = 15119 }, -- Foreman
     { itemID = 174463, achievementID = 41928, categoryID = 15546 }, -- Reek
     { itemID = 245255, achievementID = 41979, categoryID = 15506 }, -- Starlight
-    { spellID = 1254381, achievementID = 42319, categoryID = 15604 }, -- Fledgling Warden's Companion
-    { itemID = 246339, achievementID = 42541, categoryID = 15604 }, -- Duskytooth Fel Snooter
     { itemID = 222967, achievementID = 60956, categoryID = 15119 }, -- Webbers
     { itemID = 205017, achievementID = 61040, categoryID = 15119 }, -- Byrn
     { itemID = 258737, achievementID = 61051, categoryID = 15119 }, -- Moon Darter
@@ -763,184 +730,227 @@ SFC.Pets = {
 }
 
 SFC.Decor = {
-    { itemID = -1, achievementID = 158, categoryID = 14802 }, -- Alliance Battlefield Banner
-    { itemID = -1, achievementID = 167, categoryID = 14804 }, -- Warsong Outriders Flag
-    { itemID = -1, achievementID = 200, categoryID = 14804 }, -- Silverwing Sentinels Flag
-    { itemID = -1, achievementID = 212, categoryID = 14803 }, -- Uncontested Battlefield Banner
-    { itemID = -1, achievementID = 213, categoryID = 14803 }, -- Netherstorm Battlefield Flag
-    { itemID = -1, achievementID = 221, categoryID = 14801 }, -- Fortified Alliance Banner
-    { itemID = -1, achievementID = 222, categoryID = 14801 }, -- Fortified Horde Banner
-    { itemID = -1, achievementID = 229, categoryID = 95 }, -- Horde Dueling Flag
-    { itemID = -1, achievementID = 231, categoryID = 95 }, -- Alliance Dueling Flag
-    { itemID = -1, achievementID = 938, categoryID = 14863 }, -- Nesingwary Shoveltusk Trophy
-    { itemID = -1, achievementID = 940, categoryID = 14861 }, -- Nesingwary Elk Trophy
-    { itemID = -1, achievementID = 1153, categoryID = 14802 }, -- Horde Battlefield Banner
-    { itemID = -1, achievementID = 1157, categoryID = 95 }, -- Challenger's Dueling Flag
-    { itemID = -1, achievementID = 4405, categoryID = 14922 }, -- Head of the Broodmother
-    { itemID = -1, achievementID = 4859, categoryID = 15071 }, -- Dark Iron Brazier
-    { itemID = -1, achievementID = 5223, categoryID = 15074 }, -- Iron Dragonmaw Gate
-    { itemID = -1, achievementID = 5245, categoryID = 15073 }, -- Smoke Lamppost
-    { itemID = -1, achievementID = 5442, categoryID = 14861 }, -- Goldshire Food Cart
-    { itemID = -1, achievementID = 6981, categoryID = 15163 }, -- Kotmogu Orb of Power
-    { itemID = -1, achievementID = 6981, categoryID = 15163 }, -- Kotmogu Pedestal
-    { itemID = -1, achievementID = 8316, categoryID = 15302 }, -- Shadowforge Stone Chair
-    { itemID = -1, achievementID = 9415, categoryID = 15071 }, -- Glorious Pendant of Rukhmar
-    { itemID = -1, achievementID = 10698, categoryID = 15252 }, -- Shala'nir Feather Bed
-    { itemID = -1, achievementID = 10996, categoryID = 15254 }, -- Tauren Jeweler's Roller
-    { itemID = -1, achievementID = 11124, categoryID = 15252 }, -- "Night on the Jeweled Estate" Painting
-    { itemID = -1, achievementID = 11257, categoryID = 15257 }, -- Skyhorn Storage Chest
-    { itemID = -1, achievementID = 11258, categoryID = 15257 }, -- Kaldorei Treasure Trove
-    { itemID = -1, achievementID = 11699, categoryID = 15255 }, -- Murloc's Wind Chimes
-    { itemID = -1, achievementID = 12479, categoryID = 15284 }, -- Grand Mask of Bwonsamdi, Loa of Graves
-    { itemID = -1, achievementID = 12509, categoryID = 15284 }, -- Lordaeron Rectangular Rug
-    { itemID = -1, achievementID = 12614, categoryID = 15284 }, -- Golden Loa's Altar
-    { itemID = -1, achievementID = 12733, categoryID = 169 }, -- Dazar'alor Forge
-    { itemID = -1, achievementID = 12746, categoryID = 170 }, -- Zuldazar Cook's Griddle
-    { itemID = -1, achievementID = 12867, categoryID = 15308 }, -- Lordaeron Banded Barrel
-    { itemID = -1, achievementID = 12869, categoryID = 15308 }, -- Lordaeron Banded Crate
-    { itemID = -1, achievementID = 12870, categoryID = 15308 }, -- Lordaeron Spiked Weapon Rack
-    { itemID = -1, achievementID = 13018, categoryID = 15298 }, -- Zandalari Wall Shelf
-    { itemID = -1, achievementID = 13038, categoryID = 15284 }, -- Bookcase of Gonk
-    { itemID = -1, achievementID = 13039, categoryID = 15284 }, -- Idol of Pa'ku, Master of Winds
-    { itemID = -1, achievementID = 13284, categoryID = 15284 }, -- Large Forsaken War Tent
-    { itemID = -1, achievementID = 13473, categoryID = 15298 }, -- Redundant Reclamation Rig
-    { itemID = -1, achievementID = 13475, categoryID = 15298 }, -- Gnomish Cog Stack
-    { itemID = -1, achievementID = 13723, categoryID = 15285 }, -- Gnomish T.O.O.L.B.O.X.
-    { itemID = -1, achievementID = 17529, categoryID = 15465 }, -- Dragon's Hoard Chest
-    { itemID = -1, achievementID = 17773, categoryID = 15455 }, -- Pentagonal Stone Table
-    { itemID = -1, achievementID = 19458, categoryID = 15301 }, -- The Great Hoard
-    { itemID = -1, achievementID = 19507, categoryID = 15455 }, -- Valdrakken Sconce
-    { itemID = -1, achievementID = 19719, categoryID = 15455 }, -- Gilnean Celebration Keg
-    { itemID = -1, achievementID = 20501, categoryID = 15301 }, -- Portal to Damnation
-    { itemID = -1, achievementID = 20595, categoryID = 15506 }, -- Boulder Springs Recliner
-    { itemID = -1, achievementID = 40210, categoryID = 15525 }, -- Earthen Contender's Target
-    { itemID = -1, achievementID = 40504, categoryID = 15521 }, -- Rambleshire Resting Platform
-    { itemID = -1, achievementID = 40542, categoryID = 15521 }, -- Kaheti Scribe's Records
-    { itemID = -1, achievementID = 40859, categoryID = 15521 }, -- Dornogal Brazier
-    { itemID = -1, achievementID = 40894, categoryID = 15506 }, -- Rocket-Powered Fountain
-    { itemID = -1, achievementID = 40953, categoryID = 15301 }, -- MOTHER's Titanic Brazier
-    { itemID = -1, achievementID = 40953, categoryID = 15301 }, -- N'Zoth's Captured Eye
-    { itemID = -1, achievementID = 41119, categoryID = 15526 }, -- Gallagio L.U.C.K. Spinner
-    { itemID = -1, achievementID = 41186, categoryID = 15521 }, -- Tome of Earthen Directives
-    { itemID = -1, achievementID = 42187, categoryID = 15552 }, -- Scroll of K'aresh's Fall
-    { itemID = -1, achievementID = 42188, categoryID = 15552 }, -- Tome of the Survivor
-    { itemID = -1, achievementID = 42189, categoryID = 15552 }, -- Tale of the Penultimate Lich King
-    { itemID = -1, achievementID = 42270, categoryID = 15304 }, -- Ebon Blade Weapon Rack
-    { itemID = -1, achievementID = 42271, categoryID = 15304 }, -- Illidari Glaiverest
-    { itemID = -1, achievementID = 42272, categoryID = 15304 }, -- Brazier of Elune
-    { itemID = -1, achievementID = 42273, categoryID = 15304 }, -- Trueshot Skeletal Dragon Trophy
-    { itemID = -1, achievementID = 42274, categoryID = 15304 }, -- Tirisgarde Book Tempest
-    { itemID = -1, achievementID = 42275, categoryID = 15304 }, -- Monastery Gong
-    { itemID = -1, achievementID = 42276, categoryID = 15304 }, -- Sanctum of Light Candelabra
-    { itemID = -1, achievementID = 42277, categoryID = 15304 }, -- Scroll of the Conclave
-    { itemID = -1, achievementID = 42279, categoryID = 15304 }, -- Uncrowned Market Stall
-    { itemID = -1, achievementID = 42280, categoryID = 15304 }, -- Maelstrom Lava Lamp
-    { itemID = -1, achievementID = 42281, categoryID = 15304 }, -- Dreadscar Dais
-    { itemID = -1, achievementID = 42282, categoryID = 15304 }, -- Valarjar Shield Wall
-    { itemID = -1, achievementID = 42287, categoryID = 15304 }, -- Replica Acherus Soul Forge
-    { itemID = -1, achievementID = 42288, categoryID = 15304 }, -- Replica Cursed Forge of the Nathrezim
-    { itemID = -1, achievementID = 42289, categoryID = 15304 }, -- Seed of Ages Cutting
-    { itemID = -1, achievementID = 42290, categoryID = 15304 }, -- Replica Altar of the Eternal Hunt
-    { itemID = -1, achievementID = 42291, categoryID = 15304 }, -- Conjured Altar of the Guardian
-    { itemID = -1, achievementID = 42292, categoryID = 15304 }, -- Replica Forge of the Roaring Mountain
-    { itemID = -1, achievementID = 42293, categoryID = 15304 }, -- Replica Altar of Ancient Kings
-    { itemID = -1, achievementID = 42294, categoryID = 15304 }, -- Replica Altar of Light and Shadow
-    { itemID = -1, achievementID = 42295, categoryID = 15304 }, -- Replica Crucible of the Uncrowned
-    { itemID = -1, achievementID = 42296, categoryID = 15304 }, -- Elemental Altar of the Maelstrom
-    { itemID = -1, achievementID = 42297, categoryID = 15304 }, -- Replica Felblood Altar
-    { itemID = -1, achievementID = 42298, categoryID = 15304 }, -- Replica Forge of Odyn
-    { itemID = -1, achievementID = 42318, categoryID = 15604 }, -- Tome of the Corrupt
-    { itemID = -1, achievementID = 42321, categoryID = 15604 }, -- Corruption Pit
-    { itemID = -1, achievementID = 42547, categoryID = 15604 }, -- Hanging Felsteel Cage
-    { itemID = -1, achievementID = 42619, categoryID = 15604 }, -- Legion's Fel Brazier
-    { itemID = -1, achievementID = 42628, categoryID = 15604 }, -- Large Legion Candle
-    { itemID = -1, achievementID = 42655, categoryID = 15604 }, -- Demonic Storage Chest
-    { itemID = -1, achievementID = 42658, categoryID = 15604 }, -- Vrykul Lord's Throne
-    { itemID = -1, achievementID = 42674, categoryID = 15604 }, -- Altar of the Corrupted Flames
-    { itemID = -1, achievementID = 42692, categoryID = 15604 }, -- Legion's Holo Communicator
-    { itemID = -1, achievementID = 42786, categoryID = 169 }, -- Midnight Leatherworker's Shop Sign
-    { itemID = -1, achievementID = 42787, categoryID = 169 }, -- Midnight Enchanter's Shop Sign
-    { itemID = -1, achievementID = 42788, categoryID = 169 }, -- Midnight Alchemist's Shop Sign
-    { itemID = -1, achievementID = 42789, categoryID = 169 }, -- Midnight Jewelcrafter's Shop Sign
-    { itemID = -1, achievementID = 42790, categoryID = 169 }, -- Midnight Skinner's Shop Sign
-    { itemID = -1, achievementID = 42791, categoryID = 169 }, -- Midnight Miner's Shop Sign
-    { itemID = -1, achievementID = 42792, categoryID = 169 }, -- Midnight Blacksmith's Shop Sign
-    { itemID = -1, achievementID = 42793, categoryID = 169 }, -- Midnight Herbalist's Shop Sign
-    { itemID = -1, achievementID = 42794, categoryID = 169 }, -- Midnight Tailor's Shop Sign
-    { itemID = -1, achievementID = 42795, categoryID = 169 }, -- Midnight Cook's Shop Sign
-    { itemID = -1, achievementID = 42796, categoryID = 169 }, -- Midnight Scribe's Shop Sign
-    { itemID = -1, achievementID = 42797, categoryID = 169 }, -- Midnight Fisher's Shop Sign
-    { itemID = -1, achievementID = 42798, categoryID = 169 }, -- Midnight Engineer's Shop Sign
-    { itemID = -1, achievementID = 60962, categoryID = 15304 }, -- Replica Libram of the Dead
-    { itemID = -1, achievementID = 60963, categoryID = 15304 }, -- Replica Tome of Fel Secrets
-    { itemID = -1, achievementID = 60964, categoryID = 15304 }, -- Replica Tome of the Ancients
-    { itemID = -1, achievementID = 60965, categoryID = 15304 }, -- Replica Tales of the Hunt
-    { itemID = -1, achievementID = 60966, categoryID = 15304 }, -- Conjured Archive of the Tirisgarde
-    { itemID = -1, achievementID = 60967, categoryID = 15304 }, -- Replica Chronicle of Ages
-    { itemID = -1, achievementID = 60968, categoryID = 15304 }, -- Replica Libram of Ancient Kings
-    { itemID = -1, achievementID = 60969, categoryID = 15304 }, -- Replica Word of the Conclave
-    { itemID = -1, achievementID = 60970, categoryID = 15304 }, -- Stolen Copy of the Blood Ledger
-    { itemID = -1, achievementID = 60971, categoryID = 15304 }, -- Replica Words of Wind and Earth
-    { itemID = -1, achievementID = 60972, categoryID = 15304 }, -- Replica Tome of Blighted Implements
-    { itemID = -1, achievementID = 60973, categoryID = 15304 }, -- Replica Saga of the Valarjar
-    { itemID = -1, achievementID = 60981, categoryID = 15304 }, -- Ebon Blade Planning Map
-    { itemID = -1, achievementID = 60982, categoryID = 15304 }, -- Fel Hammer Scouting Map
-    { itemID = -1, achievementID = 60983, categoryID = 15304 }, -- Cenarion Arch
-    { itemID = -1, achievementID = 60984, categoryID = 15304 }, -- Unseen Path Archer's Gallery
-    { itemID = -1, achievementID = 60985, categoryID = 15304 }, -- Tirisgarde War Map
-    { itemID = -1, achievementID = 60986, categoryID = 15304 }, -- Five Dawns Planning Table
-    { itemID = -1, achievementID = 60987, categoryID = 15304 }, -- Silver Hand Weapon Rack
-    { itemID = -1, achievementID = 60988, categoryID = 15304 }, -- Netherlight Command Map
-    { itemID = -1, achievementID = 60989, categoryID = 15304 }, -- Uncrowned Planning Table
-    { itemID = -1, achievementID = 60990, categoryID = 15304 }, -- Earthen Ring Scouting Map
-    { itemID = -1, achievementID = 60991, categoryID = 15304 }, -- Dreadscar Battle Planning Map
-    { itemID = -1, achievementID = 60992, categoryID = 15304 }, -- Skyhold War Table
-    { itemID = -1, achievementID = 61264, categoryID = 15553 }, -- Lightbloom Moss Mound
-    { itemID = -1, achievementID = 61442, categoryID = 15552 }, -- Tome of Kings
-    { itemID = -1, achievementID = 61451, categoryID = 15301 }, -- Drained Dark Heart of Galakrond
-    { itemID = -1, achievementID = 61467, categoryID = 15552 }, -- Tome of Silvermoon Intrigue
-    { itemID = -1, achievementID = 61507, categoryID = 15553 }, -- Silvermoon Energy Focus
-    { itemID = -1, achievementID = 61574, categoryID = 15547 }, -- "On'ohia's Call"
-    { itemID = -1, achievementID = 61683, categoryID = 95 }, -- Berserker's Empowerment
-    { itemID = -1, achievementID = 62122, categoryID = 15553 }, -- Colossal Amani Stone Visage
-    { itemID = -1, achievementID = 62130, categoryID = 15553 }, -- Opened Domanaar Storage Crate
-    { itemID = -1, achievementID = 62144, categoryID = 15605 }, -- Preyseeker's Magister Bust
-    { itemID = -1, achievementID = 62153, categoryID = 15605 }, -- Preyseeker's Tinker Bust
-    { itemID = -1, achievementID = 62154, categoryID = 15605 }, -- Preyseeker's Ren'dorei Bust
-    { itemID = -1, achievementID = 62155, categoryID = 15605 }, -- Preyseeker's Ethereal Bust
-    { itemID = -1, achievementID = 62156, categoryID = 15605 }, -- Preyseeker's Breaker Bust
-    { itemID = -1, achievementID = 62157, categoryID = 15605 }, -- Preyseeker's Amani Bust
-    { itemID = -1, achievementID = 62158, categoryID = 15605 }, -- Preyseeker's Farstrider Bust
-    { itemID = -1, achievementID = 62159, categoryID = 15605 }, -- Preyseeker's Rutaani Bust
-    { itemID = -1, achievementID = 62160, categoryID = 15605 }, -- Preyseeker's Vindicator Bust
-    { itemID = -1, achievementID = 62161, categoryID = 15605 }, -- Preyseeker's Consul Bust
-    { itemID = -1, achievementID = 62162, categoryID = 15605 }, -- Preyseeker's Executor Bust
-    { itemID = -1, achievementID = 62163, categoryID = 15605 }, -- Preyseeker's Knight-Errant Bust
-    { itemID = -1, achievementID = 62164, categoryID = 15605 }, -- Preyseeker's Wretched Bust
-    { itemID = -1, achievementID = 62165, categoryID = 15605 }, -- Preyseeker's Thornspeaker Bust
-    { itemID = -1, achievementID = 62166, categoryID = 15605 }, -- Preyseeker's Twilight Bust
-    { itemID = -1, achievementID = 62167, categoryID = 15605 }, -- Preyseeker's Magister Effigy
-    { itemID = -1, achievementID = 62168, categoryID = 15605 }, -- Preyseeker's Tinker Effigy
-    { itemID = -1, achievementID = 62169, categoryID = 15605 }, -- Preyseeker's Ren'dorei Effigy
-    { itemID = -1, achievementID = 62173, categoryID = 15605 }, -- Preyseeker's Ethereal Effigy
-    { itemID = -1, achievementID = 62174, categoryID = 15605 }, -- Preyseeker's Breaker Effigy
-    { itemID = -1, achievementID = 62175, categoryID = 15605 }, -- Preyseeker's Amani Effigy
-    { itemID = -1, achievementID = 62176, categoryID = 15605 }, -- Preyseeker's Farstrider Effigy
-    { itemID = -1, achievementID = 62177, categoryID = 15605 }, -- Preyseeker's Rutaani Effigy
-    { itemID = -1, achievementID = 62178, categoryID = 15605 }, -- Preyseeker's Vindicator Effigy
-    { itemID = -1, achievementID = 62179, categoryID = 15605 }, -- Preyseeker's Consul Effigy
-    { itemID = -1, achievementID = 62180, categoryID = 15605 }, -- Preyseeker's Executor Effigy
-    { itemID = -1, achievementID = 62181, categoryID = 15605 }, -- Preyseeker's Knight-Errant Effigy
-    { itemID = -1, achievementID = 62182, categoryID = 15605 }, -- Preyseeker's Wretched Effigy
-    { itemID = -1, achievementID = 62183, categoryID = 15605 }, -- Preyseeker's Thornspeaker Effigy
-    { itemID = -1, achievementID = 62184, categoryID = 15605 }, -- Preyseeker's Twilight Effigy
-    { itemID = -1, achievementID = 62185, categoryID = 15553 }, -- Silvermoon Painter's Cushion
-    { itemID = -1, achievementID = 62186, categoryID = 15553 }, -- Eversong Feast Platter
-    { itemID = -1, achievementID = 62288, categoryID = 15553 }, -- "Eversong Lantern" Painting
-    { itemID = -1, achievementID = 62289, categoryID = 15553 }, -- Amani Spearhunter's Spit
-    { itemID = -1, achievementID = 62290, categoryID = 15553 }, -- Fungarian Vine Fence
-    { itemID = -1, achievementID = 62291, categoryID = 15553 }, -- Void Elf Weapon Rack
-    { itemID = -1, achievementID = 62387, categoryID = 15274 }, -- Miniature Replica Dark Portal
-    { itemID = -1, achievementID = 63325, categoryID = 15610 }, -- Sunstrider Omnium Simulacrum
-    { itemID = -1, achievementID = 63343, categoryID = 15268 }, -- Prized Orb of Azeroth, Framed Horde Pride and Framed Alliance Pride
+    { itemID = 247757, achievementID = 158, categoryID = 14802 }, -- Alliance Battlefield Banner
+    { itemID = 247747, achievementID = 167, categoryID = 14804 }, -- Warsong Outriders Flag
+    { itemID = 247746, achievementID = 200, categoryID = 14804 }, -- Silverwing Sentinels Flag
+    { itemID = 247761, achievementID = 212, categoryID = 14803 }, -- Uncontested Battlefield Banner
+    { itemID = 247762, achievementID = 213, categoryID = 14803 }, -- Netherstorm Battlefield Flag
+    { itemID = 247758, achievementID = 221, categoryID = 14801 }, -- Fortified Alliance Banner
+    { itemID = 247760, achievementID = 222, categoryID = 14801 }, -- Fortified Horde Banner
+    { itemID = 247745, achievementID = 229, categoryID = 95 }, -- Horde Dueling Flag
+    { itemID = 247744, achievementID = 231, categoryID = 95 }, -- Alliance Dueling Flag
+    { itemID = 248807, achievementID = 938, categoryID = 14863 }, -- Nesingwary Mounted Shoveltusk Head
+    { itemID = 248808, achievementID = 940, categoryID = 14861 }, -- Nesingwary Mounted Elk Head
+    { itemID = 247759, achievementID = 1153, categoryID = 14802 }, -- Horde Battlefield Banner
+    { itemID = 247756, achievementID = 1157, categoryID = 95 }, -- Challenger's Dueling Flag
+    { itemID = 244852, achievementID = 4405, categoryID = 14922 }, -- Head of the Broodmother
+    { itemID = 245426, achievementID = 4859, categoryID = 15071 }, -- Dark Iron Brazier
+    { itemID = 247727, achievementID = 5223, categoryID = 15074 }, -- Iron Dragonmaw Gate
+    { itemID = 256896, achievementID = 5245, categoryID = 15073 }, -- Smoke Lamppost
+    { itemID = 248796, achievementID = 5442, categoryID = 14861 }, -- Goldshire Food Cart
+    { itemID = 247741, achievementID = 6981, categoryID = 15163 }, -- Kotmogu Orb of Power
+    { itemID = 247740, achievementID = 6981, categoryID = 15163 }, -- Kotmogu Pedestal
+    { itemID = 256425, achievementID = 8316, categoryID = 15302 }, -- Shadowforge Stone Chair
+    { itemID = 258740, achievementID = 9415, categoryID = 15071 }, -- Glorious Pendant of Rukhmar
+    { itemID = 245697, achievementID = 10698, categoryID = 15252 }, -- Shala'nir Feather Bed
+    { itemID = 256913, achievementID = 10996, categoryID = 15254 }, -- Tauren Jeweler's Roller
+    { itemID = 245448, achievementID = 11124, categoryID = 15252 }, -- "Night on the Jeweled Estate" Painting
+    { itemID = 245460, achievementID = 11257, categoryID = 15257 }, -- Skyhorn Storage Chest
+    { itemID = 245703, achievementID = 11258, categoryID = 15257 }, -- Kaldorei Treasure Trove
+    { itemID = 258223, achievementID = 11699, categoryID = 15255 }, -- Murloc's Wind Chimes
+    { itemID = 245522, achievementID = 12479, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Grand Mask of Bwonsamdi, Loa of Graves
+    { itemID = 241062, achievementID = 12509, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Lordaeron Rectangular Rug
+    { itemID = 245497, achievementID = 12614, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Golden Loa's Altar
+    { itemID = 245490, achievementID = 12733, categoryID = 169, faction = FACTION_NAME.HORDE }, -- Dazar'alor Forge
+    { itemID = 244325, achievementID = 12746, categoryID = 170, faction = FACTION_NAME.HORDE }, -- Zuldazar Cook's Griddle
+    { itemID = 245463, achievementID = 12867, categoryID = 15308, faction = FACTION_NAME.HORDE }, -- Lordaeron Banded Barrel
+    { itemID = 245467, achievementID = 12869, categoryID = 15308, faction = FACTION_NAME.HORDE }, -- Lordaeron Banded Crate
+    { itemID = 245483, achievementID = 12870, categoryID = 15308, faction = FACTION_NAME.HORDE }, -- Lordaeron Spiked Weapon Rack
+    { itemID = 244326, achievementID = 13018, categoryID = 15298 }, -- Zandalari Wall Shelf
+    { itemID = 245487, achievementID = 13038, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Bookcase of Gonk
+    { itemID = 245494, achievementID = 13039, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Idol of Pa'ku, Master of Winds
+    { itemID = 245476, achievementID = 13284, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Large Forsaken War Tent
+    { itemID = 246483, achievementID = 13473, categoryID = 15298 }, -- Redundant Reclamation Rig
+    { itemID = 246603, achievementID = 13475, categoryID = 15298 }, -- Gnomish Cog Stack
+    { itemID = 246479, achievementID = 13723, categoryID = 15285 }, -- Gnomish T.O.O.L.B.O.X.
+    { itemID = 248656, achievementID = 17529, categoryID = 15465 }, -- Dragon's Hoard Chest
+    { itemID = 248104, achievementID = 17773, categoryID = 15455 }, -- Pentagonal Stone Table
+    { itemID = 248124, achievementID = 19458, categoryID = 15301 }, -- The Great Hoard
+    { itemID = 248105, achievementID = 19507, categoryID = 15455 }, -- Valdrakken Sconce
+    { itemID = 245520, achievementID = 19719, categoryID = 15455 }, -- Gilnean Celebration Keg
+    { itemID = 248125, achievementID = 20501, categoryID = 15301 }, -- Portal to Damnation
+    { itemID = 252757, achievementID = 20595, categoryID = 15506 }, -- Boulder Springs Recliner
+    { itemID = 253170, achievementID = 40210, categoryID = 15525 }, -- Earthen Contender's Target
+    { itemID = 253023, achievementID = 40504, categoryID = 15521 }, -- Rambleshire Resting Platform
+    { itemID = 246866, achievementID = 40542, categoryID = 15521 }, -- Kaheti Scribe's Records
+    { itemID = 253037, achievementID = 40859, categoryID = 15521 }, -- Dornogal Brazier
+    { itemID = 245324, achievementID = 40894, categoryID = 15506 }, -- Rocket-Powered Fountain
+    { itemID = 247667, achievementID = 40953, categoryID = 15301 }, -- MOTHER's Titanic Brazier
+    { itemID = 247668, achievementID = 40953, categoryID = 15301 }, -- N'Zoth's Captured Eye
+    { itemID = 245302, achievementID = 41119, categoryID = 15526 }, -- Gallagio L.U.C.K. Spinner
+    { itemID = 246867, achievementID = 41186, categoryID = 15521 }, -- Tome of Earthen Directives
+    { itemID = 257354, achievementID = 42187, categoryID = 15552 }, -- Scroll of K'aresh's Fall
+    { itemID = 257355, achievementID = 42188, categoryID = 15552 }, -- Tome of the Survivor
+    { itemID = 257351, achievementID = 42189, categoryID = 15552 }, -- Tale of the Penultimate Lich King
+    { itemID = 250115, achievementID = 42270, categoryID = 15304 }, -- Ebon Blade Weapon Rack
+    { itemID = 249459, achievementID = 42271, categoryID = 15304 }, -- Illidari Glaiverest
+    { itemID = 260581, achievementID = 42272, categoryID = 15304 }, -- Brazier of Elune
+    { itemID = 248011, achievementID = 42273, categoryID = 15304 }, -- Trueshot Skeletal Dragon Head
+    { itemID = 245429, achievementID = 42274, categoryID = 15304 }, -- Tirisgarde Book Tempest
+    { itemID = 248958, achievementID = 42275, categoryID = 15304 }, -- Monastery Gong
+    { itemID = 250234, achievementID = 42276, categoryID = 15304 }, -- Sanctum of Light Candelabra
+    { itemID = 250792, achievementID = 42277, categoryID = 15304 }, -- Scroll of the Conclave
+    { itemID = 260776, achievementID = 42279, categoryID = 15304 }, -- Uncrowned Market Stall
+    { itemID = 257403, achievementID = 42280, categoryID = 15304 }, -- Maelstrom Lava Lamp
+    { itemID = 248960, achievementID = 42281, categoryID = 15304 }, -- Dreadscar Dais
+    { itemID = 249466, achievementID = 42282, categoryID = 15304 }, -- Valarjar Shield Wall
+    { itemID = 250123, achievementID = 42287, categoryID = 15304 }, -- Replica Acherus Soul Forge
+    { itemID = 249457, achievementID = 42288, categoryID = 15304 }, -- Replica Cursed Forge of the Nathrezim
+    { itemID = 250134, achievementID = 42289, categoryID = 15304 }, -- Seed of Ages Cutting
+    { itemID = 250125, achievementID = 42290, categoryID = 15304 }, -- Replica Altar of the Eternal Hunt
+    { itemID = 250306, achievementID = 42291, categoryID = 15304 }, -- Conjured Altar of the Guardian
+    { itemID = 262619, achievementID = 42292, categoryID = 15304 }, -- Replica Forge of the Roaring Mountain
+    { itemID = 250230, achievementID = 42293, categoryID = 15304 }, -- Replica Altar of Ancient Kings
+    { itemID = 250790, achievementID = 42294, categoryID = 15304 }, -- Replica Altar of Light and Shadow
+    { itemID = 250787, achievementID = 42295, categoryID = 15304 }, -- Replica Crucible of the Uncrowned
+    { itemID = 250914, achievementID = 42296, categoryID = 15304 }, -- Elemental Altar of the Maelstrom
+    { itemID = 248940, achievementID = 42297, categoryID = 15304 }, -- Replica Felblood Altar
+    { itemID = 249458, achievementID = 42298, categoryID = 15304 }, -- Replica Forge of Odyn
+    { itemID = 264006, achievementID = 42786, categoryID = 169 }, -- Midnight Leatherworker's Shop Sign
+    { itemID = 264000, achievementID = 42787, categoryID = 169 }, -- Midnight Enchanter's Shop Sign
+    { itemID = 263997, achievementID = 42788, categoryID = 169 }, -- Midnight Alchemist's Shop Sign
+    { itemID = 264005, achievementID = 42789, categoryID = 169 }, -- Midnight Jewelcrafter's Shop Sign
+    { itemID = 264173, achievementID = 42790, categoryID = 169 }, -- Midnight Skinner's Shop Sign
+    { itemID = 264172, achievementID = 42791, categoryID = 169 }, -- Midnight Miner's Shop Sign
+    { itemID = 263998, achievementID = 42792, categoryID = 169 }, -- Midnight Blacksmith's Shop Sign
+    { itemID = 264003, achievementID = 42793, categoryID = 169 }, -- Midnight Herbalist's Shop Sign
+    { itemID = 264174, achievementID = 42794, categoryID = 169 }, -- Midnight Tailor's Shop Sign
+    { itemID = 263999, achievementID = 42795, categoryID = 169 }, -- Midnight Cook's Shop Sign
+    { itemID = 264004, achievementID = 42796, categoryID = 169 }, -- Midnight Scribe's Shop Sign
+    { itemID = 264002, achievementID = 42797, categoryID = 169 }, -- Midnight Fisher's Shop Sign
+    { itemID = 264001, achievementID = 42798, categoryID = 169 }, -- Midnight Engineer's Shop Sign
+    { itemID = 260584, achievementID = 60962, categoryID = 15304 }, -- Replica Libram of the Dead
+    { itemID = 249690, achievementID = 60963, categoryID = 15304 }, -- Replica Tome of Fel Secrets
+    { itemID = 250111, achievementID = 60964, categoryID = 15304 }, -- Replica Tome of the Ancients
+    { itemID = 250127, achievementID = 60965, categoryID = 15304 }, -- Replica Tales of the Hunt
+    { itemID = 256674, achievementID = 60966, categoryID = 15304 }, -- Conjured Archive of the Tirisgarde
+    { itemID = 256679, achievementID = 60967, categoryID = 15304 }, -- Replica Chronicle of Ages
+    { itemID = 250233, achievementID = 60968, categoryID = 15304 }, -- Replica Libram of Ancient Kings
+    { itemID = 250791, achievementID = 60969, categoryID = 15304 }, -- Replica Word of the Conclave
+    { itemID = 250788, achievementID = 60970, categoryID = 15304 }, -- Stolen Copy of the Blood Ledger
+    { itemID = 250915, achievementID = 60971, categoryID = 15304 }, -- Replica Words of Wind and Earth
+    { itemID = 256907, achievementID = 60972, categoryID = 15304 }, -- Replica Tome of Blighted Implements
+    { itemID = 257396, achievementID = 60973, categoryID = 15304 }, -- Replica Saga of the Valarjar
+    { itemID = 250112, achievementID = 60981, categoryID = 15304 }, -- Ebon Blade Planning Map
+    { itemID = 249518, achievementID = 60982, categoryID = 15304 }, -- Fel Hammer Scouting Map
+    { itemID = 251013, achievementID = 60983, categoryID = 15304 }, -- Cenarion Arch
+    { itemID = 250126, achievementID = 60984, categoryID = 15304 }, -- Unseen Path Archer's Gallery
+    { itemID = 250131, achievementID = 60985, categoryID = 15304 }, -- Tirisgarde War Map
+    { itemID = 248942, achievementID = 60986, categoryID = 15304 }, -- Five Dawns Planning Table
+    { itemID = 250236, achievementID = 60987, categoryID = 15304 }, -- Silver Hand Weapon Rack
+    { itemID = 251636, achievementID = 60988, categoryID = 15304 }, -- Netherlight Command Map
+    { itemID = 250786, achievementID = 60989, categoryID = 15304 }, -- Uncrowned Planning Table
+    { itemID = 251014, achievementID = 60990, categoryID = 15304 }, -- Earthen Ring Scouting Map
+    { itemID = 264242, achievementID = 60991, categoryID = 15304 }, -- Dreadscar Battle Planning Map
+    { itemID = 249461, achievementID = 60992, categoryID = 15304 }, -- Skyhold War Table
+    { itemID = 264266, achievementID = 61264, categoryID = 15553 }, -- Lightbloom Moss Mound
+    { itemID = 271971, achievementID = 61442, categoryID = 15552 }, -- Tome of Kings
+    { itemID = 257353, achievementID = 61451, categoryID = 15301 }, -- Drained Dark Heart of Galakrond
+    { itemID = 245332, achievementID = 61467, categoryID = 15552 }, -- Tome of Silvermoon Intrigue
+    { itemID = 257367, achievementID = 61507, categoryID = 15553 }, -- Silvermoon Energy Focus
+    { itemID = 264259, achievementID = 61574, categoryID = 15547 }, -- "On'ohia's Call"
+    { itemID = 247763, achievementID = 61683, categoryID = 95 }, -- Berserker's Empowerment
+    { itemID = 264335, achievementID = 62122, categoryID = 15553 }, -- Colossal Amani Stone Visage
+    { itemID = 264493, achievementID = 62130, categoryID = 15553 }, -- Opened Domanaar Storage Crate
+    { itemID = 265696, achievementID = 62144, categoryID = 15605 }, -- Preyseeker's Magister Bust
+    { itemID = 265697, achievementID = 62153, categoryID = 15605 }, -- Preyseeker's Tinker Bust
+    { itemID = 265798, achievementID = 62154, categoryID = 15605 }, -- Preyseeker's Ren'dorei Bust
+    { itemID = 265698, achievementID = 62155, categoryID = 15605 }, -- Preyseeker's Ethereal Bust
+    { itemID = 265699, achievementID = 62156, categoryID = 15605 }, -- Preyseeker's Breaker Bust
+    { itemID = 265700, achievementID = 62157, categoryID = 15605 }, -- Preyseeker's Amani Bust
+    { itemID = 265799, achievementID = 62158, categoryID = 15605 }, -- Preyseeker's Farstrider Bust
+    { itemID = 265701, achievementID = 62159, categoryID = 15605 }, -- Preyseeker's Rutaani Bust
+    { itemID = 265702, achievementID = 62160, categoryID = 15605 }, -- Preyseeker's Vindicator Bust
+    { itemID = 265703, achievementID = 62161, categoryID = 15605 }, -- Preyseeker's Consul Bust
+    { itemID = 265704, achievementID = 62162, categoryID = 15605 }, -- Preyseeker's Executor Bust
+    { itemID = 265705, achievementID = 62163, categoryID = 15605 }, -- Preyseeker's Knight-Errant Bust
+    { itemID = 265706, achievementID = 62164, categoryID = 15605 }, -- Preyseeker's Wretched Bust
+    { itemID = 265707, achievementID = 62165, categoryID = 15605 }, -- Preyseeker's Thornspeaker Bust
+    { itemID = 265708, achievementID = 62166, categoryID = 15605 }, -- Preyseeker's Twilight Bust
+    { itemID = 265681, achievementID = 62167, categoryID = 15605 }, -- Preyseeker's Magister Effigy
+    { itemID = 265682, achievementID = 62168, categoryID = 15605 }, -- Preyseeker's Tinker Effigy
+    { itemID = 265796, achievementID = 62169, categoryID = 15605 }, -- Preyseeker's Ren'dorei Effigy
+    { itemID = 265683, achievementID = 62173, categoryID = 15605 }, -- Preyseeker's Ethereal Effigy
+    { itemID = 265684, achievementID = 62174, categoryID = 15605 }, -- Preyseeker's Breaker Effigy
+    { itemID = 265685, achievementID = 62175, categoryID = 15605 }, -- Preyseeker's Amani Effigy
+    { itemID = 265797, achievementID = 62176, categoryID = 15605 }, -- Preyseeker's Farstrider Effigy
+    { itemID = 265686, achievementID = 62177, categoryID = 15605 }, -- Preyseeker's Rutaani Effigy
+    { itemID = 265687, achievementID = 62178, categoryID = 15605 }, -- Preyseeker's Vindicator Effigy
+    { itemID = 265688, achievementID = 62179, categoryID = 15605 }, -- Preyseeker's Consul Effigy
+    { itemID = 265689, achievementID = 62180, categoryID = 15605 }, -- Preyseeker's Executor Effigy
+    { itemID = 265690, achievementID = 62181, categoryID = 15605 }, -- Preyseeker's Knight-Errant Effigy
+    { itemID = 265691, achievementID = 62182, categoryID = 15605 }, -- Preyseeker's Wretched Effigy
+    { itemID = 265692, achievementID = 62183, categoryID = 15605 }, -- Preyseeker's Thornspeaker Effigy
+    { itemID = 265694, achievementID = 62184, categoryID = 15605 }, -- Preyseeker's Twilight Effigy
+    { itemID = 244656, achievementID = 62185, categoryID = 15553 }, -- Silvermoon Painter's Cushion
+    { itemID = 251909, achievementID = 62186, categoryID = 15553 }, -- Eversong Feast Platter
+    { itemID = 254773, achievementID = 62288, categoryID = 15553 }, -- "Eversong Lantern" Painting
+    { itemID = 256925, achievementID = 62289, categoryID = 15553 }, -- Amani Spearhunter's Spit
+    { itemID = 265792, achievementID = 62290, categoryID = 15553 }, -- Fungarian Vine Fence
+    { itemID = 264656, achievementID = 62291, categoryID = 15553 }, -- Void Elf Weapon Rack
+    { itemID = 260785, achievementID = 62387, categoryID = 15274 }, -- Miniature Replica Dark Portal
+    { itemID = 276083, achievementID = 63325, categoryID = 15610 }, -- Sunstrider Omnium Simulacrum
+    { itemID = 274731, achievementID = 63343, categoryID = 15268 }, -- Prized Orb of Azeroth
+    { itemID = 274734, achievementID = 63343, categoryID = 15268 }, -- Framed Horde Pride
+    { itemID = 274736, achievementID = 63343, categoryID = 15268 }, -- Framed Alliance Pride
+}
+
+SFC.Legacy = {
+    { itemID = 220766, achievementID = 20593, categoryID = 15536 }, -- August Phoenix
+    { itemID = 253028, achievementID = 42504, categoryID = 15604 }, -- Felscorned Highlord's Charger
+    { itemID = 253033, achievementID = 42684, categoryID = 15604 }, -- Felscorned War Wyrm
+    { itemID = 252954, achievementID = 42685, categoryID = 15604 }, -- Felscorned Vilebrood Vanquisher
+    { itemID = 253031, achievementID = 42686, categoryID = 15604 }, -- Farseer's Felscorned Tempest
+    { itemID = 253025, achievementID = 42687, categoryID = 15604 }, -- Felscorned Wolfhawk
+    { itemID = 253030, achievementID = 61084, categoryID = 15604 }, -- Shadowblade's Felscorned Omen
+    { itemID = 253027, achievementID = 61085, categoryID = 15604 }, -- Felscorned Grandmaster's Companion
+    { itemID = 253024, achievementID = 61086, categoryID = 15604 }, -- Feldruid's Scornwing Idol (not an actual mount)
+    { itemID = 253013, achievementID = 61087, categoryID = 15604 }, -- Slayer's Felscorned Shrieker
+    { itemID = 253029, achievementID = 61088, categoryID = 15604 }, -- High Priest's Felscorned Seeker
+    { itemID = 253026, achievementID = 61089, categoryID = 15604 }, -- Archmage's Felscorned Disc
+    { itemID = 253032, achievementID = 61090, categoryID = 15604 }, -- Felscorned Netherlord's Dreadsteed
+    { titleID = 551, achievementID = 42301, categoryID = 15604 }, -- Timerunner
+    { titleID = 658, achievementID = 42691, categoryID = 15604 }, -- the Infernal
+    { titleID = 646, achievementID = 60935, categoryID = 15604 }, -- Chronoscholar
+    { titleID = 659, achievementID = 61079, categoryID = 15604 }, -- of the Infinite Chaos
+    { itemID = 253201, achievementID = 42583, categoryID = 15604 }, -- Felscorned Scythe of the Unmaker
+    { itemID = 253344, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Sarong
+    { itemID = 253345, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Crown
+    { itemID = 253346, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Robe
+    { itemID = 253347, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Sash
+    { itemID = 253348, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Anklets
+    { itemID = 253349, achievementID = 42605, categoryID = 15604 }, -- Kaldorei Queen's Bangles
+    { itemID = 253353, achievementID = 42630, categoryID = 15604 }, -- Illusion: Felshatter
+    { itemID = 253231, achievementID = 42666, categoryID = 15604 }, -- Fallen King's Corrupted Blades
+    { itemID = 253219, achievementID = 42549, categoryID = 15604 }, -- Bulwark of Mannoroth (Shield)
+    { itemID = 253220, achievementID = 42549, categoryID = 15604 }, -- Bulwark of Mannoroth (Back)
+    { itemID = 257105, achievementID = 42690, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Hellforged Regalia
+    { itemID = 241596, achievementID = 61024, categoryID = 15604 }, -- Ensemble: Funerary Plate of the Chosen Dead
+    { itemID = 241599, achievementID = 61025, categoryID = 15604 }, -- Ensemble: Chains of the Chosen Dead
+    { itemID = 241603, achievementID = 61026, categoryID = 15604 }, -- Ensemble: Garb of the Chosen Dead
+    { itemID = 241608, achievementID = 61027, categoryID = 15604 }, -- Ensemble: Regalia of the Chosen Dead
+    { itemID = 257104, achievementID = 61070, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Voidscarred Regalia
+    { itemID = 257106, achievementID = 61078, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Lightbound Regalia
+    { itemID = 253343, achievementID = 61337, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Felscorned Regalia
+    { spellID = 1254381, achievementID = 42319, categoryID = 15604 }, -- Fledgling Warden's Companion
+    { itemID = 246339, achievementID = 42541, categoryID = 15604 }, -- Duskytooth Fel Snooter
+    { itemID = 250307, achievementID = 42318, categoryID = 15604 }, -- Tome of the Corrupt
+    { itemID = 250406, achievementID = 42321, categoryID = 15604 }, -- Corruption Pit
+    { itemID = 258299, achievementID = 42547, categoryID = 15604 }, -- Hanging Felsteel Cage
+    { itemID = 250407, achievementID = 42619, categoryID = 15604 }, -- Legion's Fel Brazier
+    { itemID = 256677, achievementID = 42628, categoryID = 15604 }, -- Large Legion Candle
+    { itemID = 252753, achievementID = 42655, categoryID = 15604 }, -- Demonic Storage Chest
+    { itemID = 250402, achievementID = 42658, categoryID = 15604 }, -- Vrykul Lord's Throne
+    { itemID = 250693, achievementID = 42674, categoryID = 15604 }, -- Altar of the Corrupted Flames
+    { itemID = 250403, achievementID = 42692, categoryID = 15604 }, -- Legion's Holo-Communicator
 }

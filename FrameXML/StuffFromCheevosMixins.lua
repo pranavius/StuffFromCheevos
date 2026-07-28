@@ -239,6 +239,28 @@ local function getPetRewards()
     return result
 end
 
+---@return Reward[]
+local function getDecorRewards()
+    ---@type Reward[]
+    local result = {}
+    if not SFC_DB or not SFC_DB.itemsCache then return result end
+
+    for _, reward in ipairs(SFC.Decor) do
+        if not reward.faction or reward.faction == SFCMain.faction then
+            tinsert(result, {
+                name = SFC_DB.itemsCache[reward.itemID].name or "Unknown Decor",
+                achievementID = reward.achievementID,
+                categoryID = reward.categoryID,
+                type = "Decor",
+                icon = SFC_DB.itemsCache[reward.itemID].icon or 134110,
+                faction = reward.faction
+            })
+        end
+    end
+
+    return result
+end
+
 ---@param category string
 function SFCMainMixin:PopulateRewardsList(category)
     self.category = category
@@ -251,6 +273,7 @@ function SFCMainMixin:PopulateRewardsList(category)
         customizations = getCustomizationRewards(),
         toys = getToyRewards(),
         pets = getPetRewards(),
+        decor = getDecorRewards(),
          ---@type Reward[]
         all = {}
     }
@@ -261,6 +284,7 @@ function SFCMainMixin:PopulateRewardsList(category)
         tAppendAll(rewardLists.all, rewardLists.customizations)
         tAppendAll(rewardLists.all, rewardLists.toys)
         tAppendAll(rewardLists.all, rewardLists.pets)
+        tAppendAll(rewardLists.all, rewardLists.decor)
         -- When showing all rewards, sort them by achievement, category, then name
         table.sort(rewardLists.all, function(a, b)
             if a.achievementID ~= b.achievementID then return a.achievementID < b.achievementID end
@@ -280,6 +304,10 @@ function SFCMainMixin:PopulateRewardsList(category)
         SFC.DataProvider = CreateDataProvider(rewardLists.toys)
     elseif category == "Pets" then
         SFC.DataProvider = CreateDataProvider(rewardLists.pets)
+    elseif category == "Decor" then
+        SFC.DataProvider = CreateDataProvider(rewardLists.decor)
+    else
+        SFC.DataProvider = CreateDataProvider({})
     end
 
     self.Rewards.ScrollFrame:SetDataProvider(SFC.DataProvider, false)

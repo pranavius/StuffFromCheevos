@@ -2,4 +2,8 @@
 .vscode
 .release
 Libs
+
+# Local dev files
 DataDump.lua
+category_dump.json
+scratch.js
