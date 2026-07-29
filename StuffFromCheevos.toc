@@ -22,8 +22,8 @@
 ## X-Last-Update: @build-date-iso@
 
 Data.lua
-LogUtils.lua
 DBUtils.lua
+LogUtils.lua
 StuffFromCheevos.lua
 FrameXML\StuffFromCheevosMixins.lua
 FrameXML\StuffFromCheevos.xml

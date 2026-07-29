@@ -1,5 +1,6 @@
 local SFC = select(2, ...)
 
+--region SFCCategoryButtonMixin
 ---@class SFCCategoryButtonTemplate: Button
 SFCCategoryButtonMixin = {}
 
@@ -10,10 +11,12 @@ function SFCCategoryButtonMixin:SetCategory(category)
         ---@cast button SFCCategoryButtonTemplate
         SFCMain:ResetCategoryButtonTextures()
         button:SetNormalAtlas("common-button-tertiary-selected")
-        SFCMain:PopulateRewardsList(category)
+        SFCMain:PopulateRewardsList(category, true)
     end)
 end
+--endregion
 
+--region SFCMainMixin
 ---@class SFCMain: PortraitFrameTemplate
 SFCMainMixin = {}
 
@@ -31,9 +34,9 @@ function SFCMainMixin:OnLoad()
     self.Rewards.ScrollFrame:InitializeScrollFrame()
     tinsert(UISpecialFrames, self:GetName())
     EventRegistry:RegisterCallback("StuffFromCheevos.ItemsCached", function()
-        self:PopulateRewardsList(self.category)
+        self:PopulateRewardsList(self.category, false)
     end)
-    EventRegistry:RegisterCallback("StuffFromCheevos.FiltersUpdated", function() self:PopulateRewardsList(self.category) end)
+    EventRegistry:RegisterCallback("StuffFromCheevos.FiltersUpdated", function() self:PopulateRewardsList(self.category, true) end)
     self:RegisterEvent("PLAYER_STARTED_MOVING")
     self:RegisterEvent("PLAYER_STOPPED_MOVING")
     self.player = UnitName("player")
@@ -64,9 +67,14 @@ function SFCMainMixin:OnLoad()
     catList:Layout()
 
     -- Initialize window with default category pre-selected (currently "All")
-    self:PopulateRewardsList(self.category)
     ---@type Button & SFCCategoryButtonTemplate
     _G["SFCCategoryButton"..self.category]:SetNormalAtlas("common-button-tertiary-selected")
+
+    -- Search box text filtering script
+    self.RewardSearch:HookScript("OnTextChanged", function(sb)
+        SFC_DB.filters.searchTerm = sb:GetText()
+        EventRegistry:TriggerEvent("StuffFromCheevos.FiltersUpdated")
+    end)
 end
 
 function SFCMainMixin:OnDragStart()
@@ -145,7 +153,7 @@ end
 local function getCosmeticRewards()
     ---@type Reward[]
     local result = {}
-    if not SFC_DB or not SFC_DB.itemsCache then return result end
+    if not SFC.DBUtils.GetProperty("itemsCache") then return result end
 
     for _, reward in ipairs(SFC.Cosmetics) do
         if not reward.faction or reward.faction == SFCMain.faction then
@@ -190,7 +198,7 @@ end
 local function getToyRewards()
     ---@type Reward[]
     local result = {}
-    if not SFC_DB or not SFC_DB.itemsCache then return result end
+    if not SFC.DBUtils.GetProperty("itemsCache") then return result end
 
     for _, reward in ipairs(SFC.Toys) do
         if not reward.faction or reward.faction == SFCMain.faction then
@@ -212,7 +220,7 @@ end
 local function getPetRewards()
     ---@type Reward[]
     local result = {}
-    if not SFC_DB or not SFC_DB.itemsCache then return result end
+    if not SFC.DBUtils.GetProperty("itemsCache") then return result end
 
     for _, reward in ipairs(SFC.Pets) do
         if reward.spellID and (not reward.faction or reward.faction == SFCMain.faction) then
@@ -244,7 +252,7 @@ end
 local function getDecorRewards()
     ---@type Reward[]
     local result = {}
-    if not SFC_DB or not SFC_DB.itemsCache then return result end
+    if not SFC.DBUtils.GetProperty("itemsCache") then return result end
 
     for _, reward in ipairs(SFC.Decor) do
         if not reward.faction or reward.faction == SFCMain.faction then
@@ -260,6 +268,37 @@ local function getDecorRewards()
     end
 
     return result
+end
+
+---@param categoryID number
+---@return string tree
+local function getCategoryTree(categoryID)
+    local categories = {}
+    local name, parentID = GetCategoryInfo(categoryID)
+    tinsert(categories, name)
+    while parentID ~= -1 do
+        name, parentID = GetCategoryInfo(parentID)
+        tinsert(categories, 1, name)
+    end
+
+    return table.concat(categories, DARKYELLOW_FONT_COLOR:WrapTextInColorCode(" > "))
+end
+
+---@param reward Reward
+---@param searchTerm string
+---@return boolean
+local function rewardMatchesSearchTerm(reward, searchTerm)
+    local achievementName = select(2, GetAchievementInfo(reward.achievementID))
+    local categoryText = getCategoryTree(reward.categoryID)
+
+    return achievementName:lower():find(searchTerm, 1, true) ~= nil
+        or categoryText:lower():find(searchTerm, 1, true) ~= nil
+        or reward.name:lower():find(searchTerm) ~= nil
+        or reward.type:lower():find(searchTerm) ~= nil
+        or (reward.faction and reward.faction:lower():find(searchTerm) ~= nil)
+        or tostring(reward.achievementID):find(searchTerm) ~= nil
+        or tostring(reward.categoryID):find(searchTerm) ~= nil
+        or tostring(reward.itemID):find(searchTerm) ~= nil
 end
 
 ---@param bar StatusBar
@@ -293,7 +332,8 @@ local function getProgressValues(rewards)
 end
 
 ---@param category string
-function SFCMainMixin:PopulateRewardsList(category)
+---@param shouldAnimateProgressBar boolean
+function SFCMainMixin:PopulateRewardsList(category, shouldAnimateProgressBar)
     self.category = category
     if category ~= "All" and not SFC[category] then return end
 
@@ -308,6 +348,19 @@ function SFCMainMixin:PopulateRewardsList(category)
          ---@type Reward[]
         all = {}
     }
+
+    local searchTerm = SFC.DBUtils.GetProperty("searchTerm")
+    if searchTerm ~= "" then
+        searchTerm = searchTerm:lower()
+        for listName, rewards in pairs(rewardLists) do
+            for i = #rewards, 1, -1 do
+                if not rewardMatchesSearchTerm(rewards[i], searchTerm) then
+                    table.remove(rewards, i)
+                end
+            end
+        end
+    end
+
     if category == "All" then
         tAppendAll(rewardLists.all, rewardLists.mounts)
         tAppendAll(rewardLists.all, rewardLists.titles)
@@ -344,10 +397,15 @@ function SFCMainMixin:PopulateRewardsList(category)
     self.Rewards.ScrollFrame:SetDataProvider(SFC.DataProvider, false)
     local completed, total = getProgressValues(SFC.DataProvider:GetCollection())
     self.RewardsProgress.Text:SetText(completed.."/"..total)
-    -- self.RewardsProgress:SetValue(completed/total * 100)
-    animateProgressBar(self.RewardsProgress, completed/total * 100)
+    if shouldAnimateProgressBar and SFC.DBUtils.GetProperty("animateProgressBar") then
+        animateProgressBar(self.RewardsProgress, total == 0 and 0 or completed/total * 100)
+    else
+        self.RewardsProgress:SetValue(total == 0 and 0 or completed/total * 100)
+    end
 end
+--endregion
 
+--region SFCScrollFrameMixin
 ---@param title string
 local function getNameTitleCombo(title)
     local name = SFCMain.classColor:WrapTextInColorCode(SFCMain.player)
@@ -373,26 +431,13 @@ ShowAchievementFrameForAchievement = ShowAchievementFrameForAchievement or funct
 	end
 end
 
----@param categoryID number
----@return string tree
-local function getCategoryTree(categoryID)
-    local categories = {}
-    local name, parentID = GetCategoryInfo(categoryID)
-    tinsert(categories, name)
-    while parentID ~= -1 do
-        name, parentID = GetCategoryInfo(parentID)
-        tinsert(categories, 1, name)
-    end
-
-    return table.concat(categories, DARKYELLOW_FONT_COLOR:WrapTextInColorCode(" > "))
-end
-
 ---@param frame SFCRewardFrameTemplate
 ---@param reward Reward
-local function createRewardsList(frame, reward)
+local function createRewardFrame(frame, reward)
     if not frame or not reward then return end
 
     local _, _, points, isCompleted, completedMonth, completedDay, completedYear, _, flags = GetAchievementInfo(reward.achievementID)
+    local categoryText = getCategoryTree(reward.categoryID)
 
     frame.FactionBg:SetSize((frame:GetHeight() - 10) * 0.92, frame:GetHeight() - 10)
     if isCompleted then
@@ -429,7 +474,7 @@ local function createRewardsList(frame, reward)
     frame.CheevoLink:ClearAllPoints()
     frame.CheevoLink:SetPoint("BOTTOMLEFT", frame.Icon, "BOTTOMRIGHT", 10, frame.RewardType:IsShown() and -5 or 0)
 
-    frame.CheevoCategory:SetText(getCategoryTree(reward.categoryID))
+    frame.CheevoCategory:SetText(categoryText)
 
     local progressText
     if isCompleted then
@@ -480,8 +525,9 @@ function SFCScrollFrameMixin:InitializeScrollFrame()
 
     ScrollUtil.InitScrollBoxListWithScrollBar(self, SFCMain.Rewards.ScrollBar, self.ScrollView)
     self.ScrollView:SetElementFactory(function(factory)
-        factory("SFCRewardFrameTemplate", createRewardsList)
+        factory("SFCRewardFrameTemplate", createRewardFrame)
     end)
     self.ScrollView:SetElementExtent(self.ScrollView:GetTemplateExtent("SFCRewardFrameTemplate"))
     self.ScrollView:SetDataProvider(CreateDataProvider())
 end
+--endregion

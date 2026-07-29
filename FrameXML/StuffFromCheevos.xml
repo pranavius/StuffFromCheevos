@@ -121,7 +121,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         </Anchors>
         <Frames>
             <Frame parentKey="Categories" inherits="InsetFrameTemplate">
-                <Size x="200"/>
+                <Size x="170"/>
                 <Anchors>
                     <!-- TOPLEFT Anchor defined in mixin's OnLoad (anchored to bottom of portrait mask texture) -->
                     <Anchor point="BOTTOMLEFT" y="10"/>
@@ -133,11 +133,39 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <Anchor point="BOTTOMRIGHT"/>
                         </Anchors>
                     </Frame>
+                    <!-- <CheckButton parentKey="ShowOwned" inherits="MinimalCheckboxTemplate">
+                        <Size x="20" y="19"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.List" relativePoint="BOTTOMLEFT" y="10"/>
+                            <Anchor point="TOPRIGHT" relativeKey="$parent.List" relativePoint="BOTTOMRIGHT" y="10"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString parentKey="Text" inherits="GameFontHighlightSmall" text="Show Owned">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT" x="2"/>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </CheckButton> -->
                 </Frames>
             </Frame>
+            <StatusBar name="SFCRewardsProgress" parentKey="RewardsProgress" inherits="AchievementProgressBarTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Categories" relativePoint="TOPRIGHT" x="20" y="-5"/>
+                </Anchors>
+            </StatusBar>
+            <EditBox parentKey="RewardSearch" inherits="SearchBoxTemplate" autoFocus="false">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="SFCRewardsProgressBorderRight" relativePoint="TOPRIGHT" x="50"/>
+                    <Anchor point="BOTTOMLEFT" relativeTo="SFCRewardsProgressBorderRight" relativePoint="BOTTOMRIGHT"/>
+                    <Anchor point="RIGHT" x="-10"/>
+                </Anchors>
+            </EditBox>
             <Frame parentKey="Rewards" inherits="InsetFrameTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.Categories" relativePoint="TOPRIGHT" x="20" y="-45"/>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.RewardsProgress" relativePoint="BOTTOMLEFT" x="-3" y="-10"/>
                     <Anchor point="BOTTOMRIGHT" x="-10" y="10"/>
                 </Anchors>
                 <Frames>
@@ -155,35 +183,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     </Frame>
                 </Frames>
             </Frame>
-            <StatusBar name="SFCRewardsProgress" parentKey="RewardsProgress" inherits="AchievementProgressBarTemplate">
-                <Anchors>
-                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.Rewards" relativePoint="TOPLEFT" x="3" y="10"/>
-                </Anchors>
-            </StatusBar>
-            <EditBox parentKey="RewardSearch" inherits="SearchBoxTemplate" autoFocus="false">
-                <Anchors>
-                    <Anchor point="TOPLEFT" relativeTo="SFCRewardsProgressBorderRight" relativePoint="TOPRIGHT" x="50"/>
-                    <Anchor point="BOTTOMLEFT" relativeTo="SFCRewardsProgressBorderRight" relativePoint="BOTTOMRIGHT"/>
-                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Rewards" relativePoint="TOPRIGHT" y="10"/>
-                </Anchors>
-            </EditBox>
         </Frames>
-        <Layers>
-            <Layer level="ARTWORK">
-                <FontString parentKey="CategoryTitle" inherits="GameFontHighlight" text="Categories">
-                    <Anchors>
-                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.Categories" relativePoint="TOPLEFT" y="5"/>
-                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Categories" relativePoint="TOPRIGHT" y="5"/>
-                    </Anchors>
-                </FontString>
-                <FontString parentKey="RewardsTitle" inherits="GameFontHighlight" text="Rewards" justifyH="LEFT">
-                    <Anchors>
-                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.RewardsProgress" relativePoint="TOPLEFT" y="10"/>
-                        <!-- <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Rewards" relativePoint="TOPRIGHT" y="40"/> -->
-                    </Anchors>
-                </FontString>
-            </Layer>
-        </Layers>
         <Scripts>
             <OnLoad method="OnLoad"/>
             <OnDragStart method="OnDragStart"/>

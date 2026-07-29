@@ -14,18 +14,12 @@ NineSliceUtil.AddLayout("SFCRewardItem", {
     Center = { atlas = "UI-HUD-Minimap-Button-NineSlice-Center" },
 })
 
-SFC_DB_DEFAULTS = {
-    debug = false,
-    itemsCache = {},
-    filters = { showCompleted = true, searchTerm = "", sortOrder = "" }
-}
-
 -- Event handling (probably a better way to do this but idk)
 local ef = CreateFrame("Frame")
 ef:HookScript("OnEvent", function(self, event, ...)
     if event == "ADDON_LOADED" and ... == addonName then
-        if not SFC_DB then SFC_DB = SFC_DB_DEFAULTS end
-        SFC.LogUtils.DebugMessage("AddOn Loaded")
+        SFC.DBUtils.EnsureDefaults()
+        SFC.LogUtils.DebugMessage("Stuff From Cheevos Loaded")
         SFC.DBUtils.BuildItemsCache()
         self:UnregisterEvent("ADDON_LOADED")
     end

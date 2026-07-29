@@ -8,5 +8,5 @@ function LogUtils.Message(...)
 end
 
 function LogUtils.DebugMessage(...)
-    if SFC_DB.debug then LogUtils.Message(LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("[Debug]"), ...) end
+    if SFC.DBUtils.GetProperty("debug") then LogUtils.Message(LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("[Debug]"), ...) end
 end
