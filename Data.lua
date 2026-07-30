@@ -396,19 +396,13 @@ SFC.Titles = {
 
 SFC.Cosmetics = {
     { itemID = 43348, achievementID = 45, categoryID = 97 }, -- Tabard of the Explorer
-    { itemID = 49052, achievementID = 3857, categoryID = 15003 }, -- Tabard of Conquest (Alliance)
-    { itemID = 49054, achievementID = 3857, categoryID = 15003 }, -- Tabard of Conquest (Alliance)
-    { itemID = 49052, achievementID = 3957, categoryID = 15003 }, -- Tabard of Conquest
-    { itemID = 49054, achievementID = 3957, categoryID = 15003 }, -- Tabard of Conquest
+    { itemID = 49052, achievementID = 3857, categoryID = 15003, faction = FACTION_NAME.ALLIANCE }, -- Tabard of Conquest (Alliance)
+    { itemID = 49054, achievementID = 3957, categoryID = 15003, faction = FACTION_NAME.HORDE }, -- Tabard of Conquest
     { itemID = 43300, achievementID = 7520, categoryID = 96 }, -- Loremaster's Colors
-    { itemID = 128362, achievementID = 10172, categoryID = 15303 }, -- Captain's Hat (Alliance)
-    { itemID = 128363, achievementID = 10172, categoryID = 15303 }, -- Captain's Hat (Alliance)
-    { itemID = 128362, achievementID = 10255, categoryID = 15303 }, -- Captain's Hat
-    { itemID = 128363, achievementID = 10255, categoryID = 15303 }, -- Captain's Hat
-    { itemID = 128364, achievementID = 10256, categoryID = 15303 }, -- Fleet Commander's Hat (Alliance)
-    { itemID = 128365, achievementID = 10256, categoryID = 15303 }, -- Fleet Commander's Hat (Alliance)
-    { itemID = 128364, achievementID = 10258, categoryID = 15303 }, -- Fleet Commander's Hat
-    { itemID = 128365, achievementID = 10258, categoryID = 15303 }, -- Fleet Commander's Hat
+    { itemID = 128362, achievementID = 10172, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Captain's Hat (Alliance)
+    { itemID = 128363, achievementID = 10255, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Captain's Hat
+    { itemID = 128364, achievementID = 10256, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Fleet Commander's Hat
+    { itemID = 128365, achievementID = 10256, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Fleet Commander's Hat (Alliance)
     { itemID = 156666, achievementID = 12290, categoryID = 15119 }, -- Master Trainer's Tabard
     -- Heritage of the Void (Void Elf)
     { itemID = 156690, achievementID = 12291, categoryID = 201 }, -- Ren'dorei Helm
@@ -526,7 +520,6 @@ SFC.Cosmetics = {
     { itemID = 173980, achievementID = 14014, categoryID = 201 }, -- X-52 Sapper's Shoulderguards
     { itemID = 173981, achievementID = 14014, categoryID = 201 }, -- X-52 Utility Belt
     { itemID = 173982, achievementID = 14014, categoryID = 201 }, -- X-52 Minesweeper Wristwraps
-    { itemID = 183693, achievementID = 14763, categoryID = 15441 }, -- Plague Doctor's Mask
     { itemID = 190110, achievementID = 15392, categoryID = 15436 }, -- Arsenal: Weapons of Glorious Domination
     { itemID = 190111, achievementID = 15392, categoryID = 15436 }, -- Arsenal: Weapons of Glorious Domination
     { itemID = 190112, achievementID = 15392, categoryID = 15436 }, -- Arsenal: Weapons of Glorious Domination
@@ -603,6 +596,7 @@ SFC.Customizations = {
     { icon = "RaceIcon128-Vulpera-Male", achievementID = 13206, categoryID = 201 }, -- Race Unlocked: Vulpera
     { icon = 7449410, achievementID = 13513, categoryID = 15248 }, -- Paint Color: Battletorn Blue
     { icon = "RaceIcon128-Mechagnome-Male", achievementID = 14013, categoryID = 201 }, -- Race Unlocked: Mechagnome
+    { icon = 2450998, achievementID = 14763, categoryID = 15441 }, -- Plague Doctor's Mask
     { icon = 669448, achievementID = 15508, categoryID = 15436 }, -- Pet Costume: Lovely Regal Pocopoc
     { icon = 254288, achievementID = 15916, categoryID = 15462 }, -- Drake Customization: Renewed Proto-Drake - Red Hair
     { icon = 303622, achievementID = 15919, categoryID = 15462 }, -- Drake Customization: Windborne Velocidrake - Red Hair

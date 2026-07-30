@@ -22,10 +22,11 @@ SFCMainMixin = {}
 
 ---@class Reward
 ---@field name string
----@field type string
+---@field type "Mount"|"Title"|"Cosmetic"|"Customization"|"Toy"|"Pet"|"Decor"
 ---@field achievementID number
 ---@field categoryID number
 ---@field itemID number?
+---@field spellID number?
 ---@field icon number|string|nil
 ---@field atlas string?
 ---@field faction string?
@@ -135,6 +136,7 @@ local function getMountRewards()
             local spellInfo = C_Spell.GetSpellInfo(reward.spellID)
             tinsert(result, {
                 name = spellInfo.name,
+                spellID = spellInfo.spellID,
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
                 type = "Mount",
@@ -147,6 +149,7 @@ local function getMountRewards()
                 local mountName, _, iconID = C_MountJournal.GetMountInfoByID(mountID)
                 tinsert(result, {
                     name = mountName,
+                    itemID = reward.itemID,
                     achievementID = reward.achievementID,
                     categoryID = reward.categoryID,
                     type = "Mount",
@@ -156,6 +159,7 @@ local function getMountRewards()
             elseif not mountID and SFC.DBUtils.GetItemFromCache(reward.itemID) then
                 tinsert(result, {
                     name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Mount ("..reward.itemID..")",
+                    itemID = reward.itemID,
                     achievementID = reward.achievementID,
                     categoryID = reward.categoryID,
                     type = "Mount",
@@ -211,6 +215,7 @@ local function getCosmeticRewards()
         if SFC.DBUtils.GetItemFromCache(reward.itemID) and (not reward.faction or reward.faction == SFCMain.faction) then
             tinsert(result, {
                 name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Cosmetic ("..reward.itemID..")",
+                itemID = reward.itemID,
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
                 type = "Cosmetic",
@@ -256,6 +261,7 @@ local function getToyRewards()
         if SFC.DBUtils.GetItemFromCache(reward.itemID) and (not reward.faction or reward.faction == SFCMain.faction) then
             tinsert(result, {
                 name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Toy ("..reward.itemID..")",
+                itemID = reward.itemID,
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
                 type = "Toy",
@@ -279,6 +285,7 @@ local function getPetRewards()
             local spellInfo = C_Spell.GetSpellInfo(reward.spellID)
             tinsert(result, {
                 name = spellInfo.name,
+                spellID = spellInfo.spellID,
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
                 type = "Pet",
@@ -288,6 +295,7 @@ local function getPetRewards()
         elseif SFC.DBUtils.GetItemFromCache(reward.itemID) and (not reward.faction or reward.faction == SFCMain.faction) then
             tinsert(result, {
             name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Pet ("..reward.itemID..")",
+            itemID = reward.itemID,
             achievementID = reward.achievementID,
             categoryID = reward.categoryID,
             type = "Pet",
@@ -310,6 +318,7 @@ local function getDecorRewards()
         if SFC.DBUtils.GetItemFromCache(reward.itemID) and (not reward.faction or reward.faction == SFCMain.faction) then
             tinsert(result, {
                 name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Decor ("..reward.itemID..")",
+                itemID = reward.itemID,
                 achievementID = reward.achievementID,
                 categoryID = reward.categoryID,
                 type = "Decor",
@@ -480,6 +489,44 @@ local function getNameTitleCombo(title)
     return title
 end
 
+---@param frame SFCRewardFrameTemplate
+---@param reward Reward
+local function registerRewardPreview(frame, reward)
+    local icon = frame.Icon
+    if reward.type ~= "Title" or reward.type ~= "Customization" then
+        icon:SetMouseClickEnabled(true)
+        icon:SetScript("OnEnter", function()
+            SFCMain.isHoveringPreviewableItem = true
+            SetCursorByMode(Enum.Cursormode.InspectCursor)
+        end)
+        icon:SetScript("OnLeave", function()
+            SFCMain.isHoveringPreviewableItem = false
+            ResetCursor()
+        end)
+
+        if reward.type == "Mount" then
+            local mountID = reward.spellID and C_MountJournal.GetMountFromSpell(reward.spellID) or C_MountJournal.GetMountFromItem(reward.itemID)
+            if mountID then
+                icon:SetScript("OnMouseDown", function(_, mouseBtn) if mouseBtn == "LeftButton" then DressUpMount(mountID) end end)
+            else
+                SFC.LogUtils.Message("Unable to preview", reward.name)
+            end
+        elseif reward.type == "Pet" and reward.spellID == 61773 then
+            -- TODO: Hardcode values for Plump Turkey (one-off exception)
+        elseif reward.type == "Pet" then
+            local _, _, _, creatureID, _, _, _, _, _, _, _, displayID, speciesID = C_PetJournal.GetPetInfoByItemID(reward.itemID)
+            if creatureID and displayID and speciesID then
+                icon:SetScript("OnMouseDown", function(_, mouseBtn) if mouseBtn == "LeftButton" then DressUpBattlePet(creatureID, displayID, speciesID) end end)
+            end
+        end
+    else
+        icon:SetMouseClickEnabled(false)
+        icon:SetScript("OnMouseDown", nil)
+        icon:SetScript("OnEnter", nil)
+        icon:SetScript("OnLeave", nil)
+    end
+end
+
 ---Lifted straight from Blizzard's 12.1.0 Achievement bootstrap functions (scrap shortly after patch launches)
 ---@param achievementID number
 ShowAchievementFrameForAchievement = ShowAchievementFrameForAchievement or function(achievementID)
@@ -520,6 +567,38 @@ local function createRewardFrame(frame, reward)
         frame.Icon:SetTexture(reward.icon)
     end
     frame.IconBorder:SetShown(reward.atlas ~= nil or reward.icon ~= nil)
+
+    registerRewardPreview(frame, reward)
+    -- Show appropriate tooltip when hovering icons
+    if (reward.icon or reward.atlas) and (reward.itemID or reward.spellID) then
+        frame.IconMask:SetScript("OnEnter", function(mask)
+            GameTooltip:SetOwner(mask, "ANCHOR_RIGHT")
+            local hyperlinkText = reward.itemID and "item:"..reward.itemID or "spell:"..reward.spellID
+            -- if reward.type == "Mount" then
+            --     local mountID = reward.spellID and C_MountJournal.GetMountFromSpell(reward.spellID) or C_MountJournal.GetMountFromItem(reward.itemID)
+            --     if mountID then hyperlinkText = "mount:"..mountID end
+            -- elseif reward.type == "Pet" and reward.spellID == 61773 then
+            -- if reward.type == "Pet" and reward.spellID == 61773 then
+            --     -- One-off exception case for Plump Turkey
+            --     hyperlinkText = "battlepet:201:1:2:1"
+            --     print("turkey", hyperlinkText)
+            -- elseif reward.type == "Pet" then
+            --     local speciesID = select(13, C_PetJournal.GetPetInfoByItemID(reward.itemID))
+            --     if speciesID then hyperlinkText = string.format("|cff1eff00|Hbattlepet:%d:1:2:1|h[%s]|h|r", speciesID, reward.name) end
+            --     print("other pet", hyperlinkText)
+            -- end
+
+            GameTooltip:SetHyperlink(hyperlinkText)
+            GameTooltip:Show()
+            GameTooltip_HideShoppingTooltips(GameTooltip)
+        end)
+        frame.IconMask:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    else
+        frame.IconMask:SetScript("OnEnter", nil)
+        frame.IconMask:SetScript("OnLeave", nil)
+
+    end
+
     frame.RewardName:SetText(reward.type == "Title" and getNameTitleCombo(reward.name) or reward.name)
     frame.RewardType:SetText(reward.type)
     frame.RewardType:SetShown(SFCMain.category == "All")
