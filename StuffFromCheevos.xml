@@ -48,7 +48,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     </Anchors>
                     <Color color="BLACK_FONT_COLOR"/>
                 </Texture>
-                <MaskTexture parentKey="PointsMask" atlas="common-mask-circle" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+                <MaskTexture parentKey="PointsMask" atlas="common-mask-circle">
                     <Anchors>
                         <Anchor point="TOPLEFT" relativeKey="$parent.PointsBg"/>
                         <Anchor point="BOTTOMRIGHT" relativeKey="$parent.PointsBg"/>
@@ -95,6 +95,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         </Layers>
         <Frames>
             <Button parentKey="CheevoLink" registerForClicks="LeftButtonUp">
+                <!-- Size dynamically set in mixin -->
                 <Anchors>
                     <Anchor point="LEFT" relativeKey="$parent.Icon" relativePoint="BOTTOMRIGHT" x="10"/>
                 </Anchors>
@@ -149,6 +150,49 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             </Layer>
                         </Layers>
                     </CheckButton>
+                    <CheckButton parentKey="AnimProgressBar" inherits="MinimalCheckboxTemplate">
+                        <Size x="20" y="19"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.ShowCompleted" relativePoint="BOTTOMLEFT" y="-10"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString parentKey="Text" inherits="GameFontHighlightSmall" text="Animate Progress Bar">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT" x="2"/>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </CheckButton>
+                    <CheckButton parentKey="FadeWhenMoving" inherits="MinimalCheckboxTemplate">
+                        <Size x="20" y="19"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.AnimProgressBar" relativePoint="BOTTOMLEFT" y="-10"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString parentKey="Text" inherits="GameFontHighlightSmall" text="Fade When Moving">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT" x="2"/>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </CheckButton>
+                    <Button parentKey="ResetReload" inherits="UIPanelButtonTemplate" text="Reset Settings">
+                        <KeyValues>
+                            <KeyValue key="tooltipText" value="Restore default settings and reload the UI" type="string"/>
+                            <KeyValue key="tooltipAnchor" value="ANCHOR_TOPLEFT" type="string"/>
+                        </KeyValues>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.FadeWhenMoving" relativePoint="BOTTOMLEFT" y="-20"/>
+                            <Anchor point="RIGHT" x="-10"/>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>SFC_Reset()</OnClick>
+                        </Scripts>
+                    </Button>
                 </Frames>
             </Frame>
             <StatusBar name="SFCRewardsProgress" parentKey="RewardsProgress" inherits="AchievementProgressBarTemplate">

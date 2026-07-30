@@ -3,7 +3,7 @@ local SFC = select(2, ...)
 local DBUtils = {}
 SFC.DBUtils = DBUtils
 
-local SFC_DB_DEFAULTS = {
+SFC_DB_DEFAULTS = {
     debug = false,
     itemsCache = {},
     filters = { showCompleted = true, searchTerm = "", sortOrder = "" },

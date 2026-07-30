@@ -80,17 +80,20 @@ function SFCMainMixin:OnLoad()
     ---@type Button & SFCCategoryButtonTemplate
     _G["SFCCategoryButton"..self.category]:SetNormalAtlas("common-button-tertiary-selected")
 
-    -- Filters initialization
+    -- Filters and settings initialization
     self.Categories.ShowCompleted:SetChecked(SFC.DBUtils.GetProperty("showCompleted") or false)
     self.Categories.ShowCompleted:HookScript("OnClick", function(cb)
         SFC_DB.filters.showCompleted = not SFC_DB.filters.showCompleted
-        -- Show progress bar only when completed achievements are also shown
-        self.RewardsProgress:SetShown(SFC_DB.filters.showCompleted)
         EventRegistry:TriggerEvent("StuffFromCheevos.FiltersUpdated")
     end)
-
-    -- Progress bar
-    self.RewardsProgress:SetShown(SFC_DB.filters.showCompleted)
+    self.Categories.AnimProgressBar:SetChecked(SFC.DBUtils.GetProperty("animateProgressBar") or false)
+    self.Categories.AnimProgressBar:HookScript("OnClick", function(cb)
+        SFC_DB.uiOptions.animateProgressBar = not SFC_DB.uiOptions.animateProgressBar
+    end)
+    self.Categories.FadeWhenMoving:SetChecked(SFC.DBUtils.GetProperty("fadeWindowWhenMoving") or false)
+    self.Categories.FadeWhenMoving:HookScript("OnClick", function(cb)
+        SFC_DB.uiOptions.fadeWindowWhenMoving = not SFC_DB.uiOptions.fadeWindowWhenMoving
+    end)
 
     -- Search box text filtering script
     self.RewardSearch:HookScript("OnTextChanged", function(sb)
@@ -108,9 +111,9 @@ function SFCMainMixin:OnDragStop()
 end
 
 function SFCMainMixin:OnEvent(event, ...)
-    if event == "PLAYER_STARTED_MOVING" and self:IsShown() then
+    if event == "PLAYER_STARTED_MOVING" and SFC.DBUtils.GetProperty("fadeWindowWhenMoving") and self:IsShown() then
         UIFrameFadeIn(self, 0.3, self:GetAlpha(), 0.4)
-    elseif event == "PLAYER_STOPPED_MOVING" and self:IsShown() then
+    elseif event == "PLAYER_STOPPED_MOVING" and self:GetAlpha() < 1 and self:IsShown() then
         UIFrameFadeIn(self, 0.3, self:GetAlpha(), 1)
     end
 end
@@ -396,23 +399,46 @@ local function getProgressValues(rewards)
     return completed, #rewards
 end
 
----@param category string
+---@param category "Mounts"|"Titles"|"Cosmetics"|"Customizations"|"Toys"|"Pets"|"Decor"|"All"
 ---@param shouldAnimateProgressBar boolean
 function SFCMainMixin:PopulateRewardsList(category, shouldAnimateProgressBar)
     self.category = category
     if category ~= "All" and not SFC[category] then return end
 
     local rewardLists = {
-        mounts = getMountRewards(),
-        titles = getTitleRewards(),
-        cosmetics = getCosmeticRewards(),
-        customizations = getCustomizationRewards(),
-        toys = getToyRewards(),
-        pets = getPetRewards(),
-        decor = getDecorRewards(),
+        Mounts = getMountRewards(),
+        Titles = getTitleRewards(),
+        Cosmetics = getCosmeticRewards(),
+        Customizations = getCustomizationRewards(),
+        Toys = getToyRewards(),
+        Pets = getPetRewards(),
+        Decor = getDecorRewards(),
          ---@type Reward[]
-        all = {}
+        All = {}
     }
+
+    tAppendAll(rewardLists.All, rewardLists.Mounts)
+    tAppendAll(rewardLists.All, rewardLists.Titles)
+    tAppendAll(rewardLists.All, rewardLists.Cosmetics)
+    tAppendAll(rewardLists.All, rewardLists.Customizations)
+    tAppendAll(rewardLists.All, rewardLists.Toys)
+    tAppendAll(rewardLists.All, rewardLists.Pets)
+    tAppendAll(rewardLists.All, rewardLists.Decor)
+    -- When showing all rewards, sort them by achievement, category, then name
+    table.sort(rewardLists.All, function(a, b)
+        if a.achievementID ~= b.achievementID then return a.achievementID < b.achievementID end
+        if a.categoryID ~= b.categoryID then return a.categoryID < b.categoryID end
+        return a.name < b.name
+    end)
+
+    -- To persist completion progress, we need to update the progress bar before setting DataProvider contents
+    local completed, total = getProgressValues(rewardLists[category])
+    self.RewardsProgress.Text:SetText(completed.."/"..total)
+    if shouldAnimateProgressBar and SFC.DBUtils.GetProperty("animateProgressBar") then
+        animateProgressBar(self.RewardsProgress, total == 0 and 0 or completed/total * 100)
+    else
+        self.RewardsProgress:SetValue(total == 0 and 0 or completed/total * 100)
+    end
 
     -- Apply filters to all rewards lists
     local searchTerm = SFC.DBUtils.GetProperty("searchTerm")
@@ -434,47 +460,8 @@ function SFCMainMixin:PopulateRewardsList(category, shouldAnimateProgressBar)
         end
     end
 
-    if category == "All" then
-        tAppendAll(rewardLists.all, rewardLists.mounts)
-        tAppendAll(rewardLists.all, rewardLists.titles)
-        tAppendAll(rewardLists.all, rewardLists.cosmetics)
-        tAppendAll(rewardLists.all, rewardLists.customizations)
-        tAppendAll(rewardLists.all, rewardLists.toys)
-        tAppendAll(rewardLists.all, rewardLists.pets)
-        tAppendAll(rewardLists.all, rewardLists.decor)
-        -- When showing all rewards, sort them by achievement, category, then name
-        table.sort(rewardLists.all, function(a, b)
-            if a.achievementID ~= b.achievementID then return a.achievementID < b.achievementID end
-            if a.categoryID ~= b.categoryID then return a.categoryID < b.categoryID end
-            return a.name < b.name
-        end)
-        SFC.DataProvider = CreateDataProvider(rewardLists.all)
-    elseif category == "Mounts" then
-        SFC.DataProvider = CreateDataProvider(rewardLists.mounts)
-    elseif category == "Titles" then
-        SFC.DataProvider = CreateDataProvider(rewardLists.titles)
-    elseif category == "Cosmetics" then
-        SFC.DataProvider = CreateDataProvider(rewardLists.cosmetics)
-    elseif category == "Customizations" then
-        SFC.DataProvider = CreateDataProvider(rewardLists.customizations)
-    elseif category == "Toys" then
-        SFC.DataProvider = CreateDataProvider(rewardLists.toys)
-    elseif category == "Pets" then
-        SFC.DataProvider = CreateDataProvider(rewardLists.pets)
-    elseif category == "Decor" then
-        SFC.DataProvider = CreateDataProvider(rewardLists.decor)
-    else
-        SFC.DataProvider = CreateDataProvider({})
-    end
-
+    SFC.DataProvider = CreateDataProvider(rewardLists[category] or {})
     self.Rewards.ScrollFrame:SetDataProvider(SFC.DataProvider, false)
-    local completed, total = getProgressValues(SFC.DataProvider:GetCollection())
-    self.RewardsProgress.Text:SetText(completed.."/"..total)
-    if shouldAnimateProgressBar and SFC.DBUtils.GetProperty("animateProgressBar") then
-        animateProgressBar(self.RewardsProgress, total == 0 and 0 or completed/total * 100)
-    else
-        self.RewardsProgress:SetValue(total == 0 and 0 or completed/total * 100)
-    end
 end
 --endregion
 
