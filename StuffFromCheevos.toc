@@ -6,6 +6,7 @@
 ## Version: @project-version@
 ## SavedVariables: SFC_DB
 ## LoadSavedVariablesFirst: 1
+## Dependencies: Blizzard_AchievementUI
 ## Category: Collections
 ## Category-deDE: Kriegsmeutesammlungen
 ## Category-esES: Colecciones de banda guerrera
@@ -25,5 +26,5 @@ Data.lua
 DBUtils.lua
 LogUtils.lua
 StuffFromCheevos.lua
-FrameXML\StuffFromCheevosMixins.lua
-FrameXML\StuffFromCheevos.xml
+StuffFromCheevosMixins.lua
+StuffFromCheevos.xml

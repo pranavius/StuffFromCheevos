@@ -1,18 +1,18 @@
 local addonName, SFC = ...
 
 -- Registering a reusable NineSlice layout for the Rewards list items
--- Currently unused, but who knows? Might be fun to keep around
-NineSliceUtil.AddLayout("SFCRewardItem", {
-    TopLeftCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner" },
-    TopRightCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner", mirrorLayout = true },
-    BottomLeftCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner", mirrorLayout = true },
-    BottomRightCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner", mirrorLayout = true },
-    TopEdge = { atlas = "_editmode-actionbar-highlight-nineslice-edgetop" },
-    BottomEdge = { atlas = "_editmode-actionbar-highlight-nineslice-edgebottom" },
-    LeftEdge = { atlas = "!editmode-actionbar-highlight-nineslice-edgeleft" },
-    RightEdge = { atlas = "!editmode-actionbar-highlight-nineslice-edgeright" },
-    Center = { atlas = "UI-HUD-Minimap-Button-NineSlice-Center" },
-})
+-- Currently unused, but who knows? Might be fun to keep around for later
+-- NineSliceUtil.AddLayout("SFCRewardItem", {
+--     TopLeftCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner" },
+--     TopRightCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner", mirrorLayout = true },
+--     BottomLeftCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner", mirrorLayout = true },
+--     BottomRightCorner = { atlas = "editmode-actionbar-highlight-nineslice-corner", mirrorLayout = true },
+--     TopEdge = { atlas = "_editmode-actionbar-highlight-nineslice-edgetop" },
+--     BottomEdge = { atlas = "_editmode-actionbar-highlight-nineslice-edgebottom" },
+--     LeftEdge = { atlas = "!editmode-actionbar-highlight-nineslice-edgeleft" },
+--     RightEdge = { atlas = "!editmode-actionbar-highlight-nineslice-edgeright" },
+--     Center = { atlas = "UI-HUD-Minimap-Button-NineSlice-Center" },
+-- })
 
 -- Event handling (probably a better way to do this but idk)
 local ef = CreateFrame("Frame")
@@ -32,9 +32,10 @@ SLASH_SFCSLASH2 = "/sfc"
 SlashCmdList["SFCSLASH"] = function(msg)
     if msg == "debug" or msg == "d" then
         SFC.DBUtils.ToggleDebugMode()
-    end
-    if msg == "" then
+    elseif msg == "" then
         if SFCMain:IsShown() then SFCMain:Hide() else SFCMain:Show() end
+    else
+
     end
 end
 

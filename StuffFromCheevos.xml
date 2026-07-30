@@ -131,24 +131,24 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchors>
                             <Anchor point="TOPLEFT"/>
                             <Anchor point="BOTTOMRIGHT"/>
+                             <!-- BOTTOMRIGHT anchor is re-defined in mixin once list elements are generated -->
                         </Anchors>
                     </Frame>
-                    <!-- <CheckButton parentKey="ShowOwned" inherits="MinimalCheckboxTemplate">
+                    <CheckButton parentKey="ShowCompleted" inherits="MinimalCheckboxTemplate">
                         <Size x="20" y="19"/>
                         <Anchors>
-                            <Anchor point="TOPLEFT" relativeKey="$parent.List" relativePoint="BOTTOMLEFT" y="10"/>
-                            <Anchor point="TOPRIGHT" relativeKey="$parent.List" relativePoint="BOTTOMRIGHT" y="10"/>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.List" relativePoint="BOTTOMLEFT" x="10" y="-20"/>
                         </Anchors>
                         <Layers>
                             <Layer level="ARTWORK">
-                                <FontString parentKey="Text" inherits="GameFontHighlightSmall" text="Show Owned">
+                                <FontString parentKey="Text" inherits="GameFontHighlightSmall" text="Show Completed">
                                     <Anchors>
                                         <Anchor point="LEFT" relativePoint="RIGHT" x="2"/>
                                     </Anchors>
                                 </FontString>
                             </Layer>
                         </Layers>
-                    </CheckButton> -->
+                    </CheckButton>
                 </Frames>
             </Frame>
             <StatusBar name="SFCRewardsProgress" parentKey="RewardsProgress" inherits="AchievementProgressBarTemplate">

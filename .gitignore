@@ -4,6 +4,6 @@
 Libs
 
 # Local dev files
-DataDump.lua
+*Dump.lua
 category_dump.json
 scratch.js
