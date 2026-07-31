@@ -91,7 +91,7 @@ SFC.Mounts = {
     { itemID = 192788, achievementID = 19482, categoryID = 15465 }, -- Bestowed Trawling Mammoth
     { itemID = 211862, achievementID = 19483, categoryID = 15465 }, -- Bestowed Ottuk Vanguard
     { itemID = 192765, achievementID = 19485, categoryID = 15465 }, -- Bestowed Sandskimmer
-    { itemID = 192751, achievementID = 19486, categoryID = 15465 }, -- Stormtouched Bruffalon
+    { spellID = 373967, achievementID = 19486, categoryID = 15465 }, -- Stormtouched Bruffalon
     { itemID = 217612, achievementID = 20501, categoryID = 15301 }, -- Zovaal's Soul Eater
     { itemID = 223158, achievementID = 40097, categoryID = 15283 }, -- Raging Cinderbee
     { itemID = 223266, achievementID = 40232, categoryID = 168 }, -- Shadowed Swarmite

@@ -493,7 +493,7 @@ end
 ---@param reward Reward
 local function registerRewardPreview(frame, reward)
     local icon = frame.Icon
-    if reward.type ~= "Title" or reward.type ~= "Customization" then
+    if reward.type ~= "Title" and reward.type ~= "Customization" and reward.type ~= "Toy" then
         icon:SetMouseClickEnabled(true)
         icon:SetScript("OnEnter", function()
             SFCMain.isHoveringPreviewableItem = true
@@ -507,17 +507,49 @@ local function registerRewardPreview(frame, reward)
         if reward.type == "Mount" then
             local mountID = reward.spellID and C_MountJournal.GetMountFromSpell(reward.spellID) or C_MountJournal.GetMountFromItem(reward.itemID)
             if mountID then
-                icon:SetScript("OnMouseDown", function(_, mouseBtn) if mouseBtn == "LeftButton" then DressUpMount(mountID) end end)
+                icon:SetScript("OnMouseDown", function(_, mouseBtn)
+                    if mouseBtn == "LeftButton" then
+                        if HousingModelPreviewFrame and HousingModelPreviewFrame:IsShown() then HousingModelPreviewFrame:Hide() end
+                        DressUpMount(mountID)
+                    end
+                end)
             else
                 SFC.LogUtils.Message("Unable to preview", reward.name)
             end
         elseif reward.type == "Pet" and reward.spellID == 61773 then
-            -- TODO: Hardcode values for Plump Turkey (one-off exception)
+            -- Hardcoded speciesID for Plump Turkey (one-off exception)
+            local _, _, _, creatureID, _, _, _, _, _, _, _, displayID = C_PetJournal.GetPetInfoBySpeciesID(201)
+            if creatureID and displayID then
+                icon:SetScript("OnMouseDown", function(_, mouseBtn)
+                    if mouseBtn == "LeftButton" then
+                        if HousingModelPreviewFrame and HousingModelPreviewFrame:IsShown() then HousingModelPreviewFrame:Hide() end
+                        DressUpBattlePet(creatureID, displayID, 201)
+                    end
+                end)
+            end
         elseif reward.type == "Pet" then
             local _, _, _, creatureID, _, _, _, _, _, _, _, displayID, speciesID = C_PetJournal.GetPetInfoByItemID(reward.itemID)
             if creatureID and displayID and speciesID then
-                icon:SetScript("OnMouseDown", function(_, mouseBtn) if mouseBtn == "LeftButton" then DressUpBattlePet(creatureID, displayID, speciesID) end end)
+                icon:SetScript("OnMouseDown", function(_, mouseBtn)
+                    if mouseBtn == "LeftButton" then
+                        if HousingModelPreviewFrame and HousingModelPreviewFrame:IsShown() then HousingModelPreviewFrame:Hide() end
+                        DressUpBattlePet(creatureID, displayID, speciesID)
+                    end
+                end)
             end
+        elseif reward.type == "Cosmetic" or reward.type == "Decor" then
+            icon:SetScript("OnMouseDown", function(_, mouseBtn)
+                if mouseBtn == "LeftButton" then
+                    if reward.type ~= "Decor" and HousingModelPreviewFrame and HousingModelPreviewFrame:IsShown() then
+                        HousingModelPreviewFrame:Hide()
+                    elseif reward.type == "Decor" and DressUpFrame:IsShown() then
+                        DressUpFrame:Hide()
+                    end
+                    DressUpLink("item:"..reward.itemID)
+                end
+            end)
+        else
+            icon:SetScript("OnMouseDown", nil)
         end
     else
         icon:SetMouseClickEnabled(false)
@@ -571,31 +603,42 @@ local function createRewardFrame(frame, reward)
     registerRewardPreview(frame, reward)
     -- Show appropriate tooltip when hovering icons
     if (reward.icon or reward.atlas) and (reward.itemID or reward.spellID) then
-        frame.IconMask:SetScript("OnEnter", function(mask)
+        frame.Icon:HookScript("OnEnter", function(mask)
+            -- Required for battle pet tooltips as well
             GameTooltip:SetOwner(mask, "ANCHOR_RIGHT")
-            local hyperlinkText = reward.itemID and "item:"..reward.itemID or "spell:"..reward.spellID
-            -- if reward.type == "Mount" then
-            --     local mountID = reward.spellID and C_MountJournal.GetMountFromSpell(reward.spellID) or C_MountJournal.GetMountFromItem(reward.itemID)
-            --     if mountID then hyperlinkText = "mount:"..mountID end
-            -- elseif reward.type == "Pet" and reward.spellID == 61773 then
-            -- if reward.type == "Pet" and reward.spellID == 61773 then
-            --     -- One-off exception case for Plump Turkey
-            --     hyperlinkText = "battlepet:201:1:2:1"
-            --     print("turkey", hyperlinkText)
-            -- elseif reward.type == "Pet" then
-            --     local speciesID = select(13, C_PetJournal.GetPetInfoByItemID(reward.itemID))
-            --     if speciesID then hyperlinkText = string.format("|cff1eff00|Hbattlepet:%d:1:2:1|h[%s]|h|r", speciesID, reward.name) end
-            --     print("other pet", hyperlinkText)
-            -- end
-
-            GameTooltip:SetHyperlink(hyperlinkText)
-            GameTooltip:Show()
-            GameTooltip_HideShoppingTooltips(GameTooltip)
+            if reward.type == "Pet" and reward.spellID == 61773 then
+                BattlePetToolTip_Show(201, 1, 2, 1, 1, 1)
+            elseif reward.type == "Pet" then
+                local speciesID = select(13, C_PetJournal.GetPetInfoByItemID(reward.itemID))
+                BattlePetToolTip_Show(speciesID, 1, 2, 1, 1, 1)
+            else
+                if reward.type == "Toy" then
+                    GameTooltip:SetToyByItemID(reward.itemID)
+                elseif reward.type == "Mount" and reward.spellID then
+                    GameTooltip:SetMountBySpellID(reward.spellID)
+                elseif reward.type == "Mount" then
+                    local mountID = C_MountJournal.GetMountFromItem(reward.itemID)
+                    if mountID then
+                        local _, spellID = C_MountJournal.GetMountInfoByID(mountID)
+                        GameTooltip:SetMountBySpellID(spellID)
+                    else
+                        GameTooltip:SetHyperlink("item:"..reward.itemID)
+                    end
+                else
+                    local hyperlinkText = reward.itemID and "item:"..reward.itemID or "spell:"..reward.spellID
+                    GameTooltip:SetHyperlink(hyperlinkText)
+                end
+                GameTooltip:Show()
+                GameTooltip_HideShoppingTooltips(GameTooltip)
+            end
         end)
-        frame.IconMask:SetScript("OnLeave", function() GameTooltip:Hide() end)
+        frame.Icon:HookScript("OnLeave", function()
+            GameTooltip:Hide()
+            BattlePetTooltip:Hide()
+        end)
     else
-        frame.IconMask:SetScript("OnEnter", nil)
-        frame.IconMask:SetScript("OnLeave", nil)
+        frame.Icon:SetScript("OnEnter", nil)
+        frame.Icon:SetScript("OnLeave", nil)
 
     end
 
