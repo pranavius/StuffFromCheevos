@@ -44,6 +44,7 @@ function SFC_Reset()
     ReloadUI()
 end
 
+---Resets dumped achievement info from in-game (**INTENDED FOR DEVELOPMENT PURPOSES ONLY**)
 function SFC_ResetDump()
     if not SFC_DB then SFC_DB = SFC_DB_DEFAULTS
     else SFC_DB.dump = {} end

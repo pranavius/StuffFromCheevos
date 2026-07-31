@@ -1,0 +1,74 @@
+name: Bump version
+
+on:
+#   push: # Uncomment this section if I ever want automatic tagging on push to branch(es)
+    # branches:
+    #   - main
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: 'Version bump type'
+        required: true
+        default: 'minor'
+        type: choice
+        options: [major, minor]
+      release_type:
+        description: 'Release type'
+        required: true
+        default: 'stable'
+        type: choice
+        options: [alpha, beta, stable]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: '0'
+        token: ${{ secrets.GH_PAT }}
+    - name: Bump version and push tag
+      run: |
+        git fetch --tags
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          BUMP="${{ github.event.inputs.bump_type }}"
+          RELEASE_TYPE="${{ github.event.inputs.release_type }}"
+        else
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          if echo "$COMMIT_MSG" | grep -q "#major"; then
+            BUMP="major"
+          else
+            BUMP="minor"
+          fi
+          if echo "$COMMIT_MSG" | grep -q "\[alpha\]"; then
+            RELEASE_TYPE="alpha"
+          elif echo "$COMMIT_MSG" | grep -q "\[beta\]"; then
+            RELEASE_TYPE="beta"
+          else
+            RELEASE_TYPE="stable"
+          fi
+        fi
+        if [ "$RELEASE_TYPE" = "stable" ]; then
+          LATEST=$(git tag --sort=-version:refname | grep -E '^[0-9]+(\.[0-9]+)?$' | head -n 1)
+        else
+          LATEST=$(git tag --sort=-version:refname | grep -E "^[0-9]+(\.[0-9]+)?-${RELEASE_TYPE}$" | head -n 1)
+        fi
+        if [ -z "$LATEST" ]; then
+          if [ "$BUMP" = "major" ]; then
+            NEW_TAG="1"
+          else
+            NEW_TAG="0.1"
+          fi
+        else
+          IFS='.' read -r MAJOR MINOR <<< "${LATEST%%-*}"
+          [ -z "$MINOR" ] && MINOR=0
+          if [ "$BUMP" = "major" ]; then
+            NEW_TAG="$((MAJOR + 1))"
+          else
+            NEW_TAG="$MAJOR.$((MINOR + 1))"
+          fi
+        fi
+        if [ "$RELEASE_TYPE" = "alpha" ] || [ "$RELEASE_TYPE" = "beta" ]; then
+          NEW_TAG="$NEW_TAG-$RELEASE_TYPE"
+        fi
+        git tag "$NEW_TAG"
+        git push origin "$NEW_TAG"

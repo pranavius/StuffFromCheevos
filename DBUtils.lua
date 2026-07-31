@@ -3,6 +3,7 @@ local SFC = select(2, ...)
 local DBUtils = {}
 SFC.DBUtils = DBUtils
 
+---@type SFCDatabaseSchema
 SFC_DB_DEFAULTS = {
     debug = false,
     itemsCache = {},
@@ -10,6 +11,8 @@ SFC_DB_DEFAULTS = {
     uiOptions = { animateProgressBar = true, fadeWindowWhenMoving = true }
 }
 
+---@param tbl table
+---@return boolean isInvalid
 local function isTableInvalidOrHasNilValues(tbl)
     if not tbl then return true end
 
@@ -20,12 +23,16 @@ local function isTableInvalidOrHasNilValues(tbl)
     return false
 end
 
+---@param tbl table
+---@return number count
 local function getTableEntryCount(tbl)
     local n = 0
     for _ in pairs(tbl) do n = n + 1 end
     return n
 end
 
+---Ensures saved variables' database values are up to date with latest properties and default values if they are missing.
+---Function operates under the expectation that tables are not nested deeper than 1 level
 function DBUtils.EnsureDefaults()
     if not SFC_DB then
         SFC_DB = SFC_DB_DEFAULTS
@@ -35,18 +42,20 @@ function DBUtils.EnsureDefaults()
     for k, v in pairs (SFC_DB_DEFAULTS) do
         if SFC_DB[k] == nil then
             SFC_DB[k] = v
-            if SFC_DB.debug then SFC.LogUtils.DebugMessage("Added missing DB property", k, "with default value", v) end
+            SFC.LogUtils.DebugMessage("Added missing DB property", k, "with default value", v)
         elseif type(v) == "table" then
             for dK, dV in pairs(SFC_DB_DEFAULTS[k]) do
                 if SFC_DB[k][dK] == nil then
                     SFC_DB[k][dK] = dV
-                    if SFC_DB.debug then SFC.LogUtils.DebugMessage("Added nested DB property", k.."."..dK, "with default value", dV) end
+                    SFC.LogUtils.DebugMessage("Added nested DB property", k.."."..dK, "with default value", dV)
                 end
             end
         end
     end
 end
 
+---Retrive a value from the database that is assigned to the provided property name.
+---Function operates under the expectations that tables are not nested deeper than 1 level and that each property name is unique
 ---@param property string
 ---@return any value
 function DBUtils.GetProperty(property)
@@ -58,6 +67,8 @@ function DBUtils.GetProperty(property)
     return nil
 end
 
+---Helper function to check whether the itemsCache has finished populating for all expected items.
+---If all updates are completed, this triggers an event that refreshes the AddOn's list of rewards to ensure data is not missing for any of them.
 ---@param toLoad number
 ---@param updatesCount number
 local function checkForLoadCompletion(toLoad, updatesCount)
@@ -77,19 +88,12 @@ function DBUtils.BuildItemsCache()
     local updatesCount = 0
     local pending = {}
 
-    ---@class DataItem
-    ---@field itemID number?
-    ---@field spellID number?
-    ---@field achievementID number
-    ---@field categoryID number
-    ---@field faction string?
-
     ---@param list DataItem[]
     ---@param source string Parameter primarily used for development/debugging purposes
     local function cacheItems(list, source)
         for _, item in ipairs(list) do
             -- Ignore items that are defined by something other than item ID
-            -- Also ignore items where instant info or achievement info can't be found (not in game, likely added preemptively of a new patch)
+            -- Also ignore items where instant info or achievement info can't be found (not in game, likely added preemptively for a new patch)
             if not item.itemID or not C_Item.GetItemInfoInstant(item.itemID) or not GetAchievementInfo(item.achievementID) then
                 toLoad = toLoad - 1
                 checkForLoadCompletion(toLoad, updatesCount)
@@ -138,7 +142,7 @@ function DBUtils.BuildItemsCache()
 end
 
 ---@param itemID number
----@return table? entry
+---@return CacheData? entry
 function DBUtils.GetItemFromCache(itemID)
     if not DBUtils.GetProperty("itemsCache") or not SFC_DB.itemsCache[itemID] then return nil end
     return SFC_DB.itemsCache[itemID]
@@ -149,6 +153,7 @@ function DBUtils.ToggleDebugMode()
     SFC.LogUtils.Message("Debugging mode is", DARKYELLOW_FONT_COLOR:WrapTextInColorCode(SFC_DB.debug and "enabled" or "disabled"))
 end
 
+---Triggers an event to update rewards list in the AddOn window
 function DBUtils.ToggleShowCompleted()
     SFC_DB.filters.showCompleted = not SFC_DB.filters.showCompleted
     EventRegistry:TriggerEvent("StuffFromCheevos.FiltersUpdated")

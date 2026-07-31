@@ -13,7 +13,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         <Size y="90"/>
         <Layers>
             <Layer level="BACKGROUND">
-                <Texture parentKey="FactionBg" alpha="0.2">
+                <Texture parentKey="FactionWatermark" alpha="0.2">
                     <Anchors>
                         <Anchor point="RIGHT" x="-10"/>
                     </Anchors>
@@ -229,6 +229,15 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Frames>
             </Frame>
         </Frames>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Description" inherits="GameFontHighlightSmall" justifyH="CENTER" text="Choose a category to view achievement rewards for. You can filter your results further using the search bar.">
+                    <Anchors>
+                        <Anchor point="TOP" relativeKey="$parent.TitleContainer" relativePoint="BOTTOM" y="-20"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
         <Scripts>
             <OnLoad method="OnLoad"/>
             <OnDragStart method="OnDragStart"/>

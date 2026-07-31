@@ -11,7 +11,7 @@ function SFCCategoryButtonMixin:SetCategory(category)
         ---@cast button SFCCategoryButtonTemplate
         SFCMain:ResetCategoryButtonTextures()
         button:SetNormalAtlas("common-button-tertiary-selected")
-        SFCMain:PopulateRewardsList(category, true)
+        SFCMain:PopulateAndSetRewardsList(category, true)
     end)
 end
 --endregion
@@ -20,27 +20,16 @@ end
 ---@class SFCMain: PortraitFrameTemplate
 SFCMainMixin = {}
 
----@class Reward
----@field name string
----@field type "Mount"|"Title"|"Cosmetic"|"Customization"|"Toy"|"Pet"|"Decor"
----@field achievementID number
----@field categoryID number
----@field itemID number?
----@field spellID number?
----@field icon number|string|nil
----@field atlas string?
----@field faction string?
-
 function SFCMainMixin:OnLoad()
     self.Rewards.ScrollFrame:InitializeScrollFrame()
     tinsert(UISpecialFrames, self:GetName())
     
     -- EventRegistry callbacks
     EventRegistry:RegisterCallback("StuffFromCheevos.ItemsCached", function()
-        self:PopulateRewardsList(self.category, false)
+        self:PopulateAndSetRewardsList(self.category, false)
     end)
     EventRegistry:RegisterCallback("StuffFromCheevos.FiltersUpdated", function()
-        self:PopulateRewardsList(self.category, true)
+        self:PopulateAndSetRewardsList(self.category, true)
     end)
 
     -- Register events for fading frame on movement
@@ -119,6 +108,7 @@ function SFCMainMixin:OnEvent(event, ...)
     end
 end
 
+---Sets all category button textures to the default (unselected) one. Called when a new category is selected to ensure only the one that's clicked has the "selected" texture visible
 function SFCMainMixin:ResetCategoryButtonTextures()
     local list = self.Categories.List
     for _, button in ipairs({list:GetChildren()}) do
@@ -126,6 +116,8 @@ function SFCMainMixin:ResetCategoryButtonTextures()
         button:SetNormalAtlas("common-button-tertiary-normal")
     end
 end
+
+-- START: Series of helper functions for organizing AddOn data into lists of a single shape
 
 ---@return Reward[]
 local function getMountRewards()
@@ -331,6 +323,9 @@ local function getDecorRewards()
     return result
 end
 
+-- END: Series of helper functions for organizing AddOn data into lists of a single shape
+
+---Determines the category name(s) for an achievement given a category ID. If the category is nested, both category and parent category names will be included but separated by a ">" character
 ---@param categoryID number
 ---@return string tree
 local function getCategoryTree(categoryID)
@@ -371,6 +366,7 @@ local function rewardMatchesCompletionFilter(reward)
     return not isCompleted
 end
 
+---Manually animates the progress bar using linear interpolation (lerp)
 ---@param bar StatusBar
 ---@param value number
 local function animateProgressBar(bar, value)
@@ -395,6 +391,7 @@ local function animateProgressBar(bar, value)
     end)
 end
 
+---Used for rendering progress text over the bar as well as determining progress bar fill percentage
 ---@param rewards Reward[]
 ---@return number completed
 ---@return number total
@@ -410,7 +407,7 @@ end
 
 ---@param category "Mounts"|"Titles"|"Cosmetics"|"Customizations"|"Toys"|"Pets"|"Decor"|"All"
 ---@param shouldAnimateProgressBar boolean
-function SFCMainMixin:PopulateRewardsList(category, shouldAnimateProgressBar)
+function SFCMainMixin:PopulateAndSetRewardsList(category, shouldAnimateProgressBar)
     self.category = category
     if category ~= "All" and not SFC[category] then return end
 
@@ -475,6 +472,8 @@ end
 --endregion
 
 --region SFCScrollFrameMixin
+
+---Determines how a title is shown with a character name (title "preview")
 ---@param title string
 local function getNameTitleCombo(title)
     local name = SFCMain.classColor:WrapTextInColorCode(SFCMain.player)
@@ -489,6 +488,7 @@ local function getNameTitleCombo(title)
     return title
 end
 
+---Updates cursor on mouseover and hooks a script to render reward preview for rewards that have one (mounts, pets, cosmetics, decor)
 ---@param frame SFCRewardFrameTemplate
 ---@param reward Reward
 local function registerRewardPreview(frame, reward)
@@ -570,6 +570,7 @@ ShowAchievementFrameForAchievement = ShowAchievementFrameForAchievement or funct
 	end
 end
 
+---Factory function for rendering rewards data in the list
 ---@param frame SFCRewardFrameTemplate
 ---@param reward Reward
 local function createRewardFrame(frame, reward)
@@ -578,20 +579,20 @@ local function createRewardFrame(frame, reward)
     local _, _, points, isCompleted, completedMonth, completedDay, completedYear, _, flags = GetAchievementInfo(reward.achievementID)
     local categoryText = getCategoryTree(reward.categoryID)
 
-    frame.FactionBg:SetSize((frame:GetHeight() - 10) * 0.92, frame:GetHeight() - 10)
+    frame.FactionWatermark:SetSize((frame:GetHeight() - 10) * 0.92, frame:GetHeight() - 10)
     if isCompleted then
         frame:SetBackdropColor(0.1, 0.8, 0.2, 0.5)
     else
         if reward.faction == "Alliance" then
             -- frame:SetBackdropColor(0, 0.678, 0.941, 0.5)
-            frame.FactionBg:SetAtlas("charactercreate-icon-alliance")
+            frame.FactionWatermark:SetAtlas("charactercreate-icon-alliance")
         elseif reward.faction == "Horde" then
             -- frame:SetBackdropColor(1, 0.161, 0.204, 0.5)
-            frame.FactionBg:SetAtlas("charactercreate-icon-horde")
+            frame.FactionWatermark:SetAtlas("charactercreate-icon-horde")
         end
         frame:SetBackdropColor(0.3, 0.3, 0.3)
     end
-    frame.FactionBg:SetShown(not isCompleted and reward.faction ~= nil)
+    frame.FactionWatermark:SetShown(not isCompleted and reward.faction ~= nil)
     
     if reward.atlas then
         frame.Icon:SetAtlas(reward.atlas)

@@ -20,6 +20,8 @@
 ## Category-zhTW: 戰隊收藏
 ## X-Flavor: retail
 ## X-Additional-Categories: Achievements, Battle Pets, Miscellaneous
+## X-Curse-Project-ID: 1633698
+## X-Wago-ID: aNDMlY6o
 ## X-Last-Update: @build-date-iso@
 
 Data.lua
