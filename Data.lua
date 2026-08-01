@@ -124,6 +124,7 @@ SFC.Mounts = {
     { itemID = 257144, achievementID = 62190, categoryID = 15600 }, -- Umbral Dragonhawk
     { itemID = 260697, achievementID = 62385, categoryID = 15547 }, -- Lab-grown Stormray
     { itemID = 252011, achievementID = 62386, categoryID = 15553 }, -- Brilliant Petalwing
+    { itemID = 263222, achievementID = 61799, categoryID = 15531 }, -- Arcanovoid Construct (TODO: Move to Legacy at the end of Midnight S1)
     { itemID = 275652, achievementID = 63254, categoryID = 168 }, -- Crimson Venomfang
     { itemID = 275656, achievementID = 63359, categoryID = 15553 }, -- Auriferous Venomfang
     { itemID = 276801, achievementID = 63630, categoryID = 15553 }, -- Venomous Coiler
