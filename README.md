@@ -9,6 +9,8 @@ Feedback on this AddOn or any others that I develop/maintain is always welcome. 
 [![Patreon](https://img.shields.io/badge/support-F96854?style=for-the-badge&logo=patreon)](https://patreon.com/cw/Pranavius)
 [![Buy Me a Coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000000)](http://buymeacoffee.com/pranavius)
 
+*If you notice that any achievements which reward a collectible are missing, you can let me know by joining the Discord server and posting in the Stuff From Cheevos channel.*
+
 ## Highlights
 - Lists achievements with rewards categorized into the following groups: Mounts, Titles, Cosmetics, Customizations, Toys, Pets, and Decor
 - Search bar allows filtering by achievement name or ID, category name or ID, reward name, reward type, and faction
