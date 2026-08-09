@@ -1,2 +1,6 @@
+**v1.1**
+- Added Arcanovoid Construct to the available mount rewards
+- *Bug Fix:* Settings checkboxes should now be set properly on login for fresh installs
+
 **v1**
 - Initial release
