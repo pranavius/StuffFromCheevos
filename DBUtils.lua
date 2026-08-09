@@ -36,22 +36,22 @@ end
 function DBUtils.EnsureDefaults()
     if not SFC_DB then
         SFC_DB = SFC_DB_DEFAULTS
-        return
-    end
-
-    for k, v in pairs (SFC_DB_DEFAULTS) do
-        if SFC_DB[k] == nil then
-            SFC_DB[k] = v
-            SFC.LogUtils.DebugMessage("Added missing DB property", k, "with default value", v)
-        elseif type(v) == "table" then
-            for dK, dV in pairs(SFC_DB_DEFAULTS[k]) do
-                if SFC_DB[k][dK] == nil then
-                    SFC_DB[k][dK] = dV
-                    SFC.LogUtils.DebugMessage("Added nested DB property", k.."."..dK, "with default value", dV)
+    else
+        for k, v in pairs (SFC_DB_DEFAULTS) do
+            if SFC_DB[k] == nil then
+                SFC_DB[k] = v
+                SFC.LogUtils.DebugMessage("Added missing DB property", k, "with default value", v)
+            elseif type(v) == "table" then
+                for dK, dV in pairs(SFC_DB_DEFAULTS[k]) do
+                    if SFC_DB[k][dK] == nil then
+                        SFC_DB[k][dK] = dV
+                        SFC.LogUtils.DebugMessage("Added nested DB property", k.."."..dK, "with default value", dV)
+                    end
                 end
             end
         end
     end
+    EventRegistry:TriggerEvent("StuffFromCheevos.DatabaseReady")
 end
 
 ---Retrive a value from the database that is assigned to the provided property name.

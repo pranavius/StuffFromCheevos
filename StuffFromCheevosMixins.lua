@@ -31,6 +31,22 @@ function SFCMainMixin:OnLoad()
     EventRegistry:RegisterCallback("StuffFromCheevos.FiltersUpdated", function()
         self:PopulateAndSetRewardsList(self.category, true)
     end)
+    EventRegistry:RegisterCallback("StuffFromCheevos.DatabaseReady", function()
+        -- Filters and settings initialization
+        self.Categories.ShowCompleted:SetChecked(SFC.DBUtils.GetProperty("showCompleted") or false)
+        self.Categories.ShowCompleted:HookScript("OnClick", function(cb)
+            SFC_DB.filters.showCompleted = not SFC_DB.filters.showCompleted
+            EventRegistry:TriggerEvent("StuffFromCheevos.FiltersUpdated")
+        end)
+        self.Categories.AnimProgressBar:SetChecked(SFC.DBUtils.GetProperty("animateProgressBar") or false)
+        self.Categories.AnimProgressBar:HookScript("OnClick", function(cb)
+            SFC_DB.uiOptions.animateProgressBar = not SFC_DB.uiOptions.animateProgressBar
+        end)
+        self.Categories.FadeWhenMoving:SetChecked(SFC.DBUtils.GetProperty("fadeWindowWhenMoving") or false)
+        self.Categories.FadeWhenMoving:HookScript("OnClick", function(cb)
+            SFC_DB.uiOptions.fadeWindowWhenMoving = not SFC_DB.uiOptions.fadeWindowWhenMoving
+        end)
+    end)
 
     -- Register events for fading frame on movement
     self:RegisterEvent("PLAYER_STARTED_MOVING")
@@ -70,26 +86,12 @@ function SFCMainMixin:OnLoad()
     ---@type Button & SFCCategoryButtonTemplate
     _G["SFCCategoryButton"..self.category]:SetNormalAtlas("common-button-tertiary-selected")
 
-    -- Filters and settings initialization
-    self.Categories.ShowCompleted:SetChecked(SFC.DBUtils.GetProperty("showCompleted") or false)
-    self.Categories.ShowCompleted:HookScript("OnClick", function(cb)
-        SFC_DB.filters.showCompleted = not SFC_DB.filters.showCompleted
-        EventRegistry:TriggerEvent("StuffFromCheevos.FiltersUpdated")
-    end)
-    self.Categories.AnimProgressBar:SetChecked(SFC.DBUtils.GetProperty("animateProgressBar") or false)
-    self.Categories.AnimProgressBar:HookScript("OnClick", function(cb)
-        SFC_DB.uiOptions.animateProgressBar = not SFC_DB.uiOptions.animateProgressBar
-    end)
-    self.Categories.FadeWhenMoving:SetChecked(SFC.DBUtils.GetProperty("fadeWindowWhenMoving") or false)
-    self.Categories.FadeWhenMoving:HookScript("OnClick", function(cb)
-        SFC_DB.uiOptions.fadeWindowWhenMoving = not SFC_DB.uiOptions.fadeWindowWhenMoving
-    end)
-
     -- Search box text filtering script
     self.RewardSearch:HookScript("OnTextChanged", function(sb)
         SFC_DB.filters.searchTerm = sb:GetText()
         EventRegistry:TriggerEvent("StuffFromCheevos.FiltersUpdated")
     end)
+    SFC.LogUtils.DebugMessage("Main window loaded")
 end
 
 function SFCMainMixin:OnDragStart()
