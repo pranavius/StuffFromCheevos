@@ -110,13 +110,9 @@ SFC.Mounts = {
     { itemID = 237485, achievementID = 41980, categoryID = 15506 }, -- Terror of the Night
     { itemID = 257193, achievementID = 42703, categoryID = 15605 }, -- Preyseeker's Nightmare
     { itemID = 250240, achievementID = 61017, categoryID = 15521 }, -- Phase-Lost Slateback
-    { itemID = 262620, achievementID = 61256, categoryID = 15272 }, -- Calamitous Carrion (Midnight KSM S1 -- TODO: Move to Legacy after Midnight Season 1 ends)
-    { itemID = 262621, achievementID = 61258, categoryID = 15272 }, -- Convalescent Carrion (Midnight KSL S1 -- TODO: Move to Legacy after Midnight Season 1 ends)
-    { itemID = 260228, achievementID = 61188, categoryID = 15270 }, -- Galactic Gladiator's Goredrake (Midnight Gladiator S1 -- TODO: Move to Legacy after Midnight Season 1 ends)
     { itemID = 263579, achievementID = 61263, categoryID = 15553 }, -- Vivacious Chloroceros
     { itemID = 260887, achievementID = 61380, categoryID = 168 }, -- Tenebrous Harrower
     { itemID = 258188, achievementID = 61451, categoryID = 15301 }, -- Geargrinder Mk. 11
-    { itemID = 258884, achievementID = 61463, categoryID = 15454 }, -- Spawn of Vyranoth (TODO: Move to Legacy after TT5 ends)
     { itemID = 257145, achievementID = 61584, categoryID = 15462 }, -- Crimson Dragonhawk
     { itemID = 257199, achievementID = 61906, categoryID = 15571 }, -- Giganto Manis
     { itemID = 265656, achievementID = 62096, categoryID = 15248, faction = FACTION_NAME.HORDE }, -- Anu'shalla, Shadow's Guidance
@@ -124,11 +120,16 @@ SFC.Mounts = {
     { itemID = 257144, achievementID = 62190, categoryID = 15600 }, -- Umbral Dragonhawk
     { itemID = 260697, achievementID = 62385, categoryID = 15547 }, -- Lab-grown Stormray
     { itemID = 252011, achievementID = 62386, categoryID = 15553 }, -- Brilliant Petalwing
-    { itemID = 263222, achievementID = 61799, categoryID = 15531 }, -- Arcanovoid Construct (TODO: Move to Legacy at the end of Midnight S1)
     { itemID = 275652, achievementID = 63254, categoryID = 168 }, -- Crimson Venomfang
     { itemID = 275656, achievementID = 63359, categoryID = 15553 }, -- Auriferous Venomfang
     { itemID = 276801, achievementID = 63630, categoryID = 15553 }, -- Venomous Coiler
     { itemID = 276553, achievementID = 63653, categoryID = 15553 }, -- Emerald Skyfang
+    { itemID = 276881, achievementID = 62447, categoryID = 15272 }, -- Breath of Blight (Midnight Season 2 KSM)
+    { itemID = 276882, achievementID = 62449, categoryID = 15272 }, -- Breath of Ruin (Midnight Season 2 KSL)
+    { itemID = 275302, achievementID = 62930, categoryID = 15270 }, -- Venomous Gladiator's Goredrake (Midnight Season 2 Gladiator)
+    { itemID = 275432, achievementID = 63099, categoryID = 15270, faction = FACTION_NAME.HORDE }, -- Vicious Lightbloom Boar
+    { itemID = 275433, achievementID = 63103, categoryID = 15270, faction = FACTION_NAME.ALLIANCE }, -- Vicious Lightbloom Boar (Alliance)
+    { itemID = 275657, achievementID = 63333, categoryID = 15531 }, -- Apophic Soul Crusher (Let Me Solo Him Season 2)
     -- TODO List:
     -- Seasonal AOTC and/or Cutting Edge mount
 }
@@ -312,7 +313,6 @@ SFC.Titles = {
     { titleID = 472, achievementID = 16446, categoryID = 15465 }, -- Birdwatcher
     { titleID = 484, achievementID = 16494, categoryID = 15466 }, -- Agent of the Black Prince
     { titleID = 479, achievementID = 16601, categoryID = 15283 }, -- Malicious
-    { titleID = 477, achievementID = 16648, categoryID = 15272 }, -- the Thundering
     { titleID = 480, achievementID = 16731, categoryID = 15118 }, -- Knight of Feathersworth
     { titleID = 483, achievementID = 16760, categoryID = 15466 }, -- Paragon of the Obsidian Brood
     { titleID = 485, achievementID = 16791, categoryID = 169 }, -- Merchant Artisan
@@ -578,8 +578,6 @@ SFC.Cosmetics = {
     { itemID = 232647, achievementID = 41052, categoryID = 15506 }, -- Root Defender's Shield
     { itemID = 219110, achievementID = 41169, categoryID = 15530 }, -- Vermillion Patron's Elegance
     { itemID = 234521, achievementID = 41351, categoryID = 15530 }, -- Ensemble: Rusty Bruiser's Outfit
-    { itemID = 263413, achievementID = 61797, categoryID = 15531 }, -- Nullaeus Domaneye (TODO: Move to Legacy at the end of Midnight S1)
-    { itemID = 265071, achievementID = 61858, categoryID = 15259 }, -- Gleaming Sunmote (TODO: Move to Legacy at the end of Midnight S1)
     -- TODO List:
     -- Heritage of the Haranir (achievementID 61942, categoryID 15547) needs appearances to be itemized
     -- Stormheim achievement from Lemix (achievementID 42582, categoryID 15604) needs appearance itemization as well
@@ -924,6 +922,7 @@ SFC.Decor = {
 }
 
 SFC.Legacy = {
+    { titleID = 477, achievementID = 16648, categoryID = 15272 }, -- the Thundering
     { itemID = 226357, achievementID = 20525, categoryID = 15272 }, -- Diamond Mechsuit
     { itemID = 220766, achievementID = 20593, categoryID = 15536 }, -- August Phoenix
     { itemID = 232624, achievementID = 41056, categoryID = 15274 }, -- Timely Buzzbee
@@ -977,4 +976,11 @@ SFC.Legacy = {
     { itemID = 253026, achievementID = 61089, categoryID = 15604 }, -- Archmage's Felscorned Disc
     { itemID = 253032, achievementID = 61090, categoryID = 15604 }, -- Felscorned Netherlord's Dreadsteed
     { itemID = 253343, achievementID = 61337, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Felscorned Regalia
+    { itemID = 262620, achievementID = 61256, categoryID = 15272 }, -- Calamitous Carrion
+    { itemID = 262621, achievementID = 61258, categoryID = 15272 }, -- Convalescent Carrion
+    { itemID = 260228, achievementID = 61188, categoryID = 15270 }, -- Galactic Gladiator's Goredrake
+    { itemID = 258884, achievementID = 61463, categoryID = 15454 }, -- Spawn of Vyranoth
+    { itemID = 263222, achievementID = 61799, categoryID = 15531 }, -- Arcanovoid Construct
+    { itemID = 263413, achievementID = 61797, categoryID = 15531 }, -- Nullaeus Domaneye
+    { itemID = 265071, achievementID = 61858, categoryID = 15259 }, -- Gleaming Sunmote
 }

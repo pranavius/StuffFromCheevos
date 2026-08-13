@@ -26,6 +26,10 @@ ef:HookScript("OnEvent", function(self, event, ...)
 end)
 ef:RegisterEvent("ADDON_LOADED")
 
+local function toggleSFCWindow()
+    if SFCMain:IsShown() then SFCMain:Hide() else SFCMain:Show() end
+end
+
 SLASH_SFCSLASH1 = "/stufffromcheevos"
 SLASH_SFCSLASH2 = "/sfc"
 
@@ -33,7 +37,7 @@ SlashCmdList["SFCSLASH"] = function(msg)
     if msg == "debug" or msg == "d" then
         SFC.DBUtils.ToggleDebugMode()
     elseif msg == "" then
-        if SFCMain:IsShown() then SFCMain:Hide() else SFCMain:Show() end
+        toggleSFCWindow()
     else
 
     end
@@ -42,6 +46,21 @@ end
 function SFC_Reset()
     SFC_DB = SFC_DB_DEFAULTS
     ReloadUI()
+end
+
+function SFC_AddonCompartmentOnClick(_, btn)
+    if btn == "LeftButton" then toggleSFCWindow() end
+end
+
+function SFC_AddonCompartmentOnEnter(_, btn)
+    MenuUtil.ShowTooltip(btn, function(tooltip)
+        tooltip:AddDoubleLine(C_AddOns.GetAddOnMetadata(addonName, "Title"), "@project-version@", nil, nil, nil, 1, 1, 1)
+        tooltip:AddLine(C_AddOns.GetAddOnMetadata(addonName, "Notes"), 0.67, 0.67, 0.67, true)
+    end)
+end
+
+function SFC_AddonCompartmentOnLeave(_, btn)
+    MenuUtil.HideTooltip(btn)
 end
 
 ---Resets dumped achievement info from in-game (**INTENDED FOR DEVELOPMENT PURPOSES ONLY**)

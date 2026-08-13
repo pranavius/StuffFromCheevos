@@ -18,6 +18,9 @@
 ## Category-ruRU: Коллекции отряда
 ## Category-zhCN: 战团藏品
 ## Category-zhTW: 戰隊收藏
+## AddonCompartmentFunc: SFC_AddonCompartmentOnClick
+## AddonCompartmentFuncOnEnter: SFC_AddonCompartmentOnEnter
+## AddonCompartmentFuncOnLeave: SFC_AddonCompartmentOnLeave
 ## X-Flavor: retail
 ## X-Additional-Categories: Achievements, Battle Pets, Miscellaneous
 ## X-Curse-Project-ID: 1633698
