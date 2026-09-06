@@ -34,18 +34,16 @@ function SFCMainMixin:OnLoad()
     EventRegistry:RegisterCallback("StuffFromCheevos.DatabaseReady", function()
         -- Filters and settings initialization
         self.Categories.ShowCompleted:SetChecked(SFC.DBUtils.GetProperty("showCompleted") or false)
-        self.Categories.ShowCompleted:HookScript("OnClick", function(cb)
+        self.Categories.ShowCompleted:HookScript("OnClick", function()
             SFC_DB.filters.showCompleted = not SFC_DB.filters.showCompleted
             EventRegistry:TriggerEvent("StuffFromCheevos.FiltersUpdated")
         end)
         self.Categories.AnimProgressBar:SetChecked(SFC.DBUtils.GetProperty("animateProgressBar") or false)
-        self.Categories.AnimProgressBar:HookScript("OnClick", function(cb)
-            SFC_DB.uiOptions.animateProgressBar = not SFC_DB.uiOptions.animateProgressBar
-        end)
+        self.Categories.AnimProgressBar:HookScript("OnClick", function() SFC_DB.uiOptions.animateProgressBar = not SFC_DB.uiOptions.animateProgressBar end)
         self.Categories.FadeWhenMoving:SetChecked(SFC.DBUtils.GetProperty("fadeWindowWhenMoving") or false)
-        self.Categories.FadeWhenMoving:HookScript("OnClick", function(cb)
-            SFC_DB.uiOptions.fadeWindowWhenMoving = not SFC_DB.uiOptions.fadeWindowWhenMoving
-        end)
+        self.Categories.FadeWhenMoving:HookScript("OnClick", function() SFC_DB.uiOptions.fadeWindowWhenMoving = not SFC_DB.uiOptions.fadeWindowWhenMoving end)
+        self.Categories.ShowMinimapButton:SetChecked(not SFC.DBUtils.GetProperty("minimap").hide or false)
+        self.Categories.ShowMinimapButton:HookScript("OnClick", function() SFC.DBUtils.ToggleMinimapButton() end)
     end)
 
     -- Register events for fading frame on movement

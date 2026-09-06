@@ -154,11 +154,15 @@ function DBUtils.ToggleDebugMode()
     SFC.LogUtils.Message("Debugging mode is", DARKYELLOW_FONT_COLOR:WrapTextInColorCode(SFC_DB.debug and "enabled" or "disabled"))
 end
 
----@param minimapButton LibDBIcon-1.0
-function DBUtils.ToggleMinimapButton(minimapButton)
-    SFC_DB.minimap.hide = not SFC_DB.minimap.hide
-    if SFC_DB.minimap.hide then minimapButton:Hide(addonName) else minimapButton:Show(addonName) end
-    SFC.LogUtils.DebugMessage("Minimap button", DARKYELLOW_FONT_COLOR:WrapTextInColorCode(SFC_DB.minimap.hide and "hidden" or "shown"))
+function DBUtils.ToggleMinimapButton()
+    local minimapButton = LibStub("LibDBIcon-1.0"):GetMinimapButton(addonName)
+    if minimapButton then
+        SFC_DB.minimap.hide = not SFC_DB.minimap.hide
+        if SFC_DB.minimap.hide then minimapButton:Hide() else minimapButton:Show() end
+        SFC.LogUtils.DebugMessage("Minimap button", DARKYELLOW_FONT_COLOR:WrapTextInColorCode(SFC_DB.minimap.hide and "hidden" or "shown"))
+    else
+        SFC.LogUtils.DebugMessage("SFC minimap button not registed!")
+    end
 end
 
 ---Triggers an event to update rewards list in the AddOn window

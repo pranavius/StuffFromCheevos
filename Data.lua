@@ -54,10 +54,11 @@ SFC.Mounts = {
     { itemID = 163216, achievementID = 12806, categoryID = 168 }, -- Bloodgorged Crawg
     { itemID = 161215, achievementID = 12812, categoryID = 168 }, -- Reins of the Obsidian Krolusk
     { itemID = 140228, achievementID = 12895, categoryID = 15266 }, -- Prestigious Bronze Courser
+    { itemID = 163981, achievementID = 12934, categoryID = 15248 }, -- Frenzied Feltalon
     { itemID = 169162, achievementID = 13250, categoryID = 15298 }, -- Wonderwing 2.0
     { itemID = 166539, achievementID = 13315, categoryID = 168 }, -- Dazar'alor Windreaver
-    { itemID = 168055, achievementID = 13517, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Bloodflank Charger
     { itemID = 168056, achievementID = 13517, categoryID = 15284, faction = FACTION_NAME.ALLIANCE }, -- Ironclad Frostclaw
+    { itemID = 168055, achievementID = 13517, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Bloodflank Charger
     { itemID = 168329, achievementID = 13541, categoryID = 15298 }, -- Keys to the Model W
     { itemID = 169194, achievementID = 13638, categoryID = 15298 }, -- Snapback Scuttler
     { itemID = 167171, achievementID = 13687, categoryID = 168 }, -- Azshari Bloatray
@@ -74,6 +75,7 @@ SFC.Mounts = {
     { itemID = 188674, achievementID = 15310, categoryID = 15454 }, -- Mage-Bound Spelltome
     { itemID = 188736, achievementID = 15322, categoryID = 15440 }, -- Colossal Soulshredder Mawrat
     { itemID = 187673, achievementID = 15336, categoryID = 15422 }, -- Cryptic Aurelid
+    { itemID = 187639, achievementID = 15402, categoryID = 15436 }, -- Pale Regal Cervid (Achievement rewards item ID 189455 which starts a quest that teaches the recipe to craft the mount on completion)
     { itemID = 187675, achievementID = 15491, categoryID = 168 }, -- Shimmering Aurelid
     { itemID = 198654, achievementID = 15833, categoryID = 15248, faction = FACTION_NAME.HORDE }, -- Otterworldly Ottuk Carrier
     { itemID = 198654, achievementID = 15834, categoryID = 15248, faction = FACTION_NAME.ALLIANCE }, -- Otterworldly Ottuk Carrier (Alliance)
@@ -120,16 +122,16 @@ SFC.Mounts = {
     { itemID = 257144, achievementID = 62190, categoryID = 15600 }, -- Umbral Dragonhawk
     { itemID = 260697, achievementID = 62385, categoryID = 15547 }, -- Lab-grown Stormray
     { itemID = 252011, achievementID = 62386, categoryID = 15553 }, -- Brilliant Petalwing
-    { itemID = 275652, achievementID = 63254, categoryID = 168 }, -- Crimson Venomfang
-    { itemID = 275656, achievementID = 63359, categoryID = 15553 }, -- Auriferous Venomfang
-    { itemID = 276801, achievementID = 63630, categoryID = 15553 }, -- Venomous Coiler
-    { itemID = 276553, achievementID = 63653, categoryID = 15553 }, -- Emerald Skyfang
     { itemID = 276881, achievementID = 62447, categoryID = 15272 }, -- Breath of Blight (Midnight Season 2 KSM)
     { itemID = 276882, achievementID = 62449, categoryID = 15272 }, -- Breath of Ruin (Midnight Season 2 KSL)
     { itemID = 275302, achievementID = 62930, categoryID = 15270 }, -- Venomous Gladiator's Goredrake (Midnight Season 2 Gladiator)
     { itemID = 275432, achievementID = 63099, categoryID = 15270, faction = FACTION_NAME.HORDE }, -- Vicious Lightbloom Boar
     { itemID = 275433, achievementID = 63103, categoryID = 15270, faction = FACTION_NAME.ALLIANCE }, -- Vicious Lightbloom Boar (Alliance)
+    { itemID = 275652, achievementID = 63254, categoryID = 168 }, -- Crimson Venomfang
     { itemID = 275657, achievementID = 63333, categoryID = 15531 }, -- Apophic Soul Crusher (Let Me Solo Him Season 2)
+    { itemID = 275656, achievementID = 63359, categoryID = 15553 }, -- Auriferous Venomfang
+    { itemID = 276801, achievementID = 63630, categoryID = 15553 }, -- Venomous Coiler
+    { itemID = 276553, achievementID = 63653, categoryID = 15553 }, -- Emerald Skyfang
     -- Running TODO List When Needed:
     -- Seasonal AOTC and/or Cutting Edge mount
 }
@@ -171,9 +173,9 @@ SFC.Titles = {
     { titleID = 121, achievementID = 2769, categoryID = 14941, faction = FACTION_NAME.HORDE }, -- of the Undercity
     { titleID = 122, achievementID = 2798, categoryID = 155 }, -- the Noble
     { titleID = 133, achievementID = 3478, categoryID = 155 }, -- the Pilgrim
-    { titleID = 138, achievementID = 4584, categoryID = 14922 }, -- the Light of Dawn
-    { titleID = 139, achievementID = 4583, categoryID = 14922 }, -- Bane of the Fallen King
     { titleID = 140, achievementID = 4530, categoryID = 14922 }, -- the Kingslayer
+    { titleID = 139, achievementID = 4583, categoryID = 14922 }, -- Bane of the Fallen King
+    { titleID = 138, achievementID = 4584, categoryID = 14922 }, -- the Light of Dawn
     { titleID = 141, achievementID = 4598, categoryID = 14866 }, -- of the Ashen Verdict
     { titleID = 148, achievementID = 4854, categoryID = 15071 }, -- Assistant Professor
     { titleID = 149, achievementID = 4855, categoryID = 15071 }, -- Associate Professor
@@ -348,9 +350,8 @@ SFC.Titles = {
     { titleID = 574, achievementID = 40876, categoryID = 15530 }, -- Hand of the Vizier
     { titleID = 575, achievementID = 40882, categoryID = 15522 }, -- the Bountiful
     { titleID = 603, achievementID = 41086, categoryID = 15530 }, -- the Explosive
-    { titleID = 599, achievementID = 41096, categoryID = 15522 }, -- Infinite Delver
     { titleID = 650, achievementID = 41095, categoryID = 15522 }, -- Delver
-    { titleID = 550, achievementID = 41197, categoryID = 15531 }, -- High Explorer
+    { titleID = 599, achievementID = 41096, categoryID = 15522 }, -- Infinite Delver
     { titleID = 605, achievementID = 41236, categoryID = 15526 }, -- Liberator of Undermine
     { titleID = 606, achievementID = 41350, categoryID = 15530 }, -- Darkfuse Diplomat
     { titleID = 607, achievementID = 41352, categoryID = 15530 }, -- Trade-Duke
@@ -359,7 +360,6 @@ SFC.Titles = {
     { titleID = 616, achievementID = 41629, categoryID = 15521 }, -- Part-Timer
     { titleID = 630, achievementID = 41818, categoryID = 15506, faction = FACTION_NAME.ALLIANCE }, -- of Stromgarde (Alliance)
     { titleID = 629, achievementID = 41820, categoryID = 15506, faction = FACTION_NAME.HORDE }, -- of Hammerfall
-    { titleID = 550, achievementID = 42203, categoryID = 15531 }, -- High Explorer
     { titleID = 598, achievementID = 42779, categoryID = 15523 }, -- Flickering
     { titleID = 754, achievementID = 61052, categoryID = 15553 }, -- Dustlord
     { titleID = 657, achievementID = 61318, categoryID = 15606 }, -- the Furnished
@@ -370,7 +370,6 @@ SFC.Titles = {
     { titleID = 664, achievementID = 61446, categoryID = 15283 }, -- Voidslayer
     { titleID = 669, achievementID = 61498, categoryID = 15506 }, -- Azeroth's Vanguard
     { titleID = 688, achievementID = 61798, categoryID = 15531 }, -- the Ominous
-    { titleID = 550, achievementID = 61807, categoryID = 15531 }, -- High Explorer
     { titleID = 691, achievementID = 61901, categoryID = 15571 }, -- Treasure Seeker
     { titleID = 766, achievementID = 61910, categoryID = 15547 }, -- Mrglgrgl of Grglmrgl
     { titleID = 741, achievementID = 62239, categoryID = 15489 }, -- Thalassian Alchemist
@@ -385,12 +384,18 @@ SFC.Titles = {
     { titleID = 750, achievementID = 62251, categoryID = 15497 }, -- Thalassian Miner
     { titleID = 752, achievementID = 62252, categoryID = 15498 }, -- Thalassian Skinner
     { titleID = 755, achievementID = 62351, categoryID = 15605 }, -- Preyseeker
+    { titleID = 550, achievementID = 62897, categoryID = 15531 }, -- High Explorer
+    { titleID = 767, achievementID = 62922, categoryID = 15270 }, -- Venomous Gladiator
     { titleID = 771, achievementID = 62941, categoryID = 15608 }, -- Ritual Breaker
+    { titleID = -1, achievementID = 63381, categoryID = 15553 }, -- The Cursebreaker
     { titleID = 791, achievementID = 63476, categoryID = 15566 }, -- Venom's End
     { titleID = 779, achievementID = 63510, categoryID = 171 }, -- Briny
+    { titleID = -1, achievementID = 63519, categoryID = 15547 }, -- Light's Faithful
     { titleID = 789, achievementID = 63635, categoryID = 171 }, -- Bloodsworn Mariner
     { titleID = 794, achievementID = 63636, categoryID = 15553 }, -- the Snake
-    { titleID = 767, achievementID = 62922, categoryID = 15270 }, -- Venomous Gladiator
+    { titleID = 793, achievementID = 63659, categoryID = 15274 }, -- Bane of the Swarm
+    { titleID = 797, achievementID = 63717, categoryID = 15522 }, -- Treasure Hound
+    { titleID = -1, achievementID = 63722, categoryID = 15522 }, -- Maze Runner
     -- Running TODO List When Needed:
     -- Seasonal Gladiator/Viscious Gladiator title
 }
@@ -402,8 +407,8 @@ SFC.Cosmetics = {
     { itemID = 43300, achievementID = 7520, categoryID = 96 }, -- Loremaster's Colors
     { itemID = 128362, achievementID = 10172, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Captain's Hat (Alliance)
     { itemID = 128363, achievementID = 10255, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Captain's Hat
-    { itemID = 128364, achievementID = 10256, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Fleet Commander's Hat
     { itemID = 128365, achievementID = 10256, categoryID = 15303, faction = FACTION_NAME.ALLIANCE }, -- Fleet Commander's Hat (Alliance)
+    { itemID = 128364, achievementID = 10256, categoryID = 15303, faction = FACTION_NAME.HORDE }, -- Fleet Commander's Hat
     { itemID = 156666, achievementID = 12290, categoryID = 15119 }, -- Master Trainer's Tabard
     -- Heritage of the Void (Void Elf)
     { itemID = 156690, achievementID = 12291, categoryID = 201 }, -- Ren'dorei Helm
@@ -578,29 +583,34 @@ SFC.Cosmetics = {
     { itemID = 232647, achievementID = 41052, categoryID = 15506 }, -- Root Defender's Shield
     { itemID = 219110, achievementID = 41169, categoryID = 15530 }, -- Vermillion Patron's Elegance
     { itemID = 234521, achievementID = 41351, categoryID = 15530 }, -- Ensemble: Rusty Bruiser's Outfit
+    { itemID = 248790, achievementID = 41978, categoryID = 15506 }, -- Wastelander Scout's Serape (Achievement rewards item 144140 which can be opened to get 4 cloak appearances)
+    { itemID = 248791, achievementID = 41978, categoryID = 15506 }, -- Wastelander Skirmisher's Cloak (Achievement rewards item 144140 which can be opened to get 4 cloak appearances)
+    { itemID = 248792, achievementID = 41978, categoryID = 15506 }, -- Wastelander Magi's Shawl (Achievement rewards item 144140 which can be opened to get 4 cloak appearances)
+    { itemID = 248793, achievementID = 41978, categoryID = 15506 }, -- Wastelander Brute's Cape (Achievement rewards item 144140 which can be opened to get 4 cloak appearances)
     -- Heritage of Harandar - Har'alnor
-    { itemID = 258821, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Horns
-    { itemID = 258822, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Shoulderspikes
-    { itemID = 258824, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Cape
     { itemID = 258812, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Vest
-    { itemID = 258817, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Bracers
-    { itemID = 258820, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Gauntlets
     { itemID = 258814, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Girdle
     { itemID = 258815, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Skirt
     { itemID = 258816, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Knee-High Boots
+    { itemID = 258817, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Bracers
+    { itemID = 258820, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Gauntlets
+    { itemID = 258821, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Horns
+    { itemID = 258822, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Shoulderspikes
+    { itemID = 258824, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Cape
     -- Heritage of Harandar - Shul'ka
-    { itemID = 258831, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Horns
-    { itemID = 258832, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Shoulderspikes
-    { itemID = 258833, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Cape
     { itemID = 258825, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Vest
-    { itemID = 258829, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Bracers
-    { itemID = 258830, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Gauntlets
     { itemID = 258826, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Girdle
     { itemID = 258827, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Skirt
     { itemID = 258828, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Knee-High Boots
+    { itemID = 258829, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Bracers
+    { itemID = 258830, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Gauntlets
+    { itemID = 258831, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Horns
+    { itemID = 258832, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Shoulderspikes
+    { itemID = 258833, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Cape
 }
 
 SFC.Customizations = {
+    { icon = 133270, achievementID = 11725, categoryID = 171 }, -- Underlight Emerald
     { icon = "RaceIcon128-VoidElf-Male", achievementID = 12242, categoryID = 201 }, -- Race Unlocked: Void Elf
     { icon = "RaceIcon128-Lightforged-Male", achievementID = 12243, categoryID = 201 }, -- Race Unlocked: Lightforged Draenei
     { icon = "RaceIcon128-Nightborne-Male", achievementID = 12244, categoryID = 201 }, -- Race Unlocked: Nightborne
@@ -610,6 +620,7 @@ SFC.Customizations = {
     { icon = "RaceIcon128-Zandalari-Male", achievementID = 13161, categoryID = 201 }, -- Race Unlocked: Zandalari Troll
     { icon = "RaceIcon128-KulTiran-Male", achievementID = 13163, categoryID = 201 }, -- Race Unlocked: Kul Tiran
     { icon = "RaceIcon128-Vulpera-Male", achievementID = 13206, categoryID = 201 }, -- Race Unlocked: Vulpera
+    { icon = 236160, achievementID = 13251, categoryID = 15284 }, -- 'Night Warrior' Night Elf Customization
     { icon = 7449410, achievementID = 13513, categoryID = 15248 }, -- Paint Color: Battletorn Blue
     { icon = "RaceIcon128-Mechagnome-Male", achievementID = 14013, categoryID = 201 }, -- Race Unlocked: Mechagnome
     { icon = 2450998, achievementID = 14763, categoryID = 15441 }, -- Plague Doctor's Mask
@@ -709,8 +720,8 @@ SFC.Pets = {
     { itemID = 153040, achievementID = 12100, categoryID = 15119 }, -- Felclaw Marsuul
     { itemID = 156721, achievementID = 12431, categoryID = 15252 }, -- Mailemental
     { itemID = 161214, achievementID = 12723, categoryID = 15285 }, -- Miimii
-    { itemID = 163244, achievementID = 12996, categoryID = 15247 }, -- Brutus
     { itemID = 163634, achievementID = 12930, categoryID = 15118 }, -- Dreadtick Leecher
+    { itemID = 163244, achievementID = 12996, categoryID = 15247 }, -- Brutus
     { itemID = 163776, achievementID = 13062, categoryID = 15284, faction = FACTION_NAME.ALLIANCE }, -- Bumbles
     { itemID = 165894, achievementID = 13269, categoryID = 15117 }, -- Mini Spider Tank
     { itemID = 165907, achievementID = 13279, categoryID = 15119 }, -- Wicker Wraith
@@ -779,27 +790,35 @@ SFC.Decor = {
     { itemID = 247741, achievementID = 6981, categoryID = 15163 }, -- Kotmogu Orb of Power
     { itemID = 256425, achievementID = 8316, categoryID = 15302 }, -- Shadowforge Stone Chair
     { itemID = 258740, achievementID = 9415, categoryID = 15071 }, -- Glorious Pendant of Rukhmar
+    { itemID = 282287, achievementID = 10365, categoryID = 158 }, -- Scarecrow Pepe
     { itemID = 245697, achievementID = 10698, categoryID = 15252 }, -- Shala'nir Feather Bed
     { itemID = 256913, achievementID = 10996, categoryID = 15254 }, -- Tauren Jeweler's Roller
     { itemID = 245448, achievementID = 11124, categoryID = 15252 }, -- "Night on the Jeweled Estate" Painting
     { itemID = 245460, achievementID = 11257, categoryID = 15257 }, -- Skyhorn Storage Chest
     { itemID = 245703, achievementID = 11258, categoryID = 15257 }, -- Kaldorei Treasure Trove
     { itemID = 258223, achievementID = 11699, categoryID = 15255 }, -- Murloc's Wind Chimes
+    { itemID = 282162, achievementID = 12026, categoryID = 15257 }, -- Ceremonial Lightforged Standard
+    { itemID = 281682, achievementID = 12102, categoryID = 15257 }, -- Shielded Lightforged Pylon
     { itemID = 245522, achievementID = 12479, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Grand Mask of Bwonsamdi, Loa of Graves
     { itemID = 241062, achievementID = 12509, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Lordaeron Rectangular Rug
+    { itemID = 245271, achievementID = 12582, categoryID = 15284 }, -- Old Salt's Fireplace
     { itemID = 245497, achievementID = 12614, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Golden Loa's Altar
     { itemID = 245490, achievementID = 12733, categoryID = 169, faction = FACTION_NAME.HORDE }, -- Dazar'alor Forge
     { itemID = 244325, achievementID = 12746, categoryID = 170, faction = FACTION_NAME.HORDE }, -- Zuldazar Cook's Griddle
     { itemID = 245463, achievementID = 12867, categoryID = 15308, faction = FACTION_NAME.HORDE }, -- Lordaeron Banded Barrel
     { itemID = 245467, achievementID = 12869, categoryID = 15308, faction = FACTION_NAME.HORDE }, -- Lordaeron Banded Crate
     { itemID = 245483, achievementID = 12870, categoryID = 15308, faction = FACTION_NAME.HORDE }, -- Lordaeron Spiked Weapon Rack
+    { itemID = 252654, achievementID = 12997, categoryID = 15284 }, -- Proudmoore Green Drape
     { itemID = 244326, achievementID = 13018, categoryID = 15298 }, -- Zandalari Wall Shelf
     { itemID = 245487, achievementID = 13038, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Bookcase of Gonk
     { itemID = 245494, achievementID = 13039, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Idol of Pa'ku, Master of Winds
+    { itemID = 252653, achievementID = 13049, categoryID = 15284 }, -- Tiragarde Treasure Chest
     { itemID = 245476, achievementID = 13284, categoryID = 15284, faction = FACTION_NAME.HORDE }, -- Large Forsaken War Tent
     { itemID = 246483, achievementID = 13473, categoryID = 15298 }, -- Redundant Reclamation Rig
     { itemID = 246603, achievementID = 13475, categoryID = 15298 }, -- Gnomish Cog Stack
     { itemID = 246479, achievementID = 13723, categoryID = 15285 }, -- Gnomish T.O.O.L.B.O.X.
+    { itemID = 283262, achievementID = 14164, categoryID = 15422 }, -- Restored Night Fae Sigil
+    { itemID = 284546, achievementID = 14311, categoryID = 15436 }, -- Runic Kyrian Reliquary
     { itemID = 248656, achievementID = 17529, categoryID = 15465 }, -- Dragon's Hoard Chest
     { itemID = 248104, achievementID = 17773, categoryID = 15455 }, -- Pentagonal Stone Table
     { itemID = 248124, achievementID = 19458, categoryID = 15301 }, -- The Great Hoard
@@ -935,17 +954,21 @@ SFC.Decor = {
     { itemID = 278369, achievementID = 63451, categoryID = 15605 }, -- Preyhunter's Scaled Effigy
     { itemID = 278372, achievementID = 63452, categoryID = 15605 }, -- Preyhunter's Fanged Effigy
     { itemID = 278380, achievementID = 63453, categoryID = 15605 }, -- Preyhunter's Terror Bust
+    { itemID = 278376, achievementID = 63454, categoryID = 15605 }, -- Preyhunter's Terror Effigy
 }
 
 -- No longer obtainable (achievement and/or reward). Might make this its own category one day.
 SFC.Legacy = {
     { titleID = 477, achievementID = 16648, categoryID = 15272 }, -- the Thundering
+    { itemID = 208543, achievementID = 18702, categoryID = 15274 }, -- Lil' Frostwing (opened from the achievement reward Anniversary gift, which is item 208211; no longer obtainable)
     { itemID = 226357, achievementID = 20525, categoryID = 15272 }, -- Diamond Mechsuit
     { itemID = 220766, achievementID = 20593, categoryID = 15536 }, -- August Phoenix
     { itemID = 232624, achievementID = 41056, categoryID = 15274 }, -- Timely Buzzbee
+    { titleID = 550, achievementID = 41197, categoryID = 15531 }, -- High Explorer
     { itemID = 235549, achievementID = 41533, categoryID = 15272 }, -- Crimson Shreddertank
     { itemID = 238739, achievementID = 41779, categoryID = 15274 }, -- Chrono Corsair
     { titleID = 453, achievementID = 42170, categoryID = 15572 }, -- the Unbound
+    { titleID = 550, achievementID = 42203, categoryID = 15531 }, -- High Explorer
     { itemID = 246237, achievementID = 42212, categoryID = 15531 }, -- OC91 Chariot
     { titleID = 551, achievementID = 42301, categoryID = 15604 }, -- Timerunner
     { itemID = 250307, achievementID = 42318, categoryID = 15604 }, -- Tome of the Corrupt
@@ -992,15 +1015,15 @@ SFC.Legacy = {
     { itemID = 253029, achievementID = 61088, categoryID = 15604 }, -- High Priest's Felscorned Seeker
     { itemID = 253026, achievementID = 61089, categoryID = 15604 }, -- Archmage's Felscorned Disc
     { itemID = 253032, achievementID = 61090, categoryID = 15604 }, -- Felscorned Netherlord's Dreadsteed
-    { itemID = 253343, achievementID = 61337, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Felscorned Regalia
+    { itemID = 260228, achievementID = 61188, categoryID = 15270 }, -- Galactic Gladiator's Goredrake
     { itemID = 262620, achievementID = 61256, categoryID = 15272 }, -- Calamitous Carrion
     { itemID = 262621, achievementID = 61258, categoryID = 15272 }, -- Convalescent Carrion
-    { itemID = 260228, achievementID = 61188, categoryID = 15270 }, -- Galactic Gladiator's Goredrake
+    { itemID = 253343, achievementID = 61337, categoryID = 15604 }, -- Ensemble: Sargerei Commander's Felscorned Regalia
     { itemID = 258884, achievementID = 61463, categoryID = 15454 }, -- Spawn of Vyranoth
-    { itemID = 263222, achievementID = 61799, categoryID = 15531 }, -- Arcanovoid Construct
     { itemID = 263413, achievementID = 61797, categoryID = 15531 }, -- Nullaeus Domaneye
+    { itemID = 263222, achievementID = 61799, categoryID = 15531 }, -- Arcanovoid Construct
+    { titleID = 550, achievementID = 61807, categoryID = 15531 }, -- High Explorer
     { itemID = 265071, achievementID = 61858, categoryID = 15259 }, -- Gleaming Sunmote
-    { itemID = 208543, achievementID = 18702, categoryID = 15274 }, -- Lil' Frostwing (opened from the achievement reward Anniversary gift, which is item 208211; no longer obtainable)
     -- TODO:
     -- Stormheim achievement from Lemix (achievementID 42582, categoryID 15604) needs appearance itemization
 }

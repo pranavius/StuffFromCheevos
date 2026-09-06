@@ -55,7 +55,7 @@ SlashCmdList["SFCSLASH"] = function(msg)
     if tContains({ "debug", "d" }, cmd) then
         SFC.DBUtils.ToggleDebugMode()
     elseif tContains({ "minimap", "m" }, cmd) then
-        SFC.DBUtils.ToggleMinimapButton(minimapIcon)
+        SFC.DBUtils.ToggleMinimapButton()
     elseif tContains({ "help", "h" }, cmd) then
         SFC.LogUtils.Message("Slash command options:")
         print(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/sfc"), "or", DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/stufffromcheevos")..":", "Open the AddOn window" )

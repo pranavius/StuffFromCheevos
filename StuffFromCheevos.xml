@@ -181,13 +181,28 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             </Layer>
                         </Layers>
                     </CheckButton>
+                    <CheckButton parentKey="ShowMinimapButton" inherits="MinimalCheckboxTemplate">
+                        <Size x="20" y="19"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.FadeWhenMoving" relativePoint="BOTTOMLEFT" y="-10"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString parentKey="Text" inherits="GameFontHighlightSmall" text="Show Minimap Button">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT" x="2"/>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </CheckButton>
                     <Button parentKey="ResetReload" inherits="UIPanelButtonTemplate" text="Reset Settings">
                         <KeyValues>
                             <KeyValue key="tooltipText" value="Restore default settings and reload the UI" type="string"/>
                             <KeyValue key="tooltipAnchor" value="ANCHOR_TOPLEFT" type="string"/>
                         </KeyValues>
                         <Anchors>
-                            <Anchor point="TOPLEFT" relativeKey="$parent.FadeWhenMoving" relativePoint="BOTTOMLEFT" y="-20"/>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.ShowMinimapButton" relativePoint="BOTTOMLEFT" y="-20"/>
                             <Anchor point="RIGHT" x="-10"/>
                         </Anchors>
                         <Scripts>
