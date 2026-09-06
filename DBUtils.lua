@@ -1,4 +1,4 @@
-local SFC = select(2, ...)
+local addonName, SFC = ...
 
 local DBUtils = {}
 SFC.DBUtils = DBUtils
@@ -8,7 +8,8 @@ SFC_DB_DEFAULTS = {
     debug = false,
     itemsCache = {},
     filters = { showCompleted = true, searchTerm = "", sortOrder = "" },
-    uiOptions = { animateProgressBar = true, fadeWindowWhenMoving = true }
+    uiOptions = { animateProgressBar = true, fadeWindowWhenMoving = true },
+    minimap = { hide = true }
 }
 
 ---@param tbl table
@@ -151,6 +152,13 @@ end
 function DBUtils.ToggleDebugMode()
     SFC_DB.debug = not SFC_DB.debug
     SFC.LogUtils.Message("Debugging mode is", DARKYELLOW_FONT_COLOR:WrapTextInColorCode(SFC_DB.debug and "enabled" or "disabled"))
+end
+
+---@param minimapButton LibDBIcon-1.0
+function DBUtils.ToggleMinimapButton(minimapButton)
+    SFC_DB.minimap.hide = not SFC_DB.minimap.hide
+    if SFC_DB.minimap.hide then minimapButton:Hide(addonName) else minimapButton:Show(addonName) end
+    SFC.LogUtils.DebugMessage("Minimap button", DARKYELLOW_FONT_COLOR:WrapTextInColorCode(SFC_DB.minimap.hide and "hidden" or "shown"))
 end
 
 ---Triggers an event to update rewards list in the AddOn window

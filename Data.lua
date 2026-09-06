@@ -130,7 +130,7 @@ SFC.Mounts = {
     { itemID = 275432, achievementID = 63099, categoryID = 15270, faction = FACTION_NAME.HORDE }, -- Vicious Lightbloom Boar
     { itemID = 275433, achievementID = 63103, categoryID = 15270, faction = FACTION_NAME.ALLIANCE }, -- Vicious Lightbloom Boar (Alliance)
     { itemID = 275657, achievementID = 63333, categoryID = 15531 }, -- Apophic Soul Crusher (Let Me Solo Him Season 2)
-    -- TODO List:
+    -- Running TODO List When Needed:
     -- Seasonal AOTC and/or Cutting Edge mount
 }
 
@@ -390,9 +390,9 @@ SFC.Titles = {
     { titleID = 779, achievementID = 63510, categoryID = 171 }, -- Briny
     { titleID = 789, achievementID = 63635, categoryID = 171 }, -- Bloodsworn Mariner
     { titleID = 794, achievementID = 63636, categoryID = 15553 }, -- the Snake
-    -- TODO List:
+    { titleID = 767, achievementID = 62922, categoryID = 15270 }, -- Venomous Gladiator
+    -- Running TODO List When Needed:
     -- Seasonal Gladiator/Viscious Gladiator title
-    -- Seasonal raid HOF title
 }
 
 SFC.Cosmetics = {
@@ -578,9 +578,26 @@ SFC.Cosmetics = {
     { itemID = 232647, achievementID = 41052, categoryID = 15506 }, -- Root Defender's Shield
     { itemID = 219110, achievementID = 41169, categoryID = 15530 }, -- Vermillion Patron's Elegance
     { itemID = 234521, achievementID = 41351, categoryID = 15530 }, -- Ensemble: Rusty Bruiser's Outfit
-    -- TODO List:
-    -- Heritage of the Haranir (achievementID 61942, categoryID 15547) needs appearances to be itemized
-    -- Stormheim achievement from Lemix (achievementID 42582, categoryID 15604) needs appearance itemization as well
+    -- Heritage of Harandar - Har'alnor
+    { itemID = 258821, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Horns
+    { itemID = 258822, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Shoulderspikes
+    { itemID = 258824, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Cape
+    { itemID = 258812, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Vest
+    { itemID = 258817, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Bracers
+    { itemID = 258820, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Gauntlets
+    { itemID = 258814, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Girdle
+    { itemID = 258815, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Skirt
+    { itemID = 258816, achievementID = 61942, categoryID = 15547 }, -- Har'alnor Knee-High Boots
+    -- Heritage of Harandar - Shul'ka
+    { itemID = 258831, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Horns
+    { itemID = 258832, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Shoulderspikes
+    { itemID = 258833, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Cape
+    { itemID = 258825, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Vest
+    { itemID = 258829, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Bracers
+    { itemID = 258830, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Gauntlets
+    { itemID = 258826, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Girdle
+    { itemID = 258827, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Skirt
+    { itemID = 258828, achievementID = 61942, categoryID = 15547 }, -- Shul'ka Knee-High Boots
 }
 
 SFC.Customizations = {
@@ -712,7 +729,6 @@ SFC.Pets = {
     { itemID = 205231, achievementID = 17741, categoryID = 15465 }, -- Roggy
     { itemID = 193377, achievementID = 17934, categoryID = 15119 }, -- Gerald
     { itemID = 205165, achievementID = 18384, categoryID = 15118 }, -- Axel
-    { itemID = 208543, achievementID = 18702, categoryID = 15274 }, -- Lil' Frostwing (opened from the achievement reward Anniversary gift, which is item 208211; no longer obtainable)
     { itemID = 210556, achievementID = 19089, categoryID = 15468 }, -- Ivy
     { itemID = 210347, achievementID = 19193, categoryID = 15468 }, -- Sergeant Quackers
     { itemID = 210522, achievementID = 19293, categoryID = 15455 }, -- Blueloo
@@ -921,6 +937,7 @@ SFC.Decor = {
     { itemID = 278380, achievementID = 63453, categoryID = 15605 }, -- Preyhunter's Terror Bust
 }
 
+-- No longer obtainable (achievement and/or reward). Might make this its own category one day.
 SFC.Legacy = {
     { titleID = 477, achievementID = 16648, categoryID = 15272 }, -- the Thundering
     { itemID = 226357, achievementID = 20525, categoryID = 15272 }, -- Diamond Mechsuit
@@ -983,4 +1000,7 @@ SFC.Legacy = {
     { itemID = 263222, achievementID = 61799, categoryID = 15531 }, -- Arcanovoid Construct
     { itemID = 263413, achievementID = 61797, categoryID = 15531 }, -- Nullaeus Domaneye
     { itemID = 265071, achievementID = 61858, categoryID = 15259 }, -- Gleaming Sunmote
+    { itemID = 208543, achievementID = 18702, categoryID = 15274 }, -- Lil' Frostwing (opened from the achievement reward Anniversary gift, which is item 208211; no longer obtainable)
+    -- TODO:
+    -- Stormheim achievement from Lemix (achievementID 42582, categoryID 15604) needs appearance itemization
 }

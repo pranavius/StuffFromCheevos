@@ -1,4 +1,4 @@
-## Interface: 120100, 120007
+## Interface: 120105, 120100
 ## Title: Stuff From Cheevos
 ## Notes: Quickly find and sort through all achievements that reward you with collectibles 
 ## IconTexture: Interface\AddOns\StuffFromCheevos\Media\SFC-Logo
@@ -6,7 +6,7 @@
 ## Version: @project-version@
 ## SavedVariables: SFC_DB
 ## LoadSavedVariablesFirst: 1
-## Dependencies: Blizzard_AchievementUI
+## Dependencies: Blizzard_AchievementUI, Blizzard_Collections
 ## Category: Collections
 ## Category-deDE: Kriegsmeutesammlungen
 ## Category-esES: Colecciones de banda guerrera
@@ -26,6 +26,8 @@
 ## X-Curse-Project-ID: 1633698
 ## X-Wago-ID: aNDMlY6o
 ## X-Last-Update: @build-date-iso@
+
+embeds.xml
 
 Data.lua
 DBUtils.lua

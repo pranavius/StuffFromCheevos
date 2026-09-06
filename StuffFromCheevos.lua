@@ -1,4 +1,5 @@
 local addonName, SFC = ...
+local LDB = LibStub("LibDataBroker-1.1")
 
 -- Registering a reusable NineSlice layout for the Rewards list items
 -- Currently unused, but who knows? Might be fun to keep around for later
@@ -14,6 +15,25 @@ local addonName, SFC = ...
 --     Center = { atlas = "UI-HUD-Minimap-Button-NineSlice-Center" },
 -- })
 
+local function toggleSFCWindow()
+    if SFCMain:IsShown() then SFCMain:Hide() else SFCMain:Show() end
+end
+
+local broker = LDB:NewDataObject(addonName, {
+    type = "launcher",
+    label = "Stuff From Cheevos",
+    icon = "Interface/AddOns/StuffFromCheevos/Media/SFC-Logo",
+    OnClick = function(_, btn) if btn == "LeftButton" then toggleSFCWindow() end end,
+    OnTooltipShow = function(tooltip)
+        tooltip:SetText("Stuff From Cheevos")
+        tooltip:AddLine(C_AddOns.GetAddOnMetadata(addonName, "Notes"), 1, 1, 1, true)
+		tooltip:AddLine(" ")
+        tooltip:AddLine("|A:newplayertutorial-icon-mouse-leftbutton:15:15|a Click to open the AddOn window", 1, 1, 1, true)
+		tooltip:AddLine("Type "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/sfc help").. " in the chat window for available slash commands", 0.67, 0.67, 0.67, false)
+    end
+})
+local minimapIcon = LibStub("LibDBIcon-1.0")
+
 -- Event handling (probably a better way to do this but idk)
 local ef = CreateFrame("Frame")
 ef:HookScript("OnEvent", function(self, event, ...)
@@ -21,25 +41,30 @@ ef:HookScript("OnEvent", function(self, event, ...)
         SFC.DBUtils.EnsureDefaults()
         SFC.LogUtils.DebugMessage("Stuff From Cheevos Loaded")
         SFC.DBUtils.BuildItemsCache()
+        minimapIcon:Register(addonName, broker, SFC_DB.minimap)
         self:UnregisterEvent("ADDON_LOADED")
     end
 end)
 ef:RegisterEvent("ADDON_LOADED")
 
-local function toggleSFCWindow()
-    if SFCMain:IsShown() then SFCMain:Hide() else SFCMain:Show() end
-end
-
 SLASH_SFCSLASH1 = "/stufffromcheevos"
 SLASH_SFCSLASH2 = "/sfc"
 
 SlashCmdList["SFCSLASH"] = function(msg)
-    if msg == "debug" or msg == "d" then
+    local cmd = msg and msg:trim():lower() or ""
+    if tContains({ "debug", "d" }, cmd) then
         SFC.DBUtils.ToggleDebugMode()
-    elseif msg == "" then
-        toggleSFCWindow()
+    elseif tContains({ "minimap", "m" }, cmd) then
+        SFC.DBUtils.ToggleMinimapButton(minimapIcon)
+    elseif tContains({ "help", "h" }, cmd) then
+        SFC.LogUtils.Message("Slash command options:")
+        print(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/sfc"), "or", DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/stufffromcheevos")..":", "Open the AddOn window" )
+		print("    -", DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/sfc minimap"), "or", DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/sfc m")..":", "Toggle minimap button")
+		print("    -", DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/sfc help"), "or", DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/sfc h")..":", "View avaialable slash commands")
+    elseif cmd ~= "" then
+        SFC.LogUtils.Message("Invalid command", "\""..msg.."\"")
     else
-
+        toggleSFCWindow()
     end
 end
 
