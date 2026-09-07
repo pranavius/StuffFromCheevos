@@ -1,5 +1,25 @@
 local SFC = select(2, ...)
 
+SFC.SortOrders = {
+    { type = "natural", label = "Natural" },
+    { type = "category", label = "Category" },
+    { type = "nearCriteria", label = "Nearest (Criteria)", field = "remaining", ascending = true },
+    { type = "nearPercent", label = "Nearest (%)", field = "pct", ascending = true },
+    { type = "farCriteria", label = "Furthest (Criteria)", field = "remaining", ascending = false },
+    { type = "farPercent", label = "Furthest (%)", field = "pct", ascending = false },
+}
+
+---Label to show on the sort dropdown menu.
+---Falls back to "Natural" for the legacy "" value and anything unrecognized.
+---@param sortType string?
+---@return string
+local function getSortOrderLabel(sortType)
+    for _, option in ipairs(SFC.SortOrders) do
+        if option.type == sortType then return option.label end
+    end
+    return SFC.SortOrders[1].label
+end
+
 --region SFCCategoryButtonMixin
 ---@class SFCCategoryButtonTemplate: Button
 SFCCategoryButtonMixin = {}
@@ -44,6 +64,20 @@ function SFCMainMixin:OnLoad()
         self.Categories.FadeWhenMoving:HookScript("OnClick", function() SFC_DB.uiOptions.fadeWindowWhenMoving = not SFC_DB.uiOptions.fadeWindowWhenMoving end)
         self.Categories.ShowMinimapButton:SetChecked(not SFC.DBUtils.GetProperty("minimap").hide or false)
         self.Categories.ShowMinimapButton:HookScript("OnClick", function() SFC.DBUtils.ToggleMinimapButton() end)
+        self.Categories.SortOrder:SetupMenu(function(_, rootDescription)
+            for _, option in ipairs(SFC.SortOrders) do
+                rootDescription:CreateRadio(option.label,
+                    function(sortType) return SFC.DBUtils.GetProperty("sortOrder") == sortType end,
+                    function(sortType)
+                        SFC_DB.filters.sortOrder = sortType
+                        self.Categories.SortOrder:OverrideText(getSortOrderLabel(sortType))
+                        EventRegistry:TriggerEvent("StuffFromCheevos.FiltersUpdated")
+                    end,
+                    option.type)
+            end
+        end)
+        -- Set explicitly here to reflect persisted selection since it only auto-updates when shown
+        self.Categories.SortOrder:OverrideText(getSortOrderLabel(SFC.DBUtils.GetProperty("sortOrder")))
     end)
 
     -- Register events for fading frame on movement
@@ -391,6 +425,68 @@ local function animateProgressBar(bar, value)
     end)
 end
 
+---Displayed criteria progress for an achievment.
+---For non-progress-bar achievements, `barText` will always be `nil`
+---@param achievementID number
+---@return number completed
+---@return number total
+---@return string? barText
+local function getCriteriaProgress(achievementID)
+    local _, _, _, isCompleted, _, _, _, _, flags = GetAchievementInfo(achievementID)
+    local numCriteria = GetAchievementNumCriteria(achievementID)
+    
+    local hasProgressBar = flags and bit.band(flags, ACHIEVEMENT_FLAGS_HAS_PROGRESS_BAR) ~= 0
+    if not hasProgressBar and numCriteria == 1 then
+        local criteriaFlags = select(7, GetAchievementCriteriaInfo(achievementID, 1))
+        hasProgressBar = criteriaFlags and bit.band(criteriaFlags, 1) ~= 0
+    end
+
+    if hasProgressBar then
+        local _, _, _, quantity, reqQuantity, _, _, _, barText = GetAchievementCriteriaInfo(achievementID, 1)
+        return quantity or 0, reqQuantity or 0, barText
+    end
+
+    if numCriteria == 0 then return isCompleted and 1 or 0, 1, nil end
+
+    local numCompleted = 0
+    for i = 1, numCriteria do
+        if select(3, GetAchievementCriteriaInfo(achievementID, i)) then numCompleted = numCompleted + 1 end
+    end
+
+    return numCompleted, numCriteria, nil
+end
+
+---Calculates progress data for completion-based sorts keyed by `achievementID`.
+---Rewards that share an achievement don't hit APIs more than once each
+---@param rewards Reward[]
+---@return table<number, { isComplete: boolean, remaining: number, pct: number }>
+local function buildSortKeys(rewards)
+    local keys = {}
+    for _, reward in ipairs(rewards) do
+        if not keys[reward.achievementID] then
+            if select(4, GetAchievementInfo(reward.achievementID)) then
+                keys[reward.achievementID] = { isComplete = true, remaining = 0, pct = 0 }
+            else
+                local completed, total = getCriteriaProgress(reward.achievementID)
+                -- Treat single-criteria achievements as math.huge rather than only mising one criterion
+                local remaining
+                if total > 1 then
+                    remaining = math.max(total - completed, 0)
+                else
+                    remaining = completed >= total and 0 or math.huge
+                end
+                keys[reward.achievementID] = {
+                    isComplete = false,
+                    remaining = remaining,
+                    pct = total > 0 and (1 - (completed / total)) or 1
+                }
+            end
+        end
+    end
+
+    return keys
+end
+
 ---Used for rendering progress text over the bar as well as determining progress bar fill percentage
 ---@param rewards Reward[]
 ---@return number completed
@@ -403,6 +499,53 @@ local function getProgressValues(rewards)
     end
 
     return completed, #rewards
+end
+
+---Default comparison method for sorting list results (`achievementID`, `categoryID`, then reward name)
+---@param a Reward
+---@param b Reward
+---@return boolean
+local function naturalComparator(a, b)
+    if a.achievementID ~= b.achievementID then return a.achievementID < b.achievementID end
+    if a.categoryID ~= b.categoryID then return a.categoryID < b.categoryID end
+    return a.name < b.name
+end
+
+---Category comparison method for sorting list results. Falls back on `naturalComparator` for identical `categoryID` values
+---@param a Reward
+---@param b Reward
+---@return boolean
+local function categoryComparator(a, b)
+    if a.categoryID ~= b.categoryID then return a.categoryID < b.categoryID end
+    return naturalComparator(a, b)
+end
+
+---Sorts reward lists using the appropriate comparator based on selected `sortOrder` value from database.
+---@param rewards Reward[]
+local function sortRewards(rewards)
+    local sortOrder = SFC.DBUtils.GetProperty("sortOrder")
+    if sortOrder == "category" then return table.sort(rewards, categoryComparator) end
+
+    local field, ascending
+    for _, option in ipairs(SFC.SortOrders) do
+        if option.type == sortOrder then field, ascending = option.field, option.ascending end
+    end
+
+    -- "natural", "" value, and anything unrecognized fall back to the default ordering (see getSortOrderLabel)
+    if not field then return table.sort(rewards, naturalComparator) end
+
+    local keys = buildSortKeys(rewards)
+    table.sort(rewards, function(a, b)
+        local ka, kb = keys[a.achievementID], keys[b.achievementID]
+        -- Always sort completed achievements at the bottom
+        if ka.isComplete ~= kb.isComplete then return kb.isComplete end
+        if ka[field] ~= kb[field] then
+            if ascending then return ka[field] < kb[field] end
+            return ka[field] > kb[field]
+        end
+
+        return naturalComparator(a, b)
+    end)
 end
 
 ---@param category "Mounts"|"Titles"|"Cosmetics"|"Customizations"|"Toys"|"Pets"|"Decor"|"All"
@@ -430,12 +573,6 @@ function SFCMainMixin:PopulateAndSetRewardsList(category, shouldAnimateProgressB
     tAppendAll(rewardLists.All, rewardLists.Toys)
     tAppendAll(rewardLists.All, rewardLists.Pets)
     tAppendAll(rewardLists.All, rewardLists.Decor)
-    -- When showing all rewards, sort them by achievement, category, then name
-    table.sort(rewardLists.All, function(a, b)
-        if a.achievementID ~= b.achievementID then return a.achievementID < b.achievementID end
-        if a.categoryID ~= b.categoryID then return a.categoryID < b.categoryID end
-        return a.name < b.name
-    end)
 
     -- To persist completion progress, we need to update the progress bar before setting DataProvider contents
     local completed, total = getProgressValues(rewardLists[category])
@@ -466,6 +603,7 @@ function SFCMainMixin:PopulateAndSetRewardsList(category, shouldAnimateProgressB
         end
     end
 
+    sortRewards(rewardLists[category] or {})
     SFC.DataProvider = CreateDataProvider(rewardLists[category] or {})
     self.Rewards.ScrollFrame:SetDataProvider(SFC.DataProvider, false)
 end
@@ -662,25 +800,12 @@ local function createRewardFrame(frame, reward)
     local progressText
     if isCompleted then
         progressText = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Completed "..FormatShortDate(completedDay, completedMonth, completedYear))
-    elseif flags and bit.band(flags, ACHIEVEMENT_FLAGS_HAS_PROGRESS_BAR) ~= 0 then
-        -- Achievements that have a progress bar shown in the Achievements UI seem to only have 1 criteria, so we **SHOULDN'T** need to iterate over any
-        local barText = select(9, GetAchievementCriteriaInfo(reward.achievementID, 1))
-        progressText = barText.." completed"
     else
-        local numCriteria = GetAchievementNumCriteria(reward.achievementID)
-        -- GetAchievementCriteriaInfo also returns bit flags, so we need to check for that here as well because sometimes the bit isn't set on the Achievement itself :')
-        if numCriteria == 1 then
-            local _, _, _, _, _, _, criteriaFlags, _, barText = GetAchievementCriteriaInfo(reward.achievementID, 1)
-            -- "Show progress bar" flag appears to be '1' for this bit (https://wowdev.wiki/DB/CriteriaTree#Flags)
-            if criteriaFlags and bit.band(criteriaFlags, 1) ~= 0 then progressText = barText.." completed" end
-        elseif numCriteria > 0 then
-            local numCompleted = 0
-            for i = 1, numCriteria do
-                local _, _, isCriteriaComplete = GetAchievementCriteriaInfo(reward.achievementID, i)
-                if isCriteriaComplete then numCompleted = numCompleted + 1 end
-            end
-
-            progressText = numCompleted.." / "..numCriteria.." completed"
+        local completed, total, barText = getCriteriaProgress(reward.achievementID)
+        if barText then
+            progressText = barText.." completed"
+        elseif total > 1 then
+            progressText = completed.." / "..total.." completed"
         end
     end
     frame.CriteriaProgress:SetText(progressText)

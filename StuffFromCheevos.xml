@@ -136,10 +136,25 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                              <!-- BOTTOMRIGHT anchor is re-defined in mixin once list elements are generated -->
                         </Anchors>
                     </Frame>
+                    <DropdownButton parentKey="SortOrder" inherits="WowStyle1DropdownTemplate">
+                        <Size x="150" y="25"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.List" relativePoint="BOTTOMLEFT" x="10" y="-40"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString parentKey="Label" inherits="GameFontHighlightSmall" text="Sort Order" justifyH="LEFT">
+                                    <Anchors>
+                                        <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" y="5"/>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </DropdownButton>
                     <CheckButton parentKey="ShowCompleted" inherits="MinimalCheckboxTemplate">
                         <Size x="20" y="19"/>
                         <Anchors>
-                            <Anchor point="TOPLEFT" relativeKey="$parent.List" relativePoint="BOTTOMLEFT" x="10" y="-20"/>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.SortOrder" relativePoint="BOTTOMLEFT" y="-10"/>
                         </Anchors>
                         <Layers>
                             <Layer level="ARTWORK">

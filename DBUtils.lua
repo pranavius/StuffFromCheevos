@@ -7,7 +7,7 @@ SFC.DBUtils = DBUtils
 SFC_DB_DEFAULTS = {
     debug = false,
     itemsCache = {},
-    filters = { showCompleted = true, searchTerm = "", sortOrder = "" },
+    filters = { showCompleted = true, searchTerm = "", sortOrder = "natural" },
     uiOptions = { animateProgressBar = true, fadeWindowWhenMoving = true },
     minimap = { hide = true }
 }

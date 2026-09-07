@@ -2,11 +2,14 @@
 ---@field name string
 ---@field icon number
 
+---@alias SortOrder "natural"|"category"|"nearCriteria"|"nearPercent"|"farCriteria"|"farPercent"
+
 ---@class SFCDatabaseSchema: table
 ---@field debug boolean
 ---@field itemsCache table<number, CacheData>
----@field filters { showCompleted: boolean, searchTerm: string, sortOrder: string }
+---@field filters { showCompleted: boolean, searchTerm: string, sortOrder: SortOrder }
 ---@field uiOptions { animateProgressBar: boolean, fadeWindowWhenMoving: boolean }
+---@field minimap { hide: boolean }
 
 ---@class DataItem
 ---@field itemID number?

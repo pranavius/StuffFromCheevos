@@ -387,15 +387,15 @@ SFC.Titles = {
     { titleID = 550, achievementID = 62897, categoryID = 15531 }, -- High Explorer
     { titleID = 767, achievementID = 62922, categoryID = 15270 }, -- Venomous Gladiator
     { titleID = 771, achievementID = 62941, categoryID = 15608 }, -- Ritual Breaker
-    { titleID = -1, achievementID = 63381, categoryID = 15553 }, -- The Cursebreaker
+    { titleID = 777, achievementID = 63381, categoryID = 15553 }, -- The Cursebreaker
     { titleID = 791, achievementID = 63476, categoryID = 15566 }, -- Venom's End
     { titleID = 779, achievementID = 63510, categoryID = 171 }, -- Briny
-    { titleID = -1, achievementID = 63519, categoryID = 15547 }, -- Light's Faithful
+    { titleID = 780, achievementID = 63519, categoryID = 15547 }, -- Light's Faithful
     { titleID = 789, achievementID = 63635, categoryID = 171 }, -- Bloodsworn Mariner
     { titleID = 794, achievementID = 63636, categoryID = 15553 }, -- the Snake
     { titleID = 793, achievementID = 63659, categoryID = 15274 }, -- Bane of the Swarm
     { titleID = 797, achievementID = 63717, categoryID = 15522 }, -- Treasure Hound
-    { titleID = -1, achievementID = 63722, categoryID = 15522 }, -- Maze Runner
+    { titleID = 799, achievementID = 63722, categoryID = 15522 }, -- Maze Runner
     -- Running TODO List When Needed:
     -- Seasonal Gladiator/Viscious Gladiator title
 }
