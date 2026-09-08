@@ -32,6 +32,7 @@ embeds.xml
 Data.lua
 DBUtils.lua
 LogUtils.lua
+RewardLists.lua
 StuffFromCheevos.lua
 StuffFromCheevosMixins.lua
 StuffFromCheevos.xml

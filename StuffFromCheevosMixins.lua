@@ -10,7 +10,7 @@ SFC.SortOrders = {
 }
 
 ---Label to show on the sort dropdown menu.
----Falls back to "Natural" for the legacy "" value and anything unrecognized.
+---Falls back to `"Natural" for the legacy `""` value and anything unrecognized.
 ---@param sortType string?
 ---@return string
 local function getSortOrderLabel(sortType)
@@ -150,214 +150,6 @@ function SFCMainMixin:ResetCategoryButtonTextures()
         button:SetNormalAtlas("common-button-tertiary-normal")
     end
 end
-
--- START: Series of helper functions for organizing AddOn data into lists of a single shape
-
----@return Reward[]
-local function getMountRewards()
-    ---@type Reward[]
-    local result = {}
-    for _, reward in ipairs(SFC.Mounts) do
-        if reward.spellID and (not reward.faction or reward.faction == SFCMain.faction) then
-            local spellInfo = C_Spell.GetSpellInfo(reward.spellID)
-            tinsert(result, {
-                name = spellInfo.name,
-                spellID = spellInfo.spellID,
-                achievementID = reward.achievementID,
-                categoryID = reward.categoryID,
-                type = "Mount",
-                icon = spellInfo.originalIconID,
-                faction = reward.faction
-            })
-        else
-            local mountID = C_MountJournal.GetMountFromItem(reward.itemID)
-            if mountID and (not reward.faction or reward.faction == SFCMain.faction) then
-                local mountName, _, iconID = C_MountJournal.GetMountInfoByID(mountID)
-                tinsert(result, {
-                    name = mountName,
-                    itemID = reward.itemID,
-                    achievementID = reward.achievementID,
-                    categoryID = reward.categoryID,
-                    type = "Mount",
-                    icon = iconID,
-                    faction = reward.faction
-                })
-            elseif not mountID and SFC.DBUtils.GetItemFromCache(reward.itemID) then
-                tinsert(result, {
-                    name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Mount ("..reward.itemID..")",
-                    itemID = reward.itemID,
-                    achievementID = reward.achievementID,
-                    categoryID = reward.categoryID,
-                    type = "Mount",
-                    icon = SFC.DBUtils.GetItemFromCache(reward.itemID).icon or 134400,
-                    faction = reward.faction
-                })
-            elseif reward.faction ~= SFCMain.faction then
-                SFC.LogUtils.DebugMessage("Mount for item ID", reward.itemID, "excluded due to faction mismatch")
-            else
-                SFC.LogUtils.DebugMessage("Mount for item ID", reward.itemID, "not found")
-            end
-        end
-    end
-
-    return result
-end
-
----@return Reward[]
-local function getTitleRewards()
-    ---@type Reward[]
-    local result = {}
-    for _, reward in ipairs(SFC.Titles) do
-        if reward.titleID and reward.titleID > 0 then
-            local title = GetTitleName(reward.titleID)
-    
-            if title and title ~= "" and (not reward.faction or reward.faction == SFCMain.faction) then
-                tinsert(result, {
-                    name = title,
-                    achievementID = reward.achievementID,
-                    categoryID = reward.categoryID,
-                    type = "Title",
-                    icon = "interface/icons/inv_scroll_05",
-                    faction = reward.faction
-                })
-            elseif title and title ~= "" then
-                SFC.LogUtils.DebugMessage("Title ID", reward.titleID, "excluded due to faction mismatch")
-            else
-                SFC.LogUtils.DebugMessage("No title found for title ID", reward.titleID)
-            end
-        end
-    end
-
-    return result
-end
-
----@return Reward[]
-local function getCosmeticRewards()
-    ---@type Reward[]
-    local result = {}
-    if not SFC.DBUtils.GetProperty("itemsCache") then return result end
-
-    for _, reward in ipairs(SFC.Cosmetics) do
-        if SFC.DBUtils.GetItemFromCache(reward.itemID) and (not reward.faction or reward.faction == SFCMain.faction) then
-            tinsert(result, {
-                name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Cosmetic ("..reward.itemID..")",
-                itemID = reward.itemID,
-                achievementID = reward.achievementID,
-                categoryID = reward.categoryID,
-                type = "Cosmetic",
-                icon = SFC.DBUtils.GetItemFromCache(reward.itemID).icon or 134400,
-                faction = reward.faction
-            })
-        end
-    end
-
-    return result
-end
-
----@return Reward[]
-local function getCustomizationRewards()
-    ---@type Reward[]
-    local result = {}
-
-    for _, reward in ipairs(SFC.Customizations) do
-        local rewardText = select(11, GetAchievementInfo(reward.achievementID))
-        if rewardText and (not reward.faction or reward.faction == SFCMain.faction) then
-            tinsert(result, {
-                name = rewardText:gsub("^.+:%s", ""),
-                achievementID = reward.achievementID,
-                categoryID = reward.categoryID,
-                type = "Customization",
-                icon = type(reward.icon) == "number" and reward.icon or nil,
-                atlas = type(reward.icon) == "string" and reward.icon or nil,
-                faction = reward.faction
-            })
-        end
-    end
-
-    return result
-end
-
----@return Reward[]
-local function getToyRewards()
-    ---@type Reward[]
-    local result = {}
-    if not SFC.DBUtils.GetProperty("itemsCache") then return result end
-
-    for _, reward in ipairs(SFC.Toys) do
-        if SFC.DBUtils.GetItemFromCache(reward.itemID) and (not reward.faction or reward.faction == SFCMain.faction) then
-            tinsert(result, {
-                name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Toy ("..reward.itemID..")",
-                itemID = reward.itemID,
-                achievementID = reward.achievementID,
-                categoryID = reward.categoryID,
-                type = "Toy",
-                icon = SFC.DBUtils.GetItemFromCache(reward.itemID).icon or 134400,
-                faction = reward.faction
-            })
-        end
-    end
-
-    return result
-end
-
----@return Reward[]
-local function getPetRewards()
-    ---@type Reward[]
-    local result = {}
-    if not SFC.DBUtils.GetProperty("itemsCache") then return result end
-
-    for _, reward in ipairs(SFC.Pets) do
-        if reward.spellID and (not reward.faction or reward.faction == SFCMain.faction) then
-            local spellInfo = C_Spell.GetSpellInfo(reward.spellID)
-            tinsert(result, {
-                name = spellInfo.name,
-                spellID = spellInfo.spellID,
-                achievementID = reward.achievementID,
-                categoryID = reward.categoryID,
-                type = "Pet",
-                icon = spellInfo.originalIconID,
-                faction = reward.faction
-            })
-        elseif SFC.DBUtils.GetItemFromCache(reward.itemID) and (not reward.faction or reward.faction == SFCMain.faction) then
-            tinsert(result, {
-            name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Pet ("..reward.itemID..")",
-            itemID = reward.itemID,
-            achievementID = reward.achievementID,
-            categoryID = reward.categoryID,
-            type = "Pet",
-            icon = SFC.DBUtils.GetItemFromCache(reward.itemID).icon or 134400,
-            faction = reward.faction
-        })
-        end
-    end
-
-    return result
-end
-
----@return Reward[]
-local function getDecorRewards()
-    ---@type Reward[]
-    local result = {}
-    if not SFC.DBUtils.GetProperty("itemsCache") then return result end
-
-    for _, reward in ipairs(SFC.Decor) do
-        if SFC.DBUtils.GetItemFromCache(reward.itemID) and (not reward.faction or reward.faction == SFCMain.faction) then
-            tinsert(result, {
-                name = SFC.DBUtils.GetItemFromCache(reward.itemID).name or "Unknown Decor ("..reward.itemID..")",
-                itemID = reward.itemID,
-                achievementID = reward.achievementID,
-                categoryID = reward.categoryID,
-                type = "Decor",
-                icon = SFC.DBUtils.GetItemFromCache(reward.itemID).icon or 134400,
-                faction = reward.faction
-            })
-        end
-    end
-
-    return result
-end
-
--- END: Series of helper functions for organizing AddOn data into lists of a single shape
 
 ---Determines the category name(s) for an achievement given a category ID. If the category is nested, both category and parent category names will be included but separated by a ">" character
 ---@param categoryID number
@@ -555,13 +347,13 @@ function SFCMainMixin:PopulateAndSetRewardsList(category, shouldAnimateProgressB
     if category ~= "All" and not SFC[category] then return end
 
     local rewardLists = {
-        Mounts = getMountRewards(),
-        Titles = getTitleRewards(),
-        Cosmetics = getCosmeticRewards(),
-        Customizations = getCustomizationRewards(),
-        Toys = getToyRewards(),
-        Pets = getPetRewards(),
-        Decor = getDecorRewards(),
+        Mounts = SFC.RewardLists.GetMounts(),
+        Titles = SFC.RewardLists.GetTitles(),
+        Cosmetics = SFC.RewardLists.GetCosmetics(),
+        Customizations = SFC.RewardLists.GetCustomizations(),
+        Toys = SFC.RewardLists.GetToys(),
+        Pets = SFC.RewardLists.GetPets(),
+        Decor = SFC.RewardLists.GetDecor(),
          ---@type Reward[]
         All = {}
     }
@@ -576,7 +368,7 @@ function SFCMainMixin:PopulateAndSetRewardsList(category, shouldAnimateProgressB
 
     -- To persist completion progress, we need to update the progress bar before setting DataProvider contents
     local completed, total = getProgressValues(rewardLists[category])
-    self.RewardsProgress.Text:SetText(completed.."/"..total)
+    self.RewardsProgress.Text:SetText(completed.." / "..total)
     if shouldAnimateProgressBar and SFC.DBUtils.GetProperty("animateProgressBar") then
         animateProgressBar(self.RewardsProgress, total == 0 and 0 or completed/total * 100)
     else
@@ -643,38 +435,39 @@ local function registerRewardPreview(frame, reward)
         end)
 
         if reward.type == "Mount" then
-            local mountID = reward.spellID and C_MountJournal.GetMountFromSpell(reward.spellID) or C_MountJournal.GetMountFromItem(reward.itemID)
-            if mountID then
-                icon:SetScript("OnMouseDown", function(_, mouseBtn)
-                    if mouseBtn == "LeftButton" then
-                        if HousingModelPreviewFrame and HousingModelPreviewFrame:IsShown() then HousingModelPreviewFrame:Hide() end
-                        DressUpMount(mountID)
-                    end
-                end)
-            else
-                SFC.LogUtils.Message("Unable to preview", reward.name)
-            end
+            icon:SetScript("OnMouseDown", function(_, mouseBtn)
+                if mouseBtn ~= "LeftButton" then return end
+                local mountID = reward.spellID and C_MountJournal.GetMountFromSpell(reward.spellID) or C_MountJournal.GetMountFromItem(reward.itemID)
+                if not mountID then
+                    SFC.LogUtils.Message("Unable to preview", reward.name)
+                    return
+                end
+                if HousingModelPreviewFrame and HousingModelPreviewFrame:IsShown() then HousingModelPreviewFrame:Hide() end
+                DressUpMount(mountID)
+            end)
         elseif reward.type == "Pet" and reward.spellID == 61773 then
             -- Hardcoded speciesID for Plump Turkey (one-off exception)
-            local _, _, _, creatureID, _, _, _, _, _, _, _, displayID = C_PetJournal.GetPetInfoBySpeciesID(201)
-            if creatureID and displayID then
-                icon:SetScript("OnMouseDown", function(_, mouseBtn)
-                    if mouseBtn == "LeftButton" then
-                        if HousingModelPreviewFrame and HousingModelPreviewFrame:IsShown() then HousingModelPreviewFrame:Hide() end
-                        DressUpBattlePet(creatureID, displayID, 201)
-                    end
-                end)
-            end
+            icon:SetScript("OnMouseDown", function(_, mouseBtn)
+                if mouseBtn ~= "LeftButton" then return end
+                local _, _, _, creatureID, _, _, _, _, _, _, _, displayID = C_PetJournal.GetPetInfoBySpeciesID(201)
+                if not (creatureID and displayID) then
+                    SFC.LogUtils.DebugMessage("Unable to preview", reward.name)
+                    return
+                end
+                if HousingModelPreviewFrame and HousingModelPreviewFrame:IsShown() then HousingModelPreviewFrame:Hide() end
+                DressUpBattlePet(creatureID, displayID, 201)
+            end)
         elseif reward.type == "Pet" then
-            local _, _, _, creatureID, _, _, _, _, _, _, _, displayID, speciesID = C_PetJournal.GetPetInfoByItemID(reward.itemID)
-            if creatureID and displayID and speciesID then
-                icon:SetScript("OnMouseDown", function(_, mouseBtn)
-                    if mouseBtn == "LeftButton" then
-                        if HousingModelPreviewFrame and HousingModelPreviewFrame:IsShown() then HousingModelPreviewFrame:Hide() end
-                        DressUpBattlePet(creatureID, displayID, speciesID)
-                    end
-                end)
-            end
+            icon:SetScript("OnMouseDown", function(_, mouseBtn)
+                if mouseBtn ~= "LeftButton" then return end
+                local _, _, _, creatureID, _, _, _, _, _, _, _, displayID, speciesID = C_PetJournal.GetPetInfoByItemID(reward.itemID)
+                if not (creatureID and displayID and speciesID) then
+                    SFC.LogUtils.DebugMessage("Unable to preview", reward.name)
+                    return
+                end
+                if HousingModelPreviewFrame and HousingModelPreviewFrame:IsShown() then HousingModelPreviewFrame:Hide() end
+                DressUpBattlePet(creatureID, displayID, speciesID)
+            end)
         elseif reward.type == "Cosmetic" or reward.type == "Decor" then
             icon:SetScript("OnMouseDown", function(_, mouseBtn)
                 if mouseBtn == "LeftButton" then
@@ -695,17 +488,6 @@ local function registerRewardPreview(frame, reward)
         icon:SetScript("OnEnter", nil)
         icon:SetScript("OnLeave", nil)
     end
-end
-
----Lifted straight from Blizzard's 12.1.0 Achievement bootstrap functions (scrap shortly after patch launches)
----@param achievementID number
-ShowAchievementFrameForAchievement = ShowAchievementFrameForAchievement or function(achievementID)
-    if UIParentLoadAddOn("Blizzard_AchievementUI") then
-		if not AchievementFrame:IsShown() then
-			AchievementFrame_ToggleAchievementFrame(false, C_AchievementInfo.IsGuildAchievement(achievementID));
-		end
-		AchievementFrame_SelectAchievement(achievementID);
-	end
 end
 
 ---Factory function for rendering rewards data in the list

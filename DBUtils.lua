@@ -133,7 +133,7 @@ function DBUtils.BuildItemsCache()
                 SFC.LogUtils.DebugMessage(toLoad, "item(s) never resolved:")
                 for _, entry in ipairs(pending) do
                     if not entry.resolved then
-                        print((" - item ID: %d source: \"%s\" achievement ID: %d"):format(entry.itemID, entry.source, entry.achievementID))
+                        SFC.LogUtils.DebugMessage((" - item ID: %d source: \"%s\" achievement ID: %d"):format(entry.itemID, entry.source, entry.achievementID))
                     end
                 end
             end
