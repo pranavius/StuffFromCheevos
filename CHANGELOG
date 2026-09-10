@@ -1,3 +1,13 @@
+**v2**
+- **NEW**: Sorting dropdown menu for ordering achievement rewards in a variety of ways
+- Minimap icon and DataBroker support
+- Slash commands for minimap button visibility
+- Added Haranir heritage armor and its variant to *Cosmetics* list
+- Added missing title rewards from Patch 12.1.0
+- Added rewards for new achievements introduced in patch 12.1.5 (hidden until patch release date)
+- *Bug Fix:* Attempt to resolve issue with mount reward previews occasionally failing to display when they hadn't finished loading in time
+- *Bug Fix:* Removed a debugging print message that was mistakenly left in the code in earlier releases
+
 **v1.2**
 - Added Midnight Season 2 mount rewards: Breath of Blight, Breath of Ruin, Venomous Gladiator's Goredrake, Vicious Lightbloom Boar, and Apophic Soul Crusher
 - Added AddOn Compartment button support
